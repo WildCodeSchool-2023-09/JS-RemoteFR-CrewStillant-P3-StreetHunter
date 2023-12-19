@@ -25,6 +25,6 @@
   },
   "lint-staged": {
     "*.{html,scss,css}": "prettier --check",
-    "*.{jsx,js}": "eslint"
+    "src/*.{jsx,js}": "eslint"
   }
 }
