@@ -1,9 +1,9 @@
-// import LeafletMap from "../components/LeafletMap";
+import LeafletMap from "../components/Game/Map/LeafletMap";
 
 export default function MapPage() {
   return (
     <div>
-      {/* <LeafletMap /> */}
+      <LeafletMap />
       homepage
     </div>
   );
