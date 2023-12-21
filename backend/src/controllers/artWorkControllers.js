@@ -34,7 +34,8 @@ const read = async (req, res, next) => {
 
 // The E of BREAD - Edit (Update) operation
 const edit = async (req, res) => {
-  const { id, title, adress, validated, categories_id: categorieID } = req.body;
+  const { id } = parseInt(req.params, 10);
+  const { title, adress, validated, category_id: categorieID } = req.body;
 
   try {
     const updatedArtwork = await tables.artwork.update(
