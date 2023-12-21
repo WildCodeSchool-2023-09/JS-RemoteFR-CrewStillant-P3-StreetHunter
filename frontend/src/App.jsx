@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
-import "./App.css";
+import NavBar from "./components/NavBar";
+import "./tailwind.css";
 
 function App() {
   return (
-    <>
-      <h1>App</h1>
+    <div className="pb-20 bg-gradient-to-b from-backgroundOne via-backgroundTwo to-backgroundThree">
+      <NavBar />
       <Outlet />
-    </>
+    </div>
   );
 }
 
