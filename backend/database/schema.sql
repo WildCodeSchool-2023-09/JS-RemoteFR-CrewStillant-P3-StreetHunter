@@ -1,11 +1,10 @@
-
 CREATE DATABASE IF NOT EXISTS mapping_art_db;
 USE mapping_art_db;
 
-CREATE tABLE user (
+
+CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(255) NOT NULL,
-  portrait VARCHAR(255) NULL,
   lastname VARCHAR(255) NULL,
   firstname VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
@@ -13,35 +12,32 @@ CREATE tABLE user (
   score integer not null default 0,
   created_at TIMESTAMP NOT NULL,
   city VARCHAR(80) NULL,
-  postal_code VARCHAR(10) NULL
+  postal_code VARCHAR(10) NULL,
+  role_id INTEGER NOT NULL
 );
 
 CREATE TABLE artwork (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   title VARCHAR(255) NOT NULL,
-  adress VARCHAR(255) NOT NULL,
-  validated BOOLEAN NOT NULL DEFAULT FALSE,
-  categories_id INTEGER NOT NULL
+  pic_path VARCHAR(255) NULL,
+  validated BOOL NOT NULL DEFAULT FALSE,
+  categories_id INTEGER NOT NULL,
+  artist_id INTEGER NULL,
+  user_id INTEGER NOT NULL
 );
 
 CREATE TABLE category (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  abstract BOOL NOT NULL,
-  realistic BOOL NOT NULL,
-  calligraphy BOOL NOT NULL,
-  retro BOOL NOT NULL
+  name VARCHAR(80)
 );
 
 CREATE TABLE artist (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  artwork_id INTEGER NOT NULL
+  name VARCHAR(255) NULL
 );
 
 CREATE TABLE role (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  role VARCHAR(255) NOT NULL,
-  user_id INTEGER NOT NULL
+  role VARCHAR(255) NOT NULL
 );
 SHOW TABLES;
-ALTER TABLE user DROP portrait;

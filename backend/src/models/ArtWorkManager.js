@@ -7,7 +7,6 @@ class ArtworkManager extends AbstractManager {
 
   async readAll() {
     const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
-
     return rows;
   }
 
@@ -19,19 +18,19 @@ class ArtworkManager extends AbstractManager {
     return rows[0] || null;
   }
 
-  async create(title, adress, validated, categorieID) {
+  async create(title, adress, picPath, validated, categoryID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (title, adress, validated, categories_id) VALUES (?, ?, ?, ?)`,
-      [title, adress, validated, categorieID]
+      `INSERT INTO ${this.table} (title,pic_path, validated, category_id) VALUES (?, ?, ?, ?)`,
+      [title, adress, picPath, validated, categoryID]
     );
 
     return result.insertId;
   }
 
-  async update(id, title, adress, validated, categorieID) {
+  async update(id, title, adress, validated, categoryID) {
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET title = ?, adress = ?, validated = ?, categories_id = ? WHERE id = ?`,
-      [title, adress, validated, categorieID, id]
+      [title, adress, validated, categoryID, id]
     );
 
     return result.affectedRows;

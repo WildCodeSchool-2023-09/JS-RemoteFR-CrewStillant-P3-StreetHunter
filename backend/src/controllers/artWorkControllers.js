@@ -4,7 +4,6 @@ const tables = require("../tables");
 const browse = async (req, res) => {
   try {
     const artworks = await tables.artwork.readAll();
-
     res.json(artworks);
   } catch (e) {
     console.error(e);
@@ -17,7 +16,6 @@ const read = async (req, res, next) => {
   try {
     // Fetch a specific artwork from the database based on the provided ID
     const artwork = await tables.artwork.readById(id);
-
     // If the artwork is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the artwork in JSON format
     if (artwork == null) {
@@ -34,15 +32,15 @@ const read = async (req, res, next) => {
 
 // The E of BREAD - Edit (Update) operation
 const edit = async (req, res) => {
-  const { id, title, adress, validated, categories_id: categorieID } = req.body;
-
+  const { title, picPath, validated, categoryID } = req.body;
+  const { id } = req.params;
   try {
     const updatedArtwork = await tables.artwork.update(
       id,
       title,
-      adress,
+      picPath,
       validated,
-      categorieID
+      categoryID
     );
 
     if (updatedArtwork === null) {
@@ -57,14 +55,19 @@ const edit = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
+  const {
+    title,
+    pic_path: picPath,
+    validated,
+    category_id: categoryID,
+  } = req.body;
 
   try {
     const insertId = await tables.artwork.create(
       title,
-      adress,
+      picPath,
       validated,
-      categorieID
+      categoryID
     );
 
     res.status(201).json({ insertId });
