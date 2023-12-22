@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import markerlogo from "../../../assets/marker.png";
 import LocationMarker from "./MapLocate";
-// import LocateControl from "./LocateControl";
+import LocateControl from "./LocateControl";
 import "leaflet/dist/leaflet.css";
 
 export default function LeafletMap() {
@@ -36,7 +36,7 @@ export default function LeafletMap() {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-        {/* <LocateControl /> */}
+        <LocateControl />
       </MapContainer>
     </div>
   );

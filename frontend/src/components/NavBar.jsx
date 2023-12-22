@@ -8,7 +8,7 @@ export default function NavBar() {
       <ul className="flex flex-row justify-end gap-5 ml-64 text-primary">
         <li>
           <NavLink
-            className="hover:text-slate-800 focus:px-7"
+            className="hover:text-slate-800 active:text-slate-500  focus:px-7"
             to="/users/login"
           >
             INSCRIPTION /CONNEXION
@@ -16,25 +16,31 @@ export default function NavBar() {
         </li>
         <li>
           <NavLink
-            className="hover:text-slate-800 focus:px-7"
+            className="hover:text-slate-800 active:text-slate-500 focus:px-7"
             to="/users/profile"
           >
             PROFIL
           </NavLink>
         </li>
         <li>
-          <NavLink className="hover:text-slate-800 focus:px-7" to="/map">
+          <NavLink
+            className="hover:text-slate-800 active:text-slate-500 focus:px-7 has-[:focus]:px-7"
+            to="/map"
+          >
             LA CARTE
           </NavLink>
         </li>
         <li>
-          <NavLink className="hover:text-slate-800 focus:px-7" to="/game/ranks">
+          <NavLink
+            className="hover:text-slate-800 active:text-slate-500 focus:px-7"
+            to="/game/ranks"
+          >
             GALERIE /SCORES
           </NavLink>
         </li>
         <li>
           <NavLink
-            className="hover:text-slate-800 focus:pl-10"
+            className="hover:text-slate-800 active:text-slate-500 focus:pl-10"
             to="/administration/main"
           >
             ADMINISTRATION
@@ -43,7 +49,7 @@ export default function NavBar() {
         {/* set deconnexion button */}
         <div>
           <li className="ml-48">
-            <NavLink className="hover:text-slate-800 fixed">
+            <NavLink className="hover:text-slate-800 active:text-slate-500">
               DECONNEXION
             </NavLink>
           </li>
