@@ -2,14 +2,15 @@ import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import ArtworksList from "../components/ArtworksList";
-import ArtworksForm from "../components/ArtworksForm";
+import ArtworksList from "../../components/ArtworksList";
+import ArtworksForm from "../../components/ArtworksForm";
 
 export default function ArtworksPage() {
   const artworks = useLoaderData();
 
   const [isUpdated, setIsUpdated] = useState(false);
   const [updatedArtworks, setUpdatedArtworks] = useState(artworks);
+  console.info(updatedArtworks[0].pic_path);
 
   useEffect(() => {
     if (isUpdated) {
