@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import markerlogo from "../../../assets/marker.png";
 import LocationMarker from "./MapLocate";
-import LocateControl from "./LocateControl";
+// import LocateControl from "./LocateControl";
 import "leaflet/dist/leaflet.css";
 
 export default function LeafletMap() {
@@ -22,8 +22,12 @@ export default function LeafletMap() {
       >
         <LocationMarker />
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'
+          url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
+        />
+        <TileLayer
+          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'
+          url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
         />
         <Marker position={[45.51683, -73.58283]} icon={PinIcon}>
           {/* //faire un component pour le popup et son contenu */}
@@ -36,7 +40,7 @@ export default function LeafletMap() {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-        <LocateControl />
+        {/* <LocateControl /> */}
       </MapContainer>
     </div>
   );
