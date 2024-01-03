@@ -8,7 +8,7 @@ export default function ArtworksForm({ setIsUpdated }) {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`, {
         title: e.target[0].value,
-        adress: e.target[0].value,
+        adress: e.target[1].value,
         validated: 0,
         categories_id: 1,
       })

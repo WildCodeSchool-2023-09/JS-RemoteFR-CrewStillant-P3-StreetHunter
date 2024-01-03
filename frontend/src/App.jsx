@@ -4,9 +4,11 @@ import "./tailwind.css";
 
 function App() {
   return (
-    <div className="pb-20 bg-gradient-to-b from-backgroundOne via-backgroundTwo to-backgroundThree">
+    <div className="bg-hero-pattern bg-contain pb-7">
       <NavBar />
-      <Outlet />
+      <main className="">
+        <Outlet />
+      </main>
     </div>
   );
 }

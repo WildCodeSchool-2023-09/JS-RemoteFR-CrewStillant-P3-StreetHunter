@@ -2,7 +2,6 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import markerlogo from "../../../assets/marker.png";
 import LocationMarker from "./MapLocate";
-// import LocateControl from "./LocateControl";
 import "leaflet/dist/leaflet.css";
 
 export default function LeafletMap() {
@@ -20,7 +19,6 @@ export default function LeafletMap() {
         scrollWheelZoom
         style={{ width: "90%", height: "80vh" }}
       >
-        <LocationMarker />
         <TileLayer
           attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
@@ -40,7 +38,7 @@ export default function LeafletMap() {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-        {/* <LocateControl /> */}
+        <LocationMarker />
       </MapContainer>
     </div>
   );

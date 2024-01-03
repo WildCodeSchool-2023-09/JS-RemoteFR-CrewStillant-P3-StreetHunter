@@ -10,7 +10,6 @@ export default function ArtworksPage() {
 
   const [isUpdated, setIsUpdated] = useState(false);
   const [updatedArtworks, setUpdatedArtworks] = useState(artworks);
-  console.info(updatedArtworks[0].pic_path);
 
   useEffect(() => {
     if (isUpdated) {
