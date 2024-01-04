@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+
 import MapPage from "./pages/MapPage";
 import HomePage from "./pages/HomePage";
 import SubscribePage from "./pages/SubscribePage";
@@ -53,6 +54,8 @@ const router = createBrowserRouter([
           {
             path: "/administration/artworks",
             element: <ArtworksListPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
           },
           {
             path: "/administration/users",

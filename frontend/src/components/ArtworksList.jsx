@@ -1,36 +1,27 @@
-import axios from "axios";
-import Proptypes from "prop-types";
-import "../App.css";
+import React from "react";
+import PropTypes from "prop-types";
+import ArtworkCard from "./ArtworkCard";
 
-export default function ArtworksList({ artworks, setIsUpdated }) {
-  const handleDelete = (id) => {
-    axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/${id}`)
-      .then(() => setIsUpdated(true));
-  };
-
+function ArtworksList({ artworks, setIsUpdated }) {
   return (
     <div className="text-center my-8">
-      <h1 className="text-3xl font-bold mb-4">Artworks List</h1>
-      <ul>
-        {artworks.map((a) => (
-          <div key={a.id} className="mb-4">
-            <li>{a.title}</li>
-            <button
-              type="button"
-              onClick={() => handleDelete(a.id)}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Supprimer
-            </button>
-          </div>
+      <h1 className="text-3xl font-bold">Artworks List</h1>
+      <div className="flex flex-wrap">
+        {artworks.map((artwork) => (
+          <ArtworkCard
+            key={artwork.id}
+            artwork={artwork}
+            setIsUpdated={setIsUpdated}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
 
 ArtworksList.propTypes = {
-  artworks: Proptypes.arrayOf(Proptypes.shape).isRequired,
-  setIsUpdated: Proptypes.func.isRequired,
+  artworks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  setIsUpdated: PropTypes.func.isRequired,
 };
+
+export default ArtworksList;
