@@ -8,7 +8,6 @@ const ArtworkManager = require("./models/ArtWorkManager");
 
 const managers = [
   ItemManager,
-  // Add other managers here
   ArtworkManager,
 ];
 
