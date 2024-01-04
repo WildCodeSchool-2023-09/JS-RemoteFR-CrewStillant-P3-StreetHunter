@@ -5,29 +5,11 @@ import steve from "../assets/Steve_redimentioned.png";
 export default function NavBar() {
   const navLinks = [
     {
-      path: "/users/login",
-      title: "INSCRIPTION /CONNEXION",
-    },
-    {
-      path: "/users/profile",
-      title: "PROFIL",
-    },
-    {
       path: "/map",
       title: "LA CARTE",
     },
-    {
-      path: "/game/ranks",
-      title: "GALERIE /SCORES",
-    },
-    {
-      path: "/administration/main",
-      title: "ADMINISTRATION",
-    },
   ];
-  // ----------------------- [for styling purpose] useState to store the page "name" we're in---------------------
   const [page, setPagae] = useState(null);
-  // -----------------[for styling purpose] function to ref the page name and put it in the state --------------
   const handlePageStyle = (e) => {
     setPagae(e.target.text);
   };
@@ -39,7 +21,6 @@ export default function NavBar() {
           <img alt="logo" src={steve} className="ml-5 hover:animate-spin" />
         </NavLink>
         <ul className="flex flex-row justify-end gap-4 ml-64 text-primary">
-          {/* [for styling purpose] conditional rendereing depending on page state (page name takes a diferent padding when page displayed) */}
           {navLinks.map((n) =>
             page === n.title ? (
               <li>
@@ -64,14 +45,6 @@ export default function NavBar() {
             )
           )}
         </ul>
-        <div>
-          <button
-            type="button"
-            className="hover:text-slate-800 active:text-slate-500 ml-48 text-primary"
-          >
-            DECONNEXION
-          </button>
-        </div>
       </nav>
     </div>
   );
