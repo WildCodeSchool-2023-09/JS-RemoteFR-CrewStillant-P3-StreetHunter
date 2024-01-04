@@ -1,19 +1,19 @@
 const express = require("express");
 
-const router = express.Router();
+const UserRouter = express.Router();
 
 const {
   browse,
   read,
   add,
   edit,
-  destroy,
+  remove,
 } = require("../controllers/userControllers");
 
-router.get("/user", browse);
-router.get("/:id", read);
-router.post("/user", add);
-router.put("/:id", edit);
-router.delete("/:id", destroy);
+UserRouter.get("/", browse);
+UserRouter.get("/:id", read);
+UserRouter.post("/", add);
+UserRouter.put("/:id", edit);
+UserRouter.delete("/:id", remove);
 
-module.exports = router;
+module.exports = UserRouter;
