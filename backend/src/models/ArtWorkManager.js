@@ -29,7 +29,6 @@ class ArtworkManager extends AbstractManager {
   }
 
   async update(id, title, adress, validated, categorieID) {
-    // console.log(id, title, adress, validated, categorieID);
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET title = ?, adress = ?, validated = ?, categories_id = ? WHERE id = ?`,
       [title, adress, validated, categorieID, id]
