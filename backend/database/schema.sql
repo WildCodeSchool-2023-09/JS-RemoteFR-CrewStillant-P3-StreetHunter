@@ -6,6 +6,26 @@ CREATE DATABASE IF NOT EXISTS mapping_art_db;
 
 USE mapping_art_db;
 
+CREATE TABLE
+    category (
+        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        cat_name VARCHAR(255)
+    );
+
+CREATE TABLE
+    artist (
+        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        artist_name VARCHAR(255) NOT NULL
+    );
+
+DROP TABLE IF EXISTS role;
+
+CREATE TABLE
+    role (
+        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        role_name VARCHAR(255) NOT NULL
+    );
+
 CREATE tABLE
     user (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -18,7 +38,8 @@ CREATE tABLE
         created_at TIMESTAMP NOT NULL,
         city VARCHAR(80) NULL,
         postal_code VARCHAR(255) NULL,
-        role_id INT NOT NULL
+        role_id INT NOT NULL,
+        CONSTRAINT fk_user_role FOREIGN KEY(role_id) REFERENCES role(id)
     );
 
 CREATE TABLE
@@ -29,27 +50,11 @@ CREATE TABLE
         adress VARCHAR(255) NOT NULL,
         validated BOOLEAN NOT NULL DEFAULT FALSE,
         category_id INTEGER NOT NULL,
+        CONSTRAINT fk_artwork_category FOREIGN KEY(category_id) REFERENCES category(id),
         artist_id INT NOT NULL,
-        user_id INT NOT NULL
-    );
-
-CREATE TABLE
-    category (
-        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        cat_name VARCHAR(255)
-    );
-
-CREATE TABLE
-    artist (
-        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        artist_name VARCHAR(255) NOT NULL
-    );
-DROP TABLE IF EXISTS role;
-
-CREATE TABLE
-    role (
-        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        role_name VARCHAR(255) NOT NULL
+        CONSTRAINT fk_artwork_artist FOREIGN KEY(artist_id) REFERENCES artist(id),
+        user_id INT NOT NULL,
+        CONSTRAINT fk_artowork_user FOREIGN KEY(user_id) REFERENCES user(id)
     );
 
 SHOW TABLES;
