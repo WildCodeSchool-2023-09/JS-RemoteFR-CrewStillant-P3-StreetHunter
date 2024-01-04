@@ -76,7 +76,7 @@ const remove = async (req, res, next) => {
     if (deletedArtwork === null) {
       res.status(404).send(`Artwork with id: ${id} not found`);
     } else {
-      res.status(200).send(`Artwork with id: ${id} deleted successfully`);
+      res.status(200).send(`Artwork with id: ${id} successfully deleted`);
     }
   } catch (err) {
     next(err);
