@@ -1,4 +1,47 @@
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null
+
+CREATE DATABASE IF NOT EXISTS mapping_art_db;
+USE mapping_art_db;
+
+CREATE TABLE user (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  portrait VARCHAR(255) NULL,
+  lastname VARCHAR(255) NULL,
+  firstname VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  score integer not null default 0,
+  created_at TIMESTAMP NOT NULL,
+  city VARCHAR(80) NULL,
+  postal_code VARCHAR(10) NULL
 );
+
+CREATE TABLE artwork (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  adress VARCHAR(255) NOT NULL,
+  validated BOOLEAN NOT NULL DEFAULT FALSE,
+  categories_id INTEGER NOT NULL
+);
+
+CREATE TABLE category (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  abstract BOOL NOT NULL,
+  realistic BOOL NOT NULL,
+  calligraphy BOOL NOT NULL,
+  retro BOOL NOT NULL
+);
+
+CREATE TABLE artist (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  artwork_id INTEGER NOT NULL
+);
+
+CREATE TABLE role (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  role VARCHAR(255) NOT NULL,
+  user_id INTEGER NOT NULL
+);
+SHOW TABLES;
+ALTER TABLE user DROP portrait;
