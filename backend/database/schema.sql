@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS mapping_art_db;
 USE mapping_art_db;
 
-CREATE tABLE user (
+CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(255) NOT NULL,
   portrait VARCHAR(255) NULL,
