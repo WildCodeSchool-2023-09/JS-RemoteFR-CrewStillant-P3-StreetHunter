@@ -15,6 +15,7 @@ const read = async (req, res, next) => {
 
   try {
     const artwork = await tables.artwork.readById(id);
+    
     if (artwork == null) {
       res.sendStatus(404);
     } else {
@@ -26,10 +27,11 @@ const read = async (req, res, next) => {
   }
 };
 
-// The E of BREAD - Edit (Update) operation
+
 const edit = async (req, res) => {
-  const { id } = parseInt(req.params, 10);
-  const { title, adress, validated, category_id: categorieID } = req.body;
+  const { title, adress, validated, categories_id: categorieID } = req.body;
+  const { id } = req.params;
+
 
   try {
     const updatedArtwork = await tables.artwork.update(
@@ -67,16 +69,16 @@ const add = async (req, res) => {
   }
 };
 
-// The D of BREAD - Destroy (Delete) operation
 const remove = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
 
   try {
     const deletedArtwork = await tables.artwork.delete(id);
+
     if (deletedArtwork === null) {
       res.status(404).send(`Artwork with id: ${id} not found`);
     } else {
-      res.status(200).send(`Artwork with id: ${id} deleted successfully`);
+      res.status(200).send(`Artwork with id: ${id} successfully deleted`);
     }
   } catch (err) {
     next(err);
