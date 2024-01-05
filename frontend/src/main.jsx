@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MapPage from "./pages/MapPage";
 
 import App from "./App";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/map",
+        element: <MapPage />,
+      },
+    ],
   },
 ]);
 
