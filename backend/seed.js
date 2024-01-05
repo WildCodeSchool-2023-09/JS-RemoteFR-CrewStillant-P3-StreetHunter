@@ -20,14 +20,25 @@ const seed = async () => {
     // Generating Seed Data
 
     // Optional: Truncate tables (remove existing data)
-    await database.query("truncate item");
+    await database.query("truncate user");
 
     // Insert fake data into the 'item' table
     for (let i = 0; i < 10; i += 1) {
       queries.push(
-        database.query("insert into item(title) values (?)", [
-          faker.lorem.word(),
-        ])
+        database.query(
+          "insert into user( username, lastName, firstName, email, password, score, city, postalCode, roleId ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          [
+            faker.internet.displayName(),
+            faker.person.lastName(),
+            faker.person.firstName(),
+            faker.internet.email(),
+            faker.internet.password(),
+            faker.number.float(),
+            faker.location.city(),
+            faker.location.zipCode(),
+            faker.number.integer(),
+          ]
+        )
       );
     }
 

@@ -1,6 +1,7 @@
 const ArtworkManager = require("./models/ArtWorkManager");
+const UserManager = require("./models/UserManager");
 
-const managers = [ArtworkManager];
+const managers = [ArtworkManager, UserManager];
 
 const tables = {};
 
