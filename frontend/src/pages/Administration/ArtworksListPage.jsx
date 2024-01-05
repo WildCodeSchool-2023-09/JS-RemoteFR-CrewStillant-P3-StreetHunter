@@ -6,12 +6,8 @@ import ArtworksList from "../../components/ArtworksList";
 import ArtworksForm from "../../components/NewArtwork";
 
 export default function ArtworksPage() {
-  // récupere les données
   const artworks = useLoaderData();
-
-  // Déclaration de l'état pour suivre si une maj est nécessaire
   const [isUpdated, setIsUpdated] = useState(false);
-  // Déclaration de l'état pour gérer les maj
   const [updatedArtworks, setUpdatedArtworks] = useState(artworks);
 
   useEffect(() => {
@@ -19,13 +15,13 @@ export default function ArtworksPage() {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`)
         .then((res) => {
-          setUpdatedArtworks(res.data); // Met à jour avec les nouvelles données
-          setIsUpdated(false); // Réinitialise l'état isUpdated
+          setUpdatedArtworks(res.data);
+          setIsUpdated(false);
         })
         .catch((e) => console.error(e));
     }
     setIsUpdated(false);
-  }, [isUpdated]); // Le useEffect s'exécute quand isUpdated change
+  }, [isUpdated]);
 
   return (
     <>

@@ -6,23 +6,19 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 function ArtworkCard({ artwork, setIsUpdated }) {
-  // Déclaration de l'état pour gérer la visibilité du formulaire
   const [formVisible, setFormVisible] = useState(false);
-  // Déclaration de l'état pour gérer les données du formulaire
   const [formData, setFormData] = useState({
     title: artwork.title,
     adress: artwork.adress,
     validated: artwork.validated,
     categories_id: artwork.categories_id,
   });
-  // Fonction pour gérer la suppression
   const handleDelete = () => {
     axios
       .delete(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/${artwork.id}`)
-      .then(() => setIsUpdated(true)); // Mise a jour de l'état après suppression
+      .then(() => setIsUpdated(true));
   };
 
-  // Fonction pour gérer édition
   const editArtwork = () => {
     axios
       .put(
@@ -30,12 +26,11 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         formData
       )
       .then(() => {
-        setIsUpdated(true); // Mise à jour après édition.
-        setFormVisible(false); // Cache le formulaire après édition.
+        setIsUpdated(true);
+        setFormVisible(false);
       });
   };
 
-  // affiche le formulaire d'édition
   const handleEditClick = () => {
     setFormVisible(true);
   };
@@ -63,7 +58,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         <form>
           <button
             type="button"
-            onClick={() => setFormVisible(false)} // fait disparaitre le formulaire
+            onClick={() => setFormVisible(false)}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
           >
             Annuler
@@ -73,8 +68,8 @@ function ArtworkCard({ artwork, setIsUpdated }) {
             <input
               type="text"
               value={formData.title}
-              onChange={
-                (e) => setFormData({ ...formData, title: e.target.value }) // Met à jour formData avec le nouveau titre
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
               }
               className="border rounded-md p-2 w-full"
             />

@@ -6,21 +6,18 @@ export default function ArtworksForm({ setIsUpdated }) {
   const [validatedArt, setValidatedArt] = useState(0);
   const [categorie, setCategorie] = useState(0);
 
-  // Fonction pour gérer la soumission du formulaire
   const handleFormSubmit = (e) => {
-    e.preventDefault(); // Empeche le comportement par défaut, le rafraichissement de page
-
+    e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`, {
-        title: e.target[0].value, // valeur du premier champ du formulaire
-        adress: e.target[1].value, // valeur du deuxieme champ du formulaire
+        title: e.target[0].value,
+        adress: e.target[1].value,
         validated: validatedArt,
         categories_id: categorie,
       })
 
       .then(() => setIsUpdated(true));
 
-    // Réinitialise les champs du formulaire après la soumission
     e.target[0].value = "";
     e.target[1].value = "";
   };
@@ -47,8 +44,6 @@ export default function ArtworksForm({ setIsUpdated }) {
           value={validatedArt}
           onChange={(e) => setValidatedArt(e.target.value)}
         >
-          {/* Quand l'utilisateur sélectionne une option "e.target.value", setValidatedArt est appelé avec cette 
-           nouvelle valeur et mety à jour validatedArt */}
           <option value={0}>Non validé</option>
           <option value={1}>Validé</option>
         </select>
@@ -56,7 +51,6 @@ export default function ArtworksForm({ setIsUpdated }) {
           value={categorie}
           onChange={(e) => setCategorie(e.target.value)}
         >
-          {/* meme principe avec catégorie */}
           <option value={0}>Peinture</option>
           <option value={1}>Graph</option>
           <option value={2}>8bit</option>
