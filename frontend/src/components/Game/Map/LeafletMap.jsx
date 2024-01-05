@@ -28,7 +28,6 @@ export default function LeafletMap() {
           url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
         />
         <Marker position={[45.51683, -73.58283]} icon={PinIcon}>
-          {/* //faire un component pour le popup et son contenu */}
           <Popup>
             IMAGE. <br /> TITRE
           </Popup>
