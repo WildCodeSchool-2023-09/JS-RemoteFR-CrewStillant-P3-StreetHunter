@@ -15,7 +15,7 @@ const read = async (req, res, next) => {
 
   try {
     const artwork = await tables.artwork.readById(id);
-    
+
     if (artwork == null) {
       res.sendStatus(404);
     } else {
@@ -27,11 +27,9 @@ const read = async (req, res, next) => {
   }
 };
 
-
 const edit = async (req, res) => {
   const { title, adress, validated, categories_id: categorieID } = req.body;
   const { id } = req.params;
-
 
   try {
     const updatedArtwork = await tables.artwork.update(
