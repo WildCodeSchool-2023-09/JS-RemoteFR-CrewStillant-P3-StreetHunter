@@ -10,7 +10,7 @@ module.exports = {
         backgroundThree: "#b5e2b0",
       },
       backgroundImage: {
-        "hero-pattern": "url('./src/assets/p3_bg.jpg')",
+        city: "url('/assets/wallpaper.png')",
       },
     },
     fontFamily: {
