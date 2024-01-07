@@ -21,32 +21,10 @@ class UserManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(
-    username,
-    lastname,
-    firsname,
-    email,
-    password,
-    score,
-    createdAt,
-    city,
-    postalCode,
-    roleId
-  ) {
+  async create(username, email, password) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (username, lastname, firstname, email, password, score, created_at, city, postal_code, role_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        username,
-        lastname,
-        firsname,
-        email,
-        password,
-        score,
-        createdAt,
-        city,
-        postalCode,
-        roleId,
-      ]
+      `INSERT INTO ${this.table} (username, email, password) values (?, ?, ?)`,
+      [username, email, password]
     );
     return result;
   }

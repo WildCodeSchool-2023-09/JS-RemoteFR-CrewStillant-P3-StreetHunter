@@ -26,7 +26,7 @@ CREATE TABLE
         role_name VARCHAR(255) NOT NULL
     );
 
-CREATE tABLE
+CREATE TABLE
     user (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         username VARCHAR(80) NOT NULL,
@@ -34,20 +34,20 @@ CREATE tABLE
         firstname VARCHAR(80) NULL,
         email VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
-        score INT NOT NULL DEFAULT 0,
-        created_at TIMESTAMP NOT NULL,
+        score INT NULL DEFAULT 0,
+        created_at DATETIME NULL DEFAULT NOW(),
         city VARCHAR(80) NULL,
         postal_code VARCHAR(255) NULL,
-        role_id INT NOT NULL,
+        role_id INT NULL DEFAULT 2,
         CONSTRAINT fk_user_role FOREIGN KEY(role_id) REFERENCES role(id)
     );
 
 CREATE TABLE
     artwork (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        path_pic VARCHAR(255) NOT NULL,
+        path_pic VARCHAR(255) NULL,
         title VARCHAR(255) NULL,
-        adress VARCHAR(255) NOT NULL,
+        coordinates POINT NOT NULL,
         validated BOOLEAN NOT NULL DEFAULT FALSE,
         category_id INTEGER NOT NULL,
         CONSTRAINT fk_artwork_category FOREIGN KEY(category_id) REFERENCES category(id),
