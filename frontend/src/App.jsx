@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navigation/NavBar";
 import "./tailwind.css";
 
 function App() {
   return (
-    <div className="bg-city bg-contain pb-7">
+    <div className="bg-city bg-[length:500px_588px] ">
       <NavBar />
-      <main className="">
+      <main>
         <Outlet />
       </main>
     </div>
