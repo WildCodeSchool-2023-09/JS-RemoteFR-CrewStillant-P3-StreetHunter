@@ -7,10 +7,7 @@ function App() {
     <div className="bg-hero-pattern bg-contain pb-7">
       <NavBar />
       <Link to="/administration">Administration</Link>
-
-      <main className="">
-        <Outlet />
-      </main>
+      <Outlet />
     </div>
   );
 }
