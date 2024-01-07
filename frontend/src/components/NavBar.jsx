@@ -23,7 +23,7 @@ export default function NavBar() {
         <ul className="flex flex-row justify-end gap-4 ml-64 text-primary">
           {navLinks.map((n) =>
             page === n.title ? (
-              <li>
+              <li key={n.title}>
                 <NavLink
                   className="hover:text-slate-800 active:text-slate-500 px-7"
                   to={n.path}
@@ -33,7 +33,7 @@ export default function NavBar() {
                 </NavLink>
               </li>
             ) : (
-              <li>
+              <li key={n.title}>
                 <NavLink
                   className="hover:text-slate-800 active:text-slate-500 "
                   to={n.path}
