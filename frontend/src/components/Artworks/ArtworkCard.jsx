@@ -6,6 +6,12 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 function ArtworkCard({ artwork, setIsUpdated }) {
+  const categoryName = {
+    0: "abstract",
+    1: "realistic",
+    2: "calligraphy",
+    3: "retro",
+  };
   const [formVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     title: artwork.title,
@@ -40,7 +46,9 @@ function ArtworkCard({ artwork, setIsUpdated }) {
       <div className="text-xl font-bold mb-2">{artwork.title}</div>
       <div className="mb-2">{artwork.adress}</div>
       <div className="mb-2">{artwork.validated ? "Validé" : "Non validé"}</div>
-      <div className="mb-2">Catégorie ID: {artwork.categories_id}</div>
+      <div className="mb-2">
+        Catégorie: {categoryName[artwork.categories_id]}
+      </div>
       <button
         type="button"
         onClick={handleEditClick}
@@ -113,10 +121,10 @@ function ArtworkCard({ artwork, setIsUpdated }) {
               }
               className="border rounded-md p-2 w-full"
             >
-              <option value={1}>Peinture</option>
-              <option value={2}>Graph</option>
-              <option value={3}>8bit</option>
-              <option value={4}>Rétro</option>
+              <option value={0}>abstract</option>
+              <option value={1}>realistic</option>
+              <option value={2}>calligraphy</option>
+              <option value={3}>retro</option>
             </select>
           </label>
           <button

@@ -3,7 +3,6 @@ import Proptypes from "prop-types";
 import { useState } from "react";
 
 export default function ArtworksForm({ setIsUpdated }) {
-  const [validatedArt, setValidatedArt] = useState(0);
   const [categorie, setCategorie] = useState(0);
 
   const handleFormSubmit = (e) => {
@@ -12,7 +11,7 @@ export default function ArtworksForm({ setIsUpdated }) {
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`, {
         title: e.target[0].value,
         adress: e.target[1].value,
-        validated: validatedArt,
+        validated: false,
         categories_id: categorie,
       })
 
@@ -40,21 +39,15 @@ export default function ArtworksForm({ setIsUpdated }) {
           className="w-full p-2 mb-4 border rounded-md"
           placeholder="L'adresse ici"
         />
-        <select
-          value={validatedArt}
-          onChange={(e) => setValidatedArt(e.target.value)}
-        >
-          <option value={0}>Non validé</option>
-          <option value={1}>Validé</option>
-        </select>
+
         <select
           value={categorie}
           onChange={(e) => setCategorie(e.target.value)}
         >
-          <option value={0}>Peinture</option>
-          <option value={1}>Graph</option>
-          <option value={2}>8bit</option>
-          <option value={3}>Rétro</option>
+          <option value={0}>abstract</option>
+          <option value={1}>realistic</option>
+          <option value={2}>calligraphy</option>
+          <option value={3}>retro</option>
         </select>
         <button
           type="submit"

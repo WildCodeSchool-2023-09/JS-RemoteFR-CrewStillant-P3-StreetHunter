@@ -20,7 +20,6 @@ export default function ArtworksPage() {
         })
         .catch((e) => console.error(e));
     }
-    setIsUpdated(false);
   }, [isUpdated]);
 
   return (
