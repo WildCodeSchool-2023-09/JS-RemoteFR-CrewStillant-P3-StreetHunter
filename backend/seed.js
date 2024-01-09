@@ -21,12 +21,10 @@ const seed = async () => {
 
     // Optional: Truncate tables (remove existing data)
     // await database.query(" user");
-
-    // Insert fake data into the 'item' table
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       queries.push(
         database.query(
-          "insert into user( username, lastName, firstName, email, password, score, city, postal_code ) values (?, ?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO user( username, lastName, firstName, email, password, score, city, postal_code ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
           [
             faker.internet.displayName(),
             faker.person.lastName(),
@@ -41,6 +39,34 @@ const seed = async () => {
       );
     }
 
+    await database.query(
+      "INSERT INTO category ( cat_name ) VALUES ('Retro'),('Caligraphy'),('Abstract'),('Realistic')"
+    );
+
+    for (let i = 0; i < 5; i += 1) {
+      queries.push(
+        database.query("INSERT INTO artist ( artist_name ) VALUES (?)", [
+          faker.internet.displayName(),
+        ])
+      );
+    }
+
+    for (let i = 0; i < 10; i += 1) {
+      queries.push(
+        database.query(
+          "insert into artwork( path_pic, title, address, category_id, artist_id, user_id) values (?, ?, ?, ?, ?, ?)",
+          [
+            faker.image.url(),
+            faker.lorem.word(),
+            faker.location.streetAddress(),
+            // faker.number.binary(),
+            faker.number.int({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 1, max: 5 }),
+          ]
+        )
+      );
+    }
     /* ************************************************************************* */
 
     // Wait for all the insertion queries to complete

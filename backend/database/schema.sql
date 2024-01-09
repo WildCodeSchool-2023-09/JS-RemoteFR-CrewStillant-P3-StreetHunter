@@ -18,8 +18,6 @@ CREATE TABLE
         artist_name VARCHAR(255) NOT NULL
     );
 
-DROP TABLE IF EXISTS role;
-
 CREATE tABLE
     user (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -40,14 +38,14 @@ CREATE TABLE
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         path_pic VARCHAR(255) NOT NULL,
         title VARCHAR(255) NULL,
-        adress VARCHAR(255) NOT NULL,
+        address VARCHAR(255) NOT NULL,
         validated BOOLEAN NOT NULL DEFAULT FALSE,
-        category_id INTEGER NOT NULL,
-        CONSTRAINT fk_artwork_category FOREIGN KEY(category_id) REFERENCES category(id),
-        artist_id INT NOT NULL,
-        CONSTRAINT fk_artwork_artist FOREIGN KEY(artist_id) REFERENCES artist(id),
+        category_id INT NOT NULL,
+        artist_id INT NULL,
         user_id INT NOT NULL,
-        CONSTRAINT fk_artwork_user FOREIGN KEY(user_id) REFERENCES user(id)
+        CONSTRAINT fk_artwork_category FOREIGN KEY (category_id) REFERENCES category(id),
+        CONSTRAINT fk_artwork_artist FOREIGN KEY (artist_id) REFERENCES artist(id),
+        CONSTRAINT fk_artwork_user FOREIGN KEY (user_id) REFERENCES user(id)
     );
 
 SHOW TABLES;
