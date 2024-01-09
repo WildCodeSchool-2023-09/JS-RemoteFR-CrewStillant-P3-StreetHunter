@@ -59,7 +59,6 @@ const seed = async () => {
             faker.image.url(),
             faker.lorem.word(),
             faker.location.streetAddress(),
-            // faker.number.binary(),
             faker.number.int({ min: 1, max: 3 }),
             faker.number.int({ min: 1, max: 5 }),
             faker.number.int({ min: 1, max: 5 }),
