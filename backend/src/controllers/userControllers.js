@@ -35,25 +35,21 @@ const edit = async (req, res, next) => {
   const {
     username,
     lastname,
-    firsnname,
+    firstname,
     email,
     password,
-    score,
     city,
     postal_code: postalCode,
-    role_id: roleId,
   } = req.body;
   try {
     const result = await tables.user.update(
       username,
       lastname,
-      firsnname,
+      firstname,
       email,
       password,
-      score,
       city,
       postalCode,
-      roleId,
       id
     );
     if (result == null) {
