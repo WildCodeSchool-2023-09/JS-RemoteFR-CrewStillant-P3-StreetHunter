@@ -1,0 +1,18 @@
+.request-popup .leaflet-popup-content-wrapper {
+    background-color: #e0f1de4f;
+    width: 15rem;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaflet-popup-content img {
+    width: 10rem;
+    margin-top: 1rem;
+}
+
+.leaflet-popup-content p {
+    margin-top: 2rem;
+}
