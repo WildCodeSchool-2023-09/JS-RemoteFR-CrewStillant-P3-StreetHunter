@@ -6,12 +6,16 @@ import steve from "../../assets/Steve_redimentioned .png";
 export default function NavBar() {
   const navLinks = [
     {
-      path: "/map",
-      title: "LA CARTE",
+      path: "/profil",
+      title: "PROFIL",
     },
     {
       path: "/signup",
       title: "INSCRIPTION",
+    },
+    {
+      path: "/scores",
+      title: "SCORES",
     },
   ];
   const [menuOpen, setMenuOpen] = useState(false);
