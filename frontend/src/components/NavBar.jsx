@@ -1,12 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import steve from "../assets/Steve_redimentioned.png";
+import steve from "../assets/Steve_redimentioned .png";
 
 export default function NavBar() {
   const navLinks = [
     {
       path: "/map",
       title: "LA CARTE",
+    },
+    {
+      path: "/signup",
+      title: "INSCRIPTION",
     },
   ];
   const [page, setPagae] = useState(null);
@@ -23,7 +27,7 @@ export default function NavBar() {
         <ul className="flex flex-row justify-end gap-4 ml-64 text-primary">
           {navLinks.map((n) =>
             page === n.title ? (
-              <li>
+              <li key={n.title}>
                 <NavLink
                   className="hover:text-slate-800 active:text-slate-500 px-7"
                   to={n.path}
@@ -33,7 +37,7 @@ export default function NavBar() {
                 </NavLink>
               </li>
             ) : (
-              <li>
+              <li key={n.title}>
                 <NavLink
                   className="hover:text-slate-800 active:text-slate-500 "
                   to={n.path}

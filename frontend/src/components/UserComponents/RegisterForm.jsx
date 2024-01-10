@@ -18,16 +18,20 @@ export default function RegisterForm() {
   passwordRef.current = watch("password", "");
 
   return (
-    <div>
-      <form className="text-center" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-3">
+    <div className="lg:mt-14">
+      <form
+        className="text-center lg:text-2xl lg:font-extrabold"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="flex flex-col gap-3 lg:gap-10">
+          {/* -----------------------------------------USERNAME -------------------------------------------------------------- */}
           <div>
-            <label htmlFor="username" className="text-center">
+            <label htmlFor="username" className="text-center lg:hidden">
               pseudo
             </label>
             <input
               type="text"
-              className="mx-14 pl-2 rounded-md py-1 shadow-xl"
+              className="mx-14 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("username", {
                 required: "Champ obligatoire",
                 minLength: {
@@ -43,11 +47,14 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
+          {/* -------------------------------------------EMAIL -------------------------------------------------------------- */}
           <div>
-            <label htmlFor="email">adresse mail</label>
+            <label className="lg:hidden" htmlFor="email">
+              adresse mail
+            </label>
             <input
               type="email"
-              className="mx-14 pl-2 rounded-md py-1 shadow-xl"
+              className="mx-14 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("email", {
                 required: "champ obligatoire",
                 pattern: {
@@ -64,44 +71,48 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
+          {/* ------------------------------------------PASSWORD-------------------------------------------------------------- */}
           <div>
-            <label htmlFor="password">mot de passe</label>
+            <label className="lg:hidden" htmlFor="password">
+              mot de passe
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="mx-14 pl-2 rounded-xl py-1 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
+              {...register("password", {
+                required: "champ obligatoire",
+                pattern: {
+                  value:
+                    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
+                  message:
+                    "doit contenir au moins 8 caractères dont au moins un majuscule, un miniscule, un chiffre et un caractère spécial ",
+                },
+              })}
+              placeholder="mot de passe"
+            />
+            {errors.password && (
+              <p role="alert" className="">
+                {" "}
+                {errors.password.message}
+              </p>
+            )}
           </div>
-          <input
-            type="password"
-            id="password"
-            className="mx-14 pl-2 rounded-md py-1 shadow-xl"
-            {...register("password", {
-              required: "champ obligatoire",
-              pattern: {
-                value:
-                  /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
-                message:
-                  "doit contenir au moins 8 caractères dont au moins un majuscule, un miniscule, un chiffre et un caractère spécial ",
-              },
-            })}
-            placeholder="*****************"
-          />
-          {errors.password && (
-            <p role="alert" className="">
-              {" "}
-              {errors.password.message}
-            </p>
-          )}
+          {/* ------------------------------------------CONFIRMM-------------------------------------------------------------- */}
           <div>
-            <label htmlFor="confirmpassword">
+            <label className="lg:hidden" htmlFor="confirmpassword">
               confirmation du mot de passe
             </label>
             <input
               type="password"
-              className="mx-14 pl-2 rounded-md py-1 shadow-xl"
+              className="mx-14 pl-2 rounded-xl py-1 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("confirmpassword", {
                 required: "champ obligatoire",
                 validate: (value) =>
                   value === passwordRef.current ||
                   "mots de passe non similaires",
               })}
-              placeholder="*****************"
+              placeholder="verif du mot de passe"
             />
             {errors.confirmpassword && (
               <p role="alert" className="">
@@ -109,9 +120,14 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
+          {/* ------------------------------------------BUTTON-------------------------------------------------------------- */}
           <div className="mt-4">
             <button type="submit">
-              <img alt="button" src={Button} width={150} />
+              <img
+                alt="button"
+                src={Button}
+                className="lg:w-[300px] w-[150px]"
+              />
             </button>
           </div>
         </div>

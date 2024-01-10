@@ -2,7 +2,7 @@ import RegisterForm from "../../components/UserComponents/RegisterForm";
 
 export default function RegisterPage() {
   return (
-    <div>
+    <div className="h-screen">
       <h1 className=" flex flex-row justify-center font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
         {" "}
         INSCRIPTION{" "}
