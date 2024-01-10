@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import BurgerMenu from "./BurgerMenu";
-import steve from "../../assets/Steve_redimentioned.png";
+import steve from "../../assets/Steve_redimentioned .png";
 
 export default function NavBar() {
   const navLinks = [
