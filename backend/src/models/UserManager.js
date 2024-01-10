@@ -40,11 +40,10 @@ class UserManager extends AbstractManager {
     score,
     city,
     postalCode,
-    roleId,
     id
   ) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET username = ?, lastname = ?, firstname = ?, email = ?, password = ?, score =?, city = ?, postal_code = ?, role_id = ?  WHERE id = ?`,
+      `UPDATE ${this.table} SET username = ?, lastname = ?, firstname = ?, email = ?, password = ?, score =?, city = ?, postal_code = ?  WHERE id = ?`,
       [
         userName,
         lastName,
@@ -54,7 +53,6 @@ class UserManager extends AbstractManager {
         score,
         city,
         postalCode,
-        roleId,
         id,
       ]
     );

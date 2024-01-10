@@ -5,12 +5,20 @@ import steve from "../assets/Steve_redimentioned .png";
 export default function NavBar() {
   const navLinks = [
     {
+      path: "/profil",
+      title: "PROFIL",
+    },
+    {
       path: "/map",
       title: "LA CARTE",
     },
     {
       path: "/signup",
       title: "INSCRIPTION",
+    },
+    {
+      path: "/scores",
+      title: "SCORES",
     },
   ];
   const [page, setPagae] = useState(null);
