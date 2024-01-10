@@ -20,18 +20,33 @@ const seed = async () => {
     // Generating Seed Data
 
     // Optional: Truncate tables (remove existing data)
-
-    // Insert fake data into the 'item' table
-    await database.query(
-      "INSERT INTO CATEGORY (cat_name) VALUES ('realistic'),('abstract'),('8bit')"
-    );
-    await database.query(
-      "INSERT INTO ROLE (role_name) VALUES ('Administrator'),('user'),('visitor')"
-    );
-    for (let i = 0; i < 10; i += 1) {
+    // await database.query(" user");
+    for (let i = 0; i < 5; i += 1) {
       queries.push(
-        database.query("INSERT INTO ARTIST (artist_name) VALUES (?)", [
-          faker.animal.bear(),
+        database.query(
+          "INSERT INTO user( username, lastName, firstName, email, password, score, city, postal_code ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+          [
+            faker.internet.displayName(),
+            faker.person.lastName(),
+            faker.person.firstName(),
+            faker.internet.email(),
+            faker.internet.password(),
+            faker.number.float(),
+            faker.location.city(),
+            faker.location.zipCode(),
+          ]
+        )
+      );
+    }
+
+    await database.query(
+      "INSERT INTO category ( cat_name ) VALUES ('Retro'),('Caligraphy'),('Abstract'),('Realistic')"
+    );
+
+    for (let i = 0; i < 5; i += 1) {
+      queries.push(
+        database.query("INSERT INTO artist ( artist_name ) VALUES (?)", [
+          faker.internet.displayName(),
         ])
       );
     }
@@ -39,40 +54,19 @@ const seed = async () => {
     for (let i = 0; i < 10; i += 1) {
       queries.push(
         database.query(
-          "insert into user( username, lastname, firstname, email, password, score, created_at, city, postal_code, role_id ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-          [
-            faker.internet.displayName(),
-            faker.person.lastName(),
-            faker.person.firstName(),
-            faker.internet.email(),
-            faker.internet.password(),
-            faker.number.int({ min: 1, max: 300 }),
-            faker.date.past(),
-            faker.location.city(),
-            faker.location.zipCode(),
-            faker.number.int({ min: 1, max: 3 }),
-          ]
-        )
-      );
-    }
-    for (let i = 0; i < 10; i += 1) {
-      queries.push(
-        database.query(
-          "insert into artwork( path_pic, title, coordinates, validated, category_id, artist_id, user_id) values (?, ?, point( ?, ?), ?, ?, ?, ?)",
+          "insert into artwork( path_pic, title, longitude, latitude, category_id, artist_id, user_id) values (?, ?, ?, ?, ?, ?, ?)",
           [
             faker.image.url(),
             faker.lorem.word(),
-            faker.location.latitude(),
             faker.location.longitude(),
-            faker.number.binary(),
+            faker.location.latitude(),
             faker.number.int({ min: 1, max: 3 }),
-            faker.number.int({ min: 1, max: 10 }),
-            faker.number.int({ min: 1, max: 10 }),
+            faker.number.int({ min: 1, max: 5 }),
+            faker.number.int({ min: 1, max: 5 }),
           ]
         )
       );
     }
-
     /* ************************************************************************* */
 
     // Wait for all the insertion queries to complete
