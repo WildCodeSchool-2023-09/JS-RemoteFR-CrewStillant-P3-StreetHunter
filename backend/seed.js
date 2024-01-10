@@ -54,11 +54,12 @@ const seed = async () => {
     for (let i = 0; i < 10; i += 1) {
       queries.push(
         database.query(
-          "insert into artwork( path_pic, title, address, category_id, artist_id, user_id) values (?, ?, ?, ?, ?, ?)",
+          "insert into artwork( path_pic, title, longitude, latitude, category_id, artist_id, user_id) values (?, ?, ?, ?, ?, ?, ?)",
           [
             faker.image.url(),
             faker.lorem.word(),
-            faker.location.streetAddress(),
+            faker.location.longitude(),
+            faker.location.latitude(),
             faker.number.int({ min: 1, max: 3 }),
             faker.number.int({ min: 1, max: 5 }),
             faker.number.int({ min: 1, max: 5 }),

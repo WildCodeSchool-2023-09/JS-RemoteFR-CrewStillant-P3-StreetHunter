@@ -8,6 +8,10 @@ export default function NavBar() {
       path: "/map",
       title: "LA CARTE",
     },
+    {
+      path: "/map",
+      title: "LA CARTE",
+    },
   ];
   const [page, setPagae] = useState(null);
   const handlePageStyle = (e) => {
