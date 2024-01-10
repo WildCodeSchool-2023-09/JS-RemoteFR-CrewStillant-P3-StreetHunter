@@ -8,6 +8,7 @@ module.exports = {
       },
       backgroundImage: {
         city: "url('./assets/wallpaper.png')",
+        responsivecity: "url(./assets/responsiveWallpaper.png)",
       },
     },
     fontFamily: {

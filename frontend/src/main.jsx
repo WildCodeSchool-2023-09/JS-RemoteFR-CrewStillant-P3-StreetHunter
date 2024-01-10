@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import MapPage from "./pages/MapPage";
 import InstructionsPage from "./pages/InstructionsPage";
 import TermsPage from "./pages/TermsPage";
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <LandingPage />,
+      },
       {
         path: "/map",
         element: <MapPage />,

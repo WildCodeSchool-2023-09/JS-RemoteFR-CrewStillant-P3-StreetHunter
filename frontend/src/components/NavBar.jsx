@@ -5,16 +5,24 @@ import steve from "../assets/Steve_redimentioned.png";
 export default function NavBar() {
   const navLinks = [
     {
-      path: "/profil",
-      title: "PROFIL",
+      path: "/register",
+      title: "INSCRIPTION/CONNEXION",
     },
     {
       path: "/map",
       title: "LA CARTE",
     },
     {
+      path: "/profil",
+      title: "PROFIL",
+    },
+    {
       path: "/scores",
       title: "SCORES",
+    },
+    {
+      path: "",
+      title: "DECONNEXION",
     },
   ];
   const [page, setPagae] = useState(null);
@@ -24,9 +32,13 @@ export default function NavBar() {
 
   return (
     <div>
-      <nav className="flex flex-row mr-4 text-xl font-semibold text-primary_color ">
-        <NavLink to="/home">
-          <img alt="logo" src={steve} className="ml-5 hover:animate-spin" />
+      <nav className="flex flex-row mr-4 text-xl font-semibold text-primary ">
+        <NavLink to="/">
+          <img
+            alt="logo"
+            src={steve}
+            className="max-w-[45px] ml-5 hover:animate-spin"
+          />
         </NavLink>
         <ul className="flex flex-row justify-end gap-4 ml-64 text-primary">
           {navLinks.map((n) =>

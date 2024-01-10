@@ -2,7 +2,7 @@ import joke from "../assets/ezgif.com-resize.gif";
 
 export default function NotFoundPage() {
   return (
-    <div className="">
+    <div className="flex flex-col justify-center items-center h-screen vh-100">
       <div className="flex flex-row justify-center font-extrabold text-6xl mb-4 text-primary mt-10">
         OUPS! ...
       </div>
