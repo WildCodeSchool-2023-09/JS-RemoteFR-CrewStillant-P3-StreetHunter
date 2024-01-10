@@ -4,7 +4,7 @@ import "./tailwind.css";
 
 function App() {
   return (
-    <div className="bg-city bg-[length:500px_588px] ">
+    <div className="bg-responsivecity lg:bg-city ">
       <NavBar />
       <main>
         <Outlet />
