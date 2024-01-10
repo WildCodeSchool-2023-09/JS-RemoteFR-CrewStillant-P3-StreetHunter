@@ -35,25 +35,21 @@ const edit = async (req, res, next) => {
   const {
     username,
     lastname,
-    firsnname,
+    firstname,
     email,
     password,
-    score,
     city,
     postal_code: postalCode,
-    role_id: roleId,
   } = req.body;
   try {
     const result = await tables.user.update(
       username,
       lastname,
-      firsnname,
+      firstname,
       email,
       password,
-      score,
       city,
       postalCode,
-      roleId,
       id
     );
     if (result == null) {
@@ -68,31 +64,9 @@ const edit = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-  const {
-    username,
-    lastname,
-    firsnname,
-    email,
-    password,
-    score,
-    created_at: createdAt,
-    city,
-    postal_code: postalCode,
-    role_id: roleId,
-  } = req.body;
+  const { username, email, password } = req.body;
   try {
-    const newUser = await tables.user.create(
-      username,
-      lastname,
-      firsnname,
-      email,
-      password,
-      score,
-      createdAt,
-      city,
-      postalCode,
-      roleId
-    );
+    const newUser = await tables.user.create(username, email, password);
     res
       .status(201)
       .json({ id: newUser.insertId, message: "L'utilisateur a bien été créé" });
