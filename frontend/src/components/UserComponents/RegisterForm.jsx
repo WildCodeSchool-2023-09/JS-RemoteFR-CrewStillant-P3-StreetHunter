@@ -18,20 +18,17 @@ export default function RegisterForm() {
   passwordRef.current = watch("password", "");
 
   return (
-    <div className="lg:mt-14">
+    <div className="lg:mt-14 mt-10">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col gap-3 lg:gap-10">
+        <div className="flex flex-col gap-12 lg:gap-10">
           {/* -----------------------------------------USERNAME -------------------------------------------------------------- */}
           <div>
-            <label htmlFor="username" className="text-center lg:hidden">
-              pseudo
-            </label>
             <input
               type="text"
-              className="mx-14 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+              className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("username", {
                 required: "Champ obligatoire",
                 minLength: {
@@ -49,12 +46,9 @@ export default function RegisterForm() {
           </div>
           {/* -------------------------------------------EMAIL -------------------------------------------------------------- */}
           <div>
-            <label className="lg:hidden" htmlFor="email">
-              adresse mail
-            </label>
             <input
               type="email"
-              className="mx-14 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+              className="mx-14 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("email", {
                 required: "champ obligatoire",
                 pattern: {
@@ -73,13 +67,10 @@ export default function RegisterForm() {
           </div>
           {/* ------------------------------------------PASSWORD-------------------------------------------------------------- */}
           <div>
-            <label className="lg:hidden" htmlFor="password">
-              mot de passe
-            </label>
             <input
               type="password"
               id="password"
-              className="mx-14 pl-2 rounded-xl py-1 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
+              className="mx-14 pl-2 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("password", {
                 required: "champ obligatoire",
                 pattern: {
@@ -100,12 +91,9 @@ export default function RegisterForm() {
           </div>
           {/* ------------------------------------------CONFIRMM-------------------------------------------------------------- */}
           <div>
-            <label className="lg:hidden" htmlFor="confirmpassword">
-              confirmation du mot de passe
-            </label>
             <input
               type="password"
-              className="mx-14 pl-2 rounded-xl py-1 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
+              className="mx-14 pl-2 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("confirmpassword", {
                 required: "champ obligatoire",
                 validate: (value) =>
@@ -126,7 +114,7 @@ export default function RegisterForm() {
               <img
                 alt="button"
                 src={Button}
-                className="lg:w-[300px] w-[150px]"
+                className="lg:w-[300px] w-[180px]"
               />
             </button>
           </div>
