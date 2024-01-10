@@ -14,6 +14,7 @@ export default function NavBar() {
       title: "INSCRIPTION",
     },
   ];
+  const [menuOpen, setMenuOpen] = useState(false);
   const [page, setPagae] = useState(null);
   const handlePageStyle = (e) => {
     setPagae(e.target.text);
@@ -25,7 +26,11 @@ export default function NavBar() {
         <NavLink to="/home">
           <img alt="logo" src={steve} className="ml-5 hover:animate-spin" />
         </NavLink>
-        <BurgerMenu navLinks={navLinks} />
+        <BurgerMenu
+          navLinks={navLinks}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
         <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-4 hidden md:ml-64 text-primary">
           {navLinks.map((n) =>
             page === n.title ? (

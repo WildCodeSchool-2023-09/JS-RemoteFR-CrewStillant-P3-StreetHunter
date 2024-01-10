@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 5px 7px -1px;
 }
 
 .leaflet-popup-content img {
