@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MapPage from "./pages/MapPage";
-import ScoreBoard from "./pages/ScoreBoardPage";
+import ScoreBoardPage from "./pages/ScoreBoardPage";
 
 import App from "./App";
 
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/scoreboard",
-        element: <ScoreBoard />,
+        element: <ScoreBoardPage />,
         loader: () =>
           fetch(`${import.meta.env.VITE_BACKEND_URL}/api/mapping_art_db`),
       },
