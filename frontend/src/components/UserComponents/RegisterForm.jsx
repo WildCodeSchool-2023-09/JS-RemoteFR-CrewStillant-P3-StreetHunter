@@ -24,7 +24,6 @@ export default function RegisterForm() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-12 lg:gap-10">
-          {/* -----------------------------------------USERNAME -------------------------------------------------------------- */}
           <div>
             <input
               type="text"
@@ -44,7 +43,6 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          {/* -------------------------------------------EMAIL -------------------------------------------------------------- */}
           <div>
             <input
               type="email"
@@ -65,7 +63,6 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          {/* ------------------------------------------PASSWORD-------------------------------------------------------------- */}
           <div>
             <input
               type="password"
@@ -89,7 +86,6 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          {/* ------------------------------------------CONFIRMM-------------------------------------------------------------- */}
           <div>
             <input
               type="password"
@@ -108,7 +104,6 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          {/* ------------------------------------------BUTTON-------------------------------------------------------------- */}
           <div className="mt-4">
             <button type="submit">
               <img
