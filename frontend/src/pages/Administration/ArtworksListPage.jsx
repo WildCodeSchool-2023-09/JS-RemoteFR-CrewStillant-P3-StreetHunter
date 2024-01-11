@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import ArtworksList from "../../components/Artworks/ArtworksList";
-import ArtworksForm from "../../components/Artworks/NewArtwork";
 
 export default function ArtworksPage() {
   const artworks = useLoaderData();
@@ -26,7 +25,6 @@ export default function ArtworksPage() {
     <>
       <h1>Artworks page</h1>
       <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
-      <ArtworksForm setIsUpdated={setIsUpdated} />
     </>
   );
 }

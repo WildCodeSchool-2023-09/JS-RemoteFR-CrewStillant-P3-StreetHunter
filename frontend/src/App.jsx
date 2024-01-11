@@ -4,7 +4,7 @@ import "./tailwind.css";
 
 function App() {
   return (
-    <div className="bg-hero-pattern bg-contain pb-7">
+    <div className="bg-city bg-contain pb-7">
       <NavBar />
       <Link to="/administration">Administration</Link>
       <Outlet />

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MapPage from "./pages/MapPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
 import ArtworksListPage from "./pages/Administration/ArtworksListPage";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/map",
         element: <MapPage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },
