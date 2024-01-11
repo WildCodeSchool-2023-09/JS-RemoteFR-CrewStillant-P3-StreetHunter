@@ -1,10 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
+
 import Button from "../../assets/signUpButton.png";
 
 export default function RegisterForm() {
+  const [checked, setChecked] = useState(false);
+  const handleCheck = () => {
+    setChecked(!checked);
+  };
   const {
     register,
     handleSubmit,
@@ -104,14 +109,32 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          <div className="mt-4">
-            <button type="submit">
-              <img
-                alt="button"
-                src={Button}
-                className="lg:w-[300px] w-[200px]"
+          <div className="">
+            <p className="mx-7 font-semibold bg-slate-200 rounded-full">
+              {" "}
+              Pour utiliser Mapping Art, vous devez accepter les
+              <p>conditions d'utilisation</p>
+            </p>
+            <div className="flex flex-row justify-center mt-4">
+              <input
+                type="checkbox"
+                checked={checked}
+                onChange={handleCheck}
+                className="w-6 h-6 rounded-full"
               />
-            </button>
+              <p className="ml-2 font-semibold"> J'ACCEPTE</p>
+            </div>
+          </div>
+          <div className="mt-4">
+            {checked && (
+              <button type="submit">
+                <img
+                  alt="button"
+                  src={Button}
+                  className="lg:w-[300px] w-[200px]"
+                />
+              </button>
+            )}
           </div>
         </div>
       </form>

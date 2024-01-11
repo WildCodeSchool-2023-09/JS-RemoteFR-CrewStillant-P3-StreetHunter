@@ -73,7 +73,7 @@ const seed = async () => {
             faker.lorem.word(),
             faker.location.longitude(),
             faker.location.latitude(),
-            faker.number.int({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 4 }),
             faker.number.int({ min: 1, max: 5 }),
             faker.number.int({ min: 1, max: 5 }),
           ]
