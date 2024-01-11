@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
 import axios from "axios";
-import Button from "../../assets/SignButton.png";
+import Button from "../../assets/signUpButton.png";
 
 export default function RegisterForm() {
   const {
@@ -109,7 +109,7 @@ export default function RegisterForm() {
               <img
                 alt="button"
                 src={Button}
-                className="lg:w-[300px] w-[180px]"
+                className="lg:w-[300px] w-[200px]"
               />
             </button>
           </div>
