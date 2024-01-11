@@ -74,7 +74,7 @@ export default function RegisterForm() {
                   value:
                     /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
                   message:
-                    "doit contenir au moins 8 caractères dont au moins un majuscule, un miniscule, un chiffre et un caractère spécial ",
+                    "doit contenir au moins 8 caractères dont au moins une majuscule, une miniscule, un chiffre et un caractère spécial ",
                 },
               })}
               placeholder="mot de passe"

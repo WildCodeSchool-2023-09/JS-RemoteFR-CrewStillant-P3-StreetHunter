@@ -34,12 +34,23 @@ CREATE TABLE
     );
 
 CREATE TABLE
+    messaging (
+        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        title VARCHAR (255) NOT NULL,
+        body TEXT NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT NOW(),
+        is_read BOOLEAN NOT NULL DEFAULT 0,
+        user_id INT NOT NULL DEFAULT 1,
+        CONSTRAINT fk_message_user FOREIGN KEY (user_id) REFERENCES user(id)
+    );
+
+CREATE TABLE
     artwork (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         path_pic VARCHAR(255) NULL,
         title VARCHAR(255) NULL,
-        longitude DECIMAL(11,8) NOT NULL,
-        latitude DECIMAL(10,8) NOT NULL,
+        longitude DECIMAL(11, 8) NOT NULL,
+        latitude DECIMAL(10, 8) NOT NULL,
         validated BOOLEAN NOT NULL DEFAULT FALSE,
         category_id INT NOT NULL,
         artist_id INT NULL,
