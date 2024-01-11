@@ -12,7 +12,7 @@ export default function RegisterForm() {
     watch,
   } = useForm();
   const onSubmit = (data) => {
-    axios.post("http://localhost:3310/api/user", data);
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data);
   };
   const passwordRef = useRef({});
   passwordRef.current = watch("password", "");

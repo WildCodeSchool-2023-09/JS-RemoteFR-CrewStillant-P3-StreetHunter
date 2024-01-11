@@ -1,0 +1,14 @@
+.bm-burger-button {
+    position: fixed;
+    height: 30px;
+    right: 1px;
+    top: 10px;
+}
+
+.bm-cross-button {
+    height: 100px;
+}
+
+.bm-cross {
+    background: #bdc3c7;
+}
