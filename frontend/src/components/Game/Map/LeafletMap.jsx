@@ -11,7 +11,7 @@ export default function LeafletMap() {
   });
 
   return (
-    <div className=" flex justify-center rounded-xl bg-[#F2F2F2] py-7 mx-36 shadow-2xl">
+    <div className=" flex justify-center rounded-xl bg-[#F2F2F2] md:mx-16 lg:py-7 lg:mx-36 py-3 mx-2 shadow-2xl">
       <MapContainer
         center={[45.51683, -73.58283]}
         watch

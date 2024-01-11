@@ -1,6 +1,6 @@
 export default function InstructionsPage() {
   return (
-    <div>
+    <article>
       <h1>Bienvenue sur MAPPING ART,</h1>
       <p>
         Nous nous efforçons de maintenir un environnement en ligne sécurisé et
@@ -44,6 +44,6 @@ export default function InstructionsPage() {
         respectueux pour tous.
       </p>
       <p>L'équipe de MAPPING ART</p>
-    </div>
+    </article>
   );
 }

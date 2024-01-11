@@ -1,6 +1,6 @@
 export default function TermsPage() {
   return (
-    <div>
+    <article>
       <h1>Mentions Légales</h1>
       <h2>1. Informations Légales</h2>
       <ul>
@@ -50,6 +50,6 @@ export default function TermsPage() {
         Pour toute question concernant ces mentions légales, veuillez nous
         contacter à l'adresse suivante : strart@wsc.com.
       </p>
-    </div>
+    </article>
   );
 }
