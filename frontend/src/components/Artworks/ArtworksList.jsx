@@ -5,8 +5,8 @@ import ArtworkCard from "./ArtworkCard";
 function ArtworksList({ artworks, setIsUpdated }) {
   return (
     <div className="text-center my-8">
-      <h1 className="text-3xl font-bold">Artworks List</h1>
-      <div className="flex flex-wrap">
+      <h1 className="text-4xl font-bold mb-8">Artworks List</h1>
+      <div className="flex flex-wrap justify-center gap-4">
         {artworks.map((artwork) => (
           <ArtworkCard
             key={artwork.id}
