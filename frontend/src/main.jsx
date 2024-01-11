@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       {
         path: "/map",
         element: <MapPage />,
-        loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}api/artwork/`),
+        loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/`),
       },
       {
         path: "*",
