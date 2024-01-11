@@ -8,7 +8,6 @@ export default function LocationMarker() {
     iconUrl: personlogo,
     iconSize: [20, 20],
   });
-
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
     dblclick() {

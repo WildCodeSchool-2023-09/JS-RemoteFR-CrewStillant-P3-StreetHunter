@@ -18,7 +18,7 @@ CREATE TABLE
         artist_name VARCHAR(255) NOT NULL
     );
 
-CREATE tABLE
+CREATE TABLE
     user (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         username VARCHAR(80) NOT NULL,
@@ -36,7 +36,7 @@ CREATE tABLE
 CREATE TABLE
     artwork (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        path_pic VARCHAR(255) NOT NULL,
+        path_pic VARCHAR(255) NULL,
         title VARCHAR(255) NULL,
         longitude DECIMAL(11,8) NOT NULL,
         latitude DECIMAL(10,8) NOT NULL,

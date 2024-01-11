@@ -31,7 +31,8 @@ const seed = async () => {
             faker.person.firstName(),
             faker.internet.email(),
             faker.internet.password(),
-            faker.number.float(),
+            faker.number.int({ min: 1, max: 300 }),
+            faker.date.past(),
             faker.location.city(),
             faker.location.zipCode(),
           ]

@@ -64,7 +64,8 @@ const edit = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email } = req.body;
+  const password = req.body.hashedpwd;
   try {
     const newUser = await tables.user.create(username, email, password);
     res
