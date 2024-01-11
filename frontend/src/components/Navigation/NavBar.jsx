@@ -6,6 +6,14 @@ import steve from "../../assets/Steve_redimentioned .png";
 export default function NavBar() {
   const navLinks = [
     {
+      path: "/register-login",
+      title: "CONNEXION/INSCRIPTION",
+    },
+    {
+      path: "/map",
+      title: "LA CARTE",
+    },
+    {
       path: "/profil",
       title: "PROFIL",
     },
@@ -27,7 +35,7 @@ export default function NavBar() {
   return (
     <div className="">
       <nav className="flex flex-row justify-between md:justify-normal md:mr-4 text-xl font-semibold text-primary_color ">
-        <NavLink to="/home">
+        <NavLink to="/">
           <img alt="logo" src={steve} className="ml-5 hover:animate-spin" />
         </NavLink>
         <BurgerMenu

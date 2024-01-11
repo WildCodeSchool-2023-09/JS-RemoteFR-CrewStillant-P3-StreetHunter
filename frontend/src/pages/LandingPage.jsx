@@ -4,12 +4,12 @@ import play from "../assets/play.png";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen vh-100">
+    <div className="flex flex-col justify-center items-center min-h-screen">
       <div className="">
         <img
           src={Mapart}
           alt="Website name for landing page"
-          className="max-w-[650px] h-auto transform animate-zoom-in-out"
+          className="max-w-full md:max-w-[650px] h-auto transform animate-zoom-in-out"
         />
         ;
       </div>
@@ -18,7 +18,7 @@ export default function LandingPage() {
           <img
             src={play}
             alt="button play to click on to and enter the website"
-            className="max-w-[300px] h-auto transform animate-zoom-in-out"
+            className="max-w-full md:max-w-[300px] h-auto transform animate-zoom-in-out"
           />
         </NavLink>
       </div>
