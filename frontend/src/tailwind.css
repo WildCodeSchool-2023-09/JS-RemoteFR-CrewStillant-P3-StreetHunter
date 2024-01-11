@@ -3,3 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes zoom-in-out {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .animate-zoom-in-out {
+    animation: zoom-in-out 3s infinite;
+  }
+
+  *{
+    outline : 1px solid red;
+  }
