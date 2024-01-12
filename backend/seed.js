@@ -31,10 +31,21 @@ const seed = async () => {
             faker.person.firstName(),
             faker.internet.email(),
             faker.internet.password(),
-            faker.number.int({ min: 1, max: 300 }),
-            faker.date.past(),
+            faker.number.float(),
             faker.location.city(),
             faker.location.zipCode(),
+          ]
+        )
+      );
+    }
+    for (let i = 0; i < 5; i += 1) {
+      queries.push(
+        database.query(
+          "INSERT INTO messaging( title, body, user_id ) VALUES (?, ?, ?)",
+          [
+            faker.lorem.sentence({ min: 3, max: 5 }),
+            faker.lorem.paragraph({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 3 }),
           ]
         )
       );
@@ -61,7 +72,7 @@ const seed = async () => {
             faker.lorem.word(),
             faker.location.longitude(),
             faker.location.latitude(),
-            faker.number.int({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 4 }),
             faker.number.int({ min: 1, max: 5 }),
             faker.number.int({ min: 1, max: 5 }),
           ]

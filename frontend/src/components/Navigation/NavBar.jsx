@@ -10,16 +10,20 @@ export default function NavBar() {
       title: "LA CARTE",
     },
     {
-      path: "/profil",
-      title: "PROFIL",
-    },
-    {
       path: "/signup",
       title: "INSCRIPTION",
     },
     {
       path: "/scores",
       title: "SCORES",
+    },
+    {
+      path: "/map",
+      title: "LA CARTE",
+    },
+    {
+      path: "/administration",
+      title: "ADMINISTRATION",
     },
   ];
   const [menuOpen, setMenuOpen] = useState(false);
