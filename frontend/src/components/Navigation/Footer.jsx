@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 export default function Footer() {
-  const navLinks = [
+  const footerLinks = [
     {
       path: "/instructions",
       title: "CONDITIONS D'UTILISATION",
@@ -18,8 +18,8 @@ export default function Footer() {
   return (
     <div>
       <footer className="mt-5">
-        <ul className="flex flex-row justify-evenly text-xl font-semibold text-primary">
-          {navLinks.map((n) => (
+        <ul className="flex flex-row justify-evenly lg:text-xl font-semibold text-primary">
+          {footerLinks.map((n) => (
             <li key={n.title}>
               <NavLink
                 className="hover:text-slate-800 active:text-slate-500"

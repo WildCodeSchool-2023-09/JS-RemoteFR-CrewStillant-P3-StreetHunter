@@ -28,7 +28,12 @@ export default function NavBar() {
     <div className="">
       <nav className="flex flex-row justify-between md:justify-normal md:mr-4 text-xl font-semibold text-primary_color ">
         <NavLink to="/home">
-          <img alt="logo" src={steve} className="ml-5 hover:animate-spin" />
+          <img
+            alt="logo"
+            src={steve}
+            // width={50}
+            className="ml-5 hover:animate-spin w-10"
+          />
         </NavLink>
         <BurgerMenu
           navLinks={navLinks}

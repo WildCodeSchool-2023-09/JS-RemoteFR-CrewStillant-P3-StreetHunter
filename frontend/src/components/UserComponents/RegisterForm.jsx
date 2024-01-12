@@ -28,7 +28,7 @@ export default function RegisterForm() {
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col gap-12 lg:gap-10">
+        <div className="flex flex-col gap-4 lg:gap-6 ">
           <div>
             <input
               type="text"
@@ -109,8 +109,8 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          <div className="">
-            <p className="mx-7 font-semibold bg-slate-200 rounded-full">
+          <div className="mt-5">
+            <p className="mx-7 font-semibold bg-slate-200 rounded-full ">
               {" "}
               Pour utiliser Mapping Art, vous devez accepter les
               <p>conditions d'utilisation</p>
@@ -125,7 +125,7 @@ export default function RegisterForm() {
               <p className="ml-2 font-semibold"> J'ACCEPTE</p>
             </div>
           </div>
-          <div className="mt-4">
+          <div>
             {checked && (
               <button type="submit">
                 <img
