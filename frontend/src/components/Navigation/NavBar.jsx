@@ -35,7 +35,7 @@ export default function NavBar() {
           <img
             alt="logo"
             src={steve}
-            className="ml-2 md:ml-5 hover:animate-spin w-10 hover:animate-spin"
+            className="ml-2 md:ml-5 hover:animate-spin w-10"
           />
         </NavLink>
         <BurgerMenu
