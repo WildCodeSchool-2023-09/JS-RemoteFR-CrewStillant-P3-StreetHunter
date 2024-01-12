@@ -18,12 +18,12 @@ export default function RegisterForm() {
   passwordRef.current = watch("password", "");
 
   return (
-    <div className="lg:mt-14 mt-10">
+    <div className="lg:mt-5 mt-5">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col gap-12 lg:gap-10">
+        <div className="flex flex-col gap-12 lg:gap-5">
           <div>
             <input
               type="text"

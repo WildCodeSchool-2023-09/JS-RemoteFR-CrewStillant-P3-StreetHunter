@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import MapPage from "./pages/MapPage";
+import InstructionsPage from "./pages/InstructionsPage";
+import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
 import ContactPage from "./pages/ContactPage";
@@ -15,6 +18,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <LandingPage />,
+      },
       {
         path: "/administration",
         element: <AdminPage />,
@@ -31,6 +38,14 @@ const router = createBrowserRouter([
         path: "/map",
         element: <MapPage />,
         loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/`),
+      },
+      {
+        path: "/instructions",
+        element: <InstructionsPage />,
+      },
+      {
+        path: "/mentions",
+        element: <TermsPage />,
       },
       {
         path: "*",
