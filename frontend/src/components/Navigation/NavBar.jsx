@@ -44,7 +44,7 @@ export default function NavBar() {
           setMenuOpen={setMenuOpen}
         />
         <div className="flex flex-row justify-between ml-auto">
-          <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-4 hidden md:ml-64 text-primary">
+          <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-4 hidden md:ml-6 text-primary">
             {navLinks.map((n) =>
               page === n.title ? (
                 <li key={n.title}>
