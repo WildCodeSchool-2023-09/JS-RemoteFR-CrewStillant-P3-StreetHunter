@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
 import axios from "axios";
-import Button from "../../assets/SignButton.png";
+import Button from "../../assets/signUpButton.png";
 
 export default function RegisterForm() {
   const {
@@ -74,7 +74,7 @@ export default function RegisterForm() {
                   value:
                     /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
                   message:
-                    "doit contenir au moins 8 caractères dont au moins un majuscule, un miniscule, un chiffre et un caractère spécial ",
+                    "doit contenir au moins 8 caractères dont au moins une majuscule, une miniscule, un chiffre et un caractère spécial ",
                 },
               })}
               placeholder="mot de passe"
@@ -109,7 +109,7 @@ export default function RegisterForm() {
               <img
                 alt="button"
                 src={Button}
-                className="lg:w-[300px] w-[180px]"
+                className="lg:w-[300px] w-[200px]"
               />
             </button>
           </div>

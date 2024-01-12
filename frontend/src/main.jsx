@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MapPage from "./pages/MapPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
+import ContactPage from "./pages/ContactPage";
 
 import App from "./App";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <RegisterPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
       },
     ],
   },
