@@ -34,7 +34,7 @@ export default function LeafletMap({ dbartworks }) {
         zoom={13}
         scrollWheelZoom
         whenReady={() => getLocation()}
-        style={{ width: "90%", height: "80vh" }}
+        style={{ width: "80%", height: "60vh" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'

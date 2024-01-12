@@ -15,3 +15,7 @@
   .animate-zoom-in-out {
     animation: zoom-in-out 3s infinite;
   }
+/* 
+  *{
+    outline: 1px solid red;
+  } */

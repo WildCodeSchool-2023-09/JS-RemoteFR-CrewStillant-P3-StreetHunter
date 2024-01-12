@@ -17,8 +17,8 @@ export default function Footer() {
   ];
   return (
     <div>
-      <footer className="mt-20 flex items-center justify-center">
-        <ul className="flex space-x-4">
+      <footer className="mt-20 flex flex-col items-center justify-center">
+        <ul className="flex flex-col md:flex-row space-y-4 md:space-x-4 md:space-y-0 items-center justify-center">
           {navLinks.map((n) => (
             <li>
               <NavLink
