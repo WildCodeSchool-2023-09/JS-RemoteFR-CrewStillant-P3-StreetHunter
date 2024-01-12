@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="bg-responsivecity lg:bg-city bg-contain ">
       <NavBar />
-      <main>
+      <main className="flex-grow">
         <Outlet />
       </main>
       <Footer />
