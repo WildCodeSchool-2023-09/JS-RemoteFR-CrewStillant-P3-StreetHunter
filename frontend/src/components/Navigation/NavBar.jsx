@@ -6,20 +6,16 @@ import steve from "../../assets/Steve_redimentioned .png";
 export default function NavBar() {
   const navLinks = [
     {
-      path: "/map",
-      title: "LA CARTE",
-    },
-    {
       path: "/signup",
       title: "INSCRIPTION",
     },
     {
-      path: "/scores",
-      title: "SCORES",
-    },
-    {
       path: "/map",
       title: "LA CARTE",
+    },
+    {
+      path: "/scores",
+      title: "SCORES",
     },
     {
       path: "/administration",
@@ -53,7 +49,7 @@ export default function NavBar() {
               page === n.title ? (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500 px-2 md:px-4"
+                    className="hover:text-slate-800 active:text-slate-500 px-7"
                     to={n.path}
                     onClick={handlePageStyle}
                     key={n.title}
@@ -64,7 +60,7 @@ export default function NavBar() {
               ) : (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500 px-2 md:px-4 "
+                    className="hover:text-slate-800 active:text-slate-500"
                     to={n.path}
                     onClick={handlePageStyle}
                   >
