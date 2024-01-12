@@ -10,10 +10,6 @@ export default function NavBar() {
       title: "LA CARTE",
     },
     {
-      path: "/map",
-      title: "LA CARTE",
-    },
-    {
       path: "/signup",
       title: "INSCRIPTION",
     },
@@ -21,10 +17,7 @@ export default function NavBar() {
       path: "/scores",
       title: "SCORES",
     },
-    {
-      path: "/map",
-      title: "LA CARTE",
-    },
+
     {
       path: "/administration",
       title: "ADMINISTRATION",

@@ -22,6 +22,8 @@ export default function ArtworksPage() {
   }, [isUpdated]);
 
   return (
-    <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
+    <div className="h-[77vh] overflow-scroll">
+      <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
+    </div>
   );
 }
