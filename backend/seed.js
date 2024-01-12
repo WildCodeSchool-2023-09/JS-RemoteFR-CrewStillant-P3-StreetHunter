@@ -38,6 +38,18 @@ const seed = async () => {
         )
       );
     }
+    for (let i = 0; i < 5; i += 1) {
+      queries.push(
+        database.query(
+          "INSERT INTO messaging( title, body, user_id ) VALUES (?, ?, ?)",
+          [
+            faker.lorem.sentence({ min: 3, max: 5 }),
+            faker.lorem.paragraph({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 3 }),
+          ]
+        )
+      );
+    }
 
     await database.query(
       "INSERT INTO category ( cat_name ) VALUES ('Retro'),('Caligraphy'),('Abstract'),('Realistic')"
@@ -60,7 +72,7 @@ const seed = async () => {
             faker.lorem.word(),
             faker.location.longitude(),
             faker.location.latitude(),
-            faker.number.int({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 4 }),
             faker.number.int({ min: 1, max: 5 }),
             faker.number.int({ min: 1, max: 5 }),
           ]
