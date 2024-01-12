@@ -45,7 +45,7 @@ CREATE TABLE
 CREATE TABLE
     artwork (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        path_pic VARCHAR(255) NULL,
+        path_pic VARCHAR(255) NOT NULL,
         title VARCHAR(255) NULL,
         longitude DECIMAL(11, 8) NOT NULL,
         latitude DECIMAL(10, 8) NOT NULL,
@@ -57,5 +57,3 @@ CREATE TABLE
         CONSTRAINT fk_artwork_artist FOREIGN KEY (artist_id) REFERENCES artist(id),
         CONSTRAINT fk_artwork_user FOREIGN KEY (user_id) REFERENCES user(id)
     );
-
-SHOW TABLES;
