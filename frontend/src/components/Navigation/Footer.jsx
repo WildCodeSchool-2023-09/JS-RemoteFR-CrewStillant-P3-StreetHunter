@@ -17,8 +17,8 @@ export default function Footer() {
   ];
   return (
     <div>
-      <footer className="flex flex-row mr-4 text-xl font-semibold text-primary_color">
-        <ul>
+      <footer className="mt-5">
+        <ul className="flex flex-row justify-evenly text-xl font-semibold text-primary">
           {navLinks.map((n) => (
             <li key={n.title}>
               <NavLink
