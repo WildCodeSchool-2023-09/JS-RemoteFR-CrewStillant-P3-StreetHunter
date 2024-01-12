@@ -22,9 +22,6 @@ export default function ArtworksPage() {
   }, [isUpdated]);
 
   return (
-    <>
-      <h1>Artworks page</h1>
-      <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
-    </>
+    <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
   );
 }
