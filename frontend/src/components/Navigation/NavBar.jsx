@@ -17,6 +17,14 @@ export default function NavBar() {
       path: "/scores",
       title: "SCORES",
     },
+    {
+      path: "/map",
+      title: "LA CARTE",
+    },
+    {
+      path: "/administration",
+      title: "ADMINISTRATION",
+    },
   ];
   const [menuOpen, setMenuOpen] = useState(false);
   const [page, setPagae] = useState(null);

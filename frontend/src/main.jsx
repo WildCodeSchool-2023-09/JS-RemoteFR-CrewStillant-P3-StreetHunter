@@ -7,11 +7,26 @@ import RegisterPage from "./pages/UserPages/RegisterPage";
 import ContactPage from "./pages/ContactPage";
 
 import App from "./App";
+import AdminPage from "./pages/Administration/AdminPage";
+import ArtworksListPage from "./pages/Administration/ArtworksListPage";
 
 const router = createBrowserRouter([
   {
+    path: "/",
     element: <App />,
     children: [
+      {
+        path: "/administration",
+        element: <AdminPage />,
+        children: [
+          {
+            path: "/administration/artworks",
+            element: <ArtworksListPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
+          },
+        ],
+      },
       {
         path: "/map",
         element: <MapPage />,

@@ -1,5 +1,3 @@
--- Active: 1702912406858@@127.0.0.1@3306@mapping_art_db
-
 DROP DATABASE IF EXISTS mapping_art_db;
 
 CREATE DATABASE IF NOT EXISTS mapping_art_db;
