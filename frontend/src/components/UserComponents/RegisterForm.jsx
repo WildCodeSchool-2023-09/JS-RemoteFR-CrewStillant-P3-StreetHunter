@@ -126,15 +126,14 @@ export default function RegisterForm() {
             </div>
           </div>
           <div>
-            {checked && (
-              <button type="submit">
-                <img
-                  alt="button"
-                  src={Button}
-                  className="lg:w-[300px] w-[200px]"
-                />
-              </button>
-            )}
+            <button type="submit">
+              <img
+                alt="button"
+                src={Button}
+                className="lg:w-[300px] w-[200px]"
+                disabled={checked === false}
+              />
+            </button>
           </div>
         </div>
       </form>
