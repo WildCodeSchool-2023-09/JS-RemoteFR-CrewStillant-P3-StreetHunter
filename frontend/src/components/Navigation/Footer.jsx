@@ -17,12 +17,12 @@ export default function Footer() {
   ];
   return (
     <div>
-      <footer className="mt-5">
-        <ul className="flex flex-row justify-evenly lg:text-xl font-semibold text-primary">
+      <footer className="mt-2">
+        <ul className="flex flex-row justify-evenly lg:text-xl">
           {footerLinks.map((n) => (
             <li key={n.title}>
               <NavLink
-                className="text-xl font-semibold text-primary mt-auto hover:text-slate-800 active:text-slate-500"
+                className="text-md font-semibold text-primary hover:text-slate-800 active:text-slate-500"
                 to={n.path}
               >
                 {n.title}

@@ -15,7 +15,7 @@ export default function BurgerMenu({ navLinks, menuOpen, setMenuOpen }) {
         noOverlay
         isOpen={menuOpen}
         onOpen={() => setMenuOpen(!menuOpen)}
-        className="bg-gradient-to-b from-backgroundOne to-backgroundTwo rounded-xl opacity-90"
+        className="bg-gradient-to-b from-backgroundOne to-backgroundTwo rounded-xl opacity-90 "
       >
         <nav>
           <ul className="flex flex-col gap-6 text-center ml-3 mt-28 text-slate-800 text-3xl">
