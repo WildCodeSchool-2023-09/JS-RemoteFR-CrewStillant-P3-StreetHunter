@@ -8,7 +8,7 @@ export default function GalleryCard({
   adress,
 }) {
   return (
-    <div className="bg-white bg-opacity-60 border-2 border-dashed border-[#3c598e] mb-4 p-3 shadow-md flex flex-col justify-center">
+    <div className="bg-white bg-opacity-60 rounded-md outline-offset-4 outline outline-1 outline-[#c58933] mb-4 p-3 shadow-md flex flex-col justify-center">
       <div className="text-xl font-bold mb-2 text-center">{title}</div>
       <div className="mb-2 ml-7 ">
         <img src={image} alt={title} width={300} />
