@@ -18,9 +18,11 @@ export default function GalleryList({ dbartworks }) {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3310/api/category").then((res) => {
-      setCateg(res.data);
-    });
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/category`)
+      .then((res) => {
+        setCateg(res.data);
+      });
   }, []);
   const handleTitleFilter = (e) => {
     const titleInputValue = e.target.value.toLowerCase();
