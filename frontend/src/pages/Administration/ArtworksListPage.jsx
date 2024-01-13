@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import ArtworksList from "../../components/Artworks/ArtworksList";
+import ArtworksList from "../../components/ArtworksAdmin/ArtworksList";
 
 export default function ArtworksPage() {
   const artworks = useLoaderData();

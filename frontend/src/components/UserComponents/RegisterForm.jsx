@@ -143,7 +143,7 @@ export default function RegisterForm() {
               <img
                 alt="button"
                 src={Button}
-                className="lg:w-[300px] w-[200px]"
+                className="lg:w-[300px] w-[200px] transform animate-zoom-in-out duration-1000 "
               />
             </button>
             <ToastContainer
