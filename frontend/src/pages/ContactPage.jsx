@@ -62,7 +62,7 @@ export default function ContactPage() {
             <textarea
               name="body"
               rows={10}
-              className="mr-14 ml-3 rounded-xl shadow-md shadow-slate-800 border border-slate-800 p-4 lg:mr-32 lg:ml-8"
+              className="mr-14 ml-3 rounded-xl lg:h-92 shadow-md shadow-slate-800 border border-slate-800 p-4 lg:mr-32 lg:ml-8"
               {...register("body", {
                 required: "champ obligatoire",
                 minLength: {
