@@ -7,7 +7,9 @@ import ArtworkCard from "./ArtworkCard";
 function ArtworksList({ artworks, setIsUpdated }) {
   const [filteredTitle, setFilteredTitle] = useState("");
   const [filteredArtist, setFilteredArtist] = useState("");
+  const [filteredUser, setFilteredUser] = useState("");
   const [filteredCategory, setFilteredCategory] = useState("null");
+  const [filteredStatus, setFilteredStatus] = useState(null);
   const [filteredArtworks, setFilteredArtworks] = useState(artworks);
   const [isVisible, setIsVisible] = useState(false);
   const [categ, setCateg] = useState();
@@ -31,7 +33,10 @@ function ArtworksList({ artworks, setIsUpdated }) {
           a.title.toLowerCase().includes(titleInputValue) &&
           (filteredArtist === "" ||
             a.artist_name.toLowerCase().includes(filteredArtist)) &&
-          (filteredCategory === "null" || a.cat_name === filteredCategory)
+          (filteredCategory === "null" || a.cat_name === filteredCategory) &&
+          (filteredUser === "" ||
+            a.username.toLowerCase().includes(filteredUser)) &&
+          (filteredStatus === null || a.validated === filteredStatus)
       )
     );
   };
@@ -44,7 +49,10 @@ function ArtworksList({ artworks, setIsUpdated }) {
           a.artist_name.toLowerCase().includes(artistInputValue) &&
           (filteredCategory === "null" || a.cat_name === filteredCategory) &&
           (filteredTitle === "" ||
-            a.title.toLowerCase().includes(filteredTitle))
+            a.title.toLowerCase().includes(filteredTitle)) &&
+          (filteredUser === "" ||
+            a.username.toLowerCase().includes(filteredUser)) &&
+          (filteredStatus === null || a.validated === filteredStatus)
       )
     );
   };
@@ -58,7 +66,46 @@ function ArtworksList({ artworks, setIsUpdated }) {
           (filteredTitle === "" ||
             a.title.toLowerCase().includes(filteredTitle)) &&
           (filteredArtist === "" ||
-            a.artist_name.toLowerCase().includes(filteredArtist))
+            a.artist_name.toLowerCase().includes(filteredArtist)) &&
+          (filteredCategory === "null" || a.cat_name === filteredCategory) &&
+          (filteredUser === "" ||
+            a.username.toLowerCase().includes(filteredUser)) &&
+          (filteredStatus === null || a.validated === filteredStatus)
+      )
+    );
+  };
+
+  const handleUserFilter = (e) => {
+    const userSelectedValue = e.target.value.toLowerCase();
+    setFilteredUser(userSelectedValue);
+    setFilteredArtworks(
+      artworks.filter(
+        (a) =>
+          a.username.toLowerCase().includes(userSelectedValue) &&
+          (filteredTitle === "" ||
+            a.title.toLowerCase().includes(filteredTitle)) &&
+          (filteredArtist === "" ||
+            a.artist_name.toLowerCase().includes(filteredArtist)) &&
+          (filteredCategory === "null" || a.cat_name === filteredCategory) &&
+          (filteredStatus === null || a.validated === filteredStatus)
+      )
+    );
+  };
+
+  const handleStatusFilter = (e) => {
+    const statusSelected = parseInt(e.target.value, 10);
+    setFilteredStatus(statusSelected);
+    setFilteredArtworks(
+      artworks.filter(
+        (a) =>
+          (statusSelected === null || a.validated === statusSelected) &&
+          (filteredTitle === "" ||
+            a.title.toLowerCase().includes(filteredTitle)) &&
+          (filteredArtist === "" ||
+            a.artist_name.toLowerCase().includes(filteredArtist)) &&
+          (filteredCategory === "null" || a.cat_name === filteredCategory) &&
+          (filteredUser === "" ||
+            a.username.toLowerCase().includes(filteredUser))
       )
     );
   };
@@ -69,7 +116,7 @@ function ArtworksList({ artworks, setIsUpdated }) {
         <button
           type="button"
           onClick={handleDisplayFilters}
-          className="font-semibold"
+          className="font-semibold lg:text-xl underline underline-offset-2 hover:font-medium"
         >
           FILTRER
         </button>
@@ -82,26 +129,31 @@ function ArtworksList({ artworks, setIsUpdated }) {
             isOpen={isVisible}
             onRequestClose={() => setIsVisible(false)}
             overlayClassName="fixed inset-0 bg-backgroundThree bg-opacity-10 flex flex-col justify-end lg:hidden"
-            className="bg-backgroundThree bg-opacity-90 rounded-lg p-6 max-w-md mx-auto  lg:hidden"
+            className="bg-backgroundThree  rounded-t-xl outline outline-1 outline-primary  max-w-md  lg:hidden"
           >
             <div className="lg:hidden flex flex-col gap-6 p-10">
               <input
-                placeholder="titre"
+                placeholder="PAR TITRE"
                 className="text-xl text-primary rounded-md border-[1px] px-2 border-primary"
                 onChange={handleTitleFilter}
               />
               <input
-                placeholder="artiste"
+                placeholder="PAR ARTISTE"
                 className="text-xl text-primary rounded-md border-[1px]  px-2 border-primary"
                 onChange={handleArtistFilter}
+              />
+              <input
+                placeholder="PAR JOUEUR"
+                className="text-xl text-primary rounded-md border-[1px]  px-2 border-primary"
+                onChange={handleUserFilter}
               />
               <select
                 className="h-9 text-primary rounded-md border-[1px]  px-2  border-primary"
                 onChange={handleCategoryFilter}
               >
-                <option className="text-xl" value="null">
+                <option className="text-lg text-gray-100" value="null">
                   {" "}
-                  ---{" "}
+                  PAR CATEGORIE{" "}
                 </option>
                 {categ &&
                   categ.map((c) => (
@@ -113,16 +165,21 @@ function ArtworksList({ artworks, setIsUpdated }) {
               </select>
             </div>
           </Modal>
-          <div className="md:visible md:flex lg:flex-row lg:gap-10 hidden">
+          <div className="md:visible md:flex lg:flex-row lg:gap-2 hidden">
             <input
-              placeholder="titre"
-              className="text-xl text-primary rounded-md border-[1px] px-2 border-primary"
+              placeholder="PAR TITRE"
+              className="text-lg text-primary rounded-md border-[1px] px-2 border-primary"
               onChange={handleTitleFilter}
             />
             <input
-              placeholder="artiste"
-              className="text-xl text-primary rounded-md border-[1px]  px-2 border-primary"
+              placeholder="PAR ARTISTE"
+              className="text-lg text-primary rounded-md border-[1px]  px-2 border-primary"
               onChange={handleArtistFilter}
+            />
+            <input
+              placeholder="PAR JOUEUR"
+              className="text-lg text-primary rounded-md border-[1px]  px-2 border-primary"
+              onChange={handleUserFilter}
             />
             <select
               className="h-9 text-primary rounded-md border-[1px]  px-2  border-primary"
@@ -130,7 +187,7 @@ function ArtworksList({ artworks, setIsUpdated }) {
             >
               <option className="text-xl" value="null">
                 {" "}
-                ---{" "}
+                PAR CATEGORIE{" "}
               </option>
               {categ &&
                 categ.map((c) => (
@@ -139,6 +196,14 @@ function ArtworksList({ artworks, setIsUpdated }) {
                     {c.cat_name}{" "}
                   </option>
                 ))}
+            </select>
+            <select
+              className="h-9 text-primary rounded-md border-[1px]  px-2  border-primary"
+              onChange={handleStatusFilter}
+            >
+              <option value={null}> PAR STATUT</option>
+              <option value={0}> NON VALIDE </option>
+              <option value={1}> VALIDE</option>
             </select>
           </div>
         </div>

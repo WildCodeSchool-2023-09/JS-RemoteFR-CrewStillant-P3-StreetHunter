@@ -70,7 +70,7 @@ export default function GalleryList({ dbartworks }) {
         <button
           type="button"
           onClick={handleDisplayFilters}
-          className="font-semibold"
+          className="font-semibold lg:text-xl underline underline-offset-2 hover:font-medium"
         >
           FILTRER
         </button>
@@ -83,16 +83,16 @@ export default function GalleryList({ dbartworks }) {
             isOpen={isVisible}
             onRequestClose={() => setIsVisible(false)}
             overlayClassName="fixed inset-0 bg-backgroundThree bg-opacity-10 flex flex-col justify-end lg:hidden"
-            className="bg-backgroundThree bg-opacity-90 rounded-lg p-6 max-w-md mx-auto  lg:hidden"
+            className="bg-backgroundThree rounded-t-xl max-w-md outline-primary outline outline-1 lg:hidden"
           >
             <div className="lg:hidden flex flex-col gap-6 p-10">
               <input
-                placeholder="titre"
+                placeholder="PAR TITRE"
                 className="text-xl text-primary rounded-md border-[1px] px-2 border-primary"
                 onChange={handleTitleFilter}
               />
               <input
-                placeholder="artiste"
+                placeholder="PAR ARTISTE"
                 className="text-xl text-primary rounded-md border-[1px]  px-2 border-primary"
                 onChange={handleArtistFilter}
               />
@@ -102,7 +102,7 @@ export default function GalleryList({ dbartworks }) {
               >
                 <option className="text-xl" value="null">
                   {" "}
-                  ---{" "}
+                  PAR CATEGORIE{" "}
                 </option>
                 {categ &&
                   categ.map((c) => (
@@ -116,22 +116,22 @@ export default function GalleryList({ dbartworks }) {
           </Modal>
           <div className="md:visible md:flex lg:flex-row lg:gap-10 hidden">
             <input
-              placeholder="titre"
+              placeholder="PAR TITRE"
               className="text-xl text-primary rounded-md border-[1px] px-2 border-primary"
               onChange={handleTitleFilter}
             />
             <input
-              placeholder="artiste"
+              placeholder="PAR ARTISTE"
               className="text-xl text-primary rounded-md border-[1px]  px-2 border-primary"
               onChange={handleArtistFilter}
             />
             <select
-              className="h-9 text-primary rounded-md border-[1px]  px-2  border-primary"
+              className="h-12 text-primary rounded-md border-[1px]  px-2  border-primary"
               onChange={handleCategoryFilter}
             >
               <option className="text-xl" value="null">
                 {" "}
-                ---{" "}
+                PAR CATEORIE{" "}
               </option>
               {categ &&
                 categ.map((c) => (

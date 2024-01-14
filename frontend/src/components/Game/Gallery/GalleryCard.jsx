@@ -8,9 +8,9 @@ export default function GalleryCard({
   adress,
 }) {
   return (
-    <div className="bg-white bg-opacity-60 rounded-md outline-offset-4 outline outline-1 outline-[#c58933] mb-4 p-3 shadow-md flex flex-col justify-center">
+    <div className="bg-white bg-opacity-60 flex flex-col justify-center rounded-md outline-offset-4 outline outline-1 outline-[#c58933] mb-4 p-3 shadow-md ">
       <div className="text-xl font-bold mb-2 text-center">{title}</div>
-      <div className="mb-2 ml-7 ">
+      <div className="mb-2 ">
         <img src={image} alt={title} width={300} />
       </div>
       <div className="mb-2 flex flex-row justify-center">
