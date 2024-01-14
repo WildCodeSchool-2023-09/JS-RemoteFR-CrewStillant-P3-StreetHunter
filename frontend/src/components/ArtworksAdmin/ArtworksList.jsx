@@ -163,6 +163,14 @@ function ArtworksList({ artworks, setIsUpdated }) {
                     </option>
                   ))}
               </select>
+              <select
+                className="h-9 text-primary rounded-md border-[1px]  px-2  border-primary"
+                onChange={handleStatusFilter}
+              >
+                <option value={null}> PAR STATUT</option>
+                <option value={0}> NON VALIDE </option>
+                <option value={1}> VALIDE</option>
+              </select>
             </div>
           </Modal>
           <div className="md:visible md:flex lg:flex-row lg:gap-2 hidden">
