@@ -7,7 +7,6 @@ export default function UsersListPage() {
   const [users, setUsers] = useState([]);
   const [isUpdated, setIsUpdated] = useState(false);
 
-  // Fetch users initially and also when 'isUpdated' changes.
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
