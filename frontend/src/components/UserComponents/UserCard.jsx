@@ -7,7 +7,7 @@ function UserCard({ user, setIsUpdated }) {
     axios
       .delete(`${import.meta.env.VITE_BACKEND_URL}/api/user/${user.id}`)
       .then(() => {
-        setIsUpdated(true); // Met à jour l'état pour la suppression
+        setIsUpdated(true);
       })
       .catch((e) => console.error(e));
   };

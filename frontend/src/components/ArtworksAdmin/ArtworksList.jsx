@@ -30,12 +30,12 @@ function ArtworksList({ artworks, setIsUpdated }) {
     setFilteredArtworks(
       artworks.filter(
         (a) =>
-          a.title.toLowerCase().includes(titleInputValue) &&
+          a.title.toLowerCase().startsWith(titleInputValue) &&
           (filteredArtist === "" ||
-            a.artist_name.toLowerCase().includes(filteredArtist)) &&
+            a.artist_name.toLowerCase().startsWith(filteredArtist)) &&
           (filteredCategory === "null" || a.cat_name === filteredCategory) &&
           (filteredUser === "" ||
-            a.username.toLowerCase().includes(filteredUser)) &&
+            a.username.toLowerCase().startsWith(filteredUser)) &&
           (filteredStatus === null || a.validated === filteredStatus)
       )
     );
@@ -46,12 +46,12 @@ function ArtworksList({ artworks, setIsUpdated }) {
     setFilteredArtworks(
       artworks.filter(
         (a) =>
-          a.artist_name.toLowerCase().includes(artistInputValue) &&
+          a.artist_name.toLowerCase().startsWith(artistInputValue) &&
           (filteredCategory === "null" || a.cat_name === filteredCategory) &&
           (filteredTitle === "" ||
-            a.title.toLowerCase().includes(filteredTitle)) &&
+            a.title.toLowerCase().startsWith(filteredTitle)) &&
           (filteredUser === "" ||
-            a.username.toLowerCase().includes(filteredUser)) &&
+            a.username.toLowerCase().startsWith(filteredUser)) &&
           (filteredStatus === null || a.validated === filteredStatus)
       )
     );
