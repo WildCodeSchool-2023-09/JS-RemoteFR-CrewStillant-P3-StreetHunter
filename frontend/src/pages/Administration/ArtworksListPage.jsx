@@ -22,7 +22,7 @@ export default function ArtworksPage() {
   }, [isUpdated]);
 
   return (
-    <div className="h-[77vh] overflow-scroll">
+    <div className="h-[77vh]  overflow-auto">
       <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
     </div>
   );

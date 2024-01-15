@@ -67,6 +67,10 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         <img src={artwork.path_pic} alt={artwork.title} width={300} />
       </div>
       <div className="mb-2 flex flex-row justify-center">
+        <div className="font-semibold mr-2">Artiste : </div>
+        <div>{artwork.artist_name}</div>
+      </div>
+      <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Joueur: </div>
         <div>{artwork.username}</div>
       </div>
@@ -77,10 +81,6 @@ function ArtworkCard({ artwork, setIsUpdated }) {
       <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Catégorie: </div>
         <div>{artwork.cat_name}</div>
-      </div>
-      <div className="mb-2 flex flex-row justify-center">
-        <div className="font-semibold mr-2">Artiste : </div>
-        <div>{artwork.artist_name}</div>
       </div>
 
       <div className="mb-2">{artwork.validated ? "Validé" : "Non validé"}</div>
