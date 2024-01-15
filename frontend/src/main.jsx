@@ -8,15 +8,14 @@ import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
 import ContactPage from "./pages/ContactPage";
-
 import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
 import ArtworksListPage from "./pages/Administration/ArtworksListPage";
+import GalleryPage from "./pages/Game/GalleryPage";
 import UsersListPage from "./pages/Administration/UsersListPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: [
       {
@@ -43,7 +42,8 @@ const router = createBrowserRouter([
       {
         path: "/map",
         element: <MapPage />,
-        loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/`),
+        loader: () =>
+          fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
       },
       {
         path: "/instructions",
@@ -64,6 +64,17 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/game",
+        children: [
+          {
+            path: "artworks",
+            element: <GalleryPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+          },
+        ],
       },
     ],
   },

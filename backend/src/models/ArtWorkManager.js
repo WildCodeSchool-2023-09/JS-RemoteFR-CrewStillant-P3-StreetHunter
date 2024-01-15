@@ -22,6 +22,23 @@ class ArtworkManager extends AbstractManager {
     return rows;
   }
 
+  async readAllValidated() {
+    const [rows] = await this.database.query(`
+      SELECT 
+        artwork.*, 
+        artist.artist_name,
+        category.cat_name
+      FROM 
+        ${this.table}
+      JOIN artist ON ${this.table}.artist_id = artist.id
+      JOIN category ON ${this.table}.category_id = category.id
+      JOIN user ON ${this.table}.user_id = user.id
+      WHERE ${this.table}.validated=1
+    `);
+
+    return rows;
+  }
+
   async readById(id) {
     const [rows] = await this.database.query(
       `SELECT 
