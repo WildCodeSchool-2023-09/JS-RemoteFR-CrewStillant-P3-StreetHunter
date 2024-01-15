@@ -9,6 +9,15 @@ const browse = async (req, res) => {
     console.error(e);
   }
 };
+const browseValidated = async (req, res) => {
+  try {
+    const artworks = await tables.artwork.readAllValidated();
+
+    res.json(artworks);
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 const read = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
@@ -28,16 +37,29 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
+  const {
+    path_pic: pathPic,
+    title,
+    longitude,
+    latitude,
+    validated,
+    category_id: catID,
+    artist_id: artistID,
+    user_id: userID,
+  } = req.body;
   const { id } = req.params;
 
   try {
     const updatedArtwork = await tables.artwork.update(
       id,
+      pathPic,
       title,
-      adress,
+      longitude,
+      latitude,
       validated,
-      categorieID
+      catID,
+      artistID,
+      userID
     );
 
     if (updatedArtwork === null) {
@@ -51,14 +73,24 @@ const edit = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
-
+  const {
+    title,
+    longitude,
+    latitude,
+    validated,
+    category_id: catID,
+    artist_id: artistID,
+    user_id: userID,
+  } = req.body;
   try {
     const insertId = await tables.artwork.create(
       title,
-      adress,
+      longitude,
+      latitude,
       validated,
-      categorieID
+      catID,
+      artistID,
+      userID
     );
 
     res.status(201).json({ insertId });
@@ -89,4 +121,5 @@ module.exports = {
   edit,
   add,
   remove,
+  browseValidated,
 };

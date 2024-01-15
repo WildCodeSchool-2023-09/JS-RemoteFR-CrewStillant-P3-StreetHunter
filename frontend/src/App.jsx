@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navigation/NavBar";
+import Footer from "./components/Navigation/Footer";
 import "./tailwind.css";
 
 function App() {
   return (
-    <div className="bg-hero-pattern bg-contain pb-7">
+    <div className="bg-responsivecity lg:bg-city bg-contain ">
       <NavBar />
-      <main className="">
+      <main className="flex-grow">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }

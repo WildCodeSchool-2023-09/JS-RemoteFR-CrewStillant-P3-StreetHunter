@@ -1,1 +1,3 @@
 src/tailwind.css
+src/components/Game/Map/leaflet.css
+src/components/Navigation/BurgerMenu.css
