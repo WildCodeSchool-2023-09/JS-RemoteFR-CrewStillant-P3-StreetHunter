@@ -14,7 +14,6 @@ function UserCard({ user, setIsUpdated }) {
 
   return (
     <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
-      {" "}
       <div>
         <strong>Joueur:</strong> {user.username}
       </div>
@@ -39,8 +38,6 @@ function UserCard({ user, setIsUpdated }) {
       <div>
         <strong>Date d'inscription:</strong>
         {new Date(user.created_at).toLocaleString()}
-        {/* new Date() est un constructeur qui crée un nouvel objet "Date".
-        toLocaleString() est une méthode pour le formater et l'afficher. */}
       </div>
       <button
         type="button"
