@@ -13,7 +13,7 @@ export default function UsersListPage() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
       .then((res) => {
         setUsers(res.data);
-        setIsUpdated(false); // Reset the isUpdated state after fetching data
+        setIsUpdated(false);
       })
       .catch((e) => console.error(e));
   }, [isUpdated]);
