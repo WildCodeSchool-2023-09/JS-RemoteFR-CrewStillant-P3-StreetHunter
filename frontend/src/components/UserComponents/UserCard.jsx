@@ -15,29 +15,36 @@ function UserCard({ user, setIsUpdated }) {
   return (
     <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div>
-        <strong>Joueur:</strong> {user.username}
+        <span className="font-semibold mr-2">Joueur:</span>
+        <span>{user.username}</span>
       </div>
       <div>
-        <strong>Nom:</strong> {user.lastname}
+        <span className="font-semibold mr-2">Nom:</span>
+        <span>{user.lastname}</span>
       </div>
       <div>
-        <strong>Prénom:</strong> {user.firstname}
+        <span className="font-semibold mr-2">Prénom:</span>
+        <span>{user.firstname}</span>
       </div>
       <div>
-        <strong>Email:</strong> {user.email}
+        <span className="font-semibold mr-2">Email:</span>
+        <span>{user.email}</span>
       </div>
       <div>
-        <strong>Score:</strong> {user.score}
+        <span className="font-semibold mr-2">Score:</span>
+        <span>{user.score}</span>
       </div>
       <div>
-        <strong>Ville:</strong> {user.city}
+        <span className="font-semibold mr-2">Ville:</span>
+        <span>{user.city}</span>
       </div>
       <div>
-        <strong>Code Postal:</strong> {user.postal_code}
+        <span className="font-semibold mr-2">Code Postal:</span>
+        <span>{user.postal_code}</span>
       </div>
       <div>
-        <strong>Date d'inscription:</strong>
-        {new Date(user.created_at).toLocaleString()}
+        <span className="font-semibold mr-2">Date d'inscription:</span>
+        <span>{new Date(user.created_at).toLocaleString()}</span>
       </div>
       <button
         type="button"
