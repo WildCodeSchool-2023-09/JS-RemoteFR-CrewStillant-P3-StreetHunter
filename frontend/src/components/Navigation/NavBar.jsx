@@ -25,6 +25,10 @@ export default function NavBar() {
       path: "/administration",
       title: "ADMINISTRATION",
     },
+    {
+      path: "/game/artworks",
+      title: "GALERIE",
+    },
   ];
   const [menuOpen, setMenuOpen] = useState(false);
   const [page, setPagae] = useState(null);

@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import ArtworksList from "../../components/Artworks/ArtworksList";
+import ArtworksList from "../../components/ArtworksAdmin/ArtworksList";
 
 export default function ArtworksPage() {
   const artworks = useLoaderData();
@@ -22,6 +22,8 @@ export default function ArtworksPage() {
   }, [isUpdated]);
 
   return (
-    <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
+    <div className="h-[77vh]  overflow-auto">
+      <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
+    </div>
   );
 }

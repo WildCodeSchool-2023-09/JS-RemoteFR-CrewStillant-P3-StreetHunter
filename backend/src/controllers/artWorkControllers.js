@@ -9,6 +9,15 @@ const browse = async (req, res) => {
     console.error(e);
   }
 };
+const browseValidated = async (req, res) => {
+  try {
+    const artworks = await tables.artwork.readAllValidated();
+
+    res.json(artworks);
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 const read = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
@@ -112,4 +121,5 @@ module.exports = {
   edit,
   add,
   remove,
+  browseValidated,
 };

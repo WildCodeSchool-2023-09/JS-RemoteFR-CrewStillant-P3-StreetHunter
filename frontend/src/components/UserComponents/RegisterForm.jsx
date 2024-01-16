@@ -1,29 +1,43 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Button from "../../assets/signUpButton.png";
 
 export default function RegisterForm() {
+  const [checked, setChecked] = useState(false);
+  const handleCheck = () => {
+    setChecked(!checked);
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm();
-  const onSubmit = (data) => {
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data);
-  };
   const passwordRef = useRef({});
   passwordRef.current = watch("password", "");
 
+  const notify = () =>
+    toast.warn("Les conditions d'utilisations n'ont pas été acceptées");
+
+  const onSubmit = (data) => {
+    if (checked) {
+      axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data);
+    }
+  };
+
   return (
-    <div className="lg:mt-5 mt-5">
+    <div className="lg:mt-9 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col gap-12 lg:gap-5">
+        <div className="flex flex-col lg:gap-6  gap-4">
           <div>
             <input
               type="text"
@@ -38,7 +52,7 @@ export default function RegisterForm() {
               placeholder="pseudo"
             />
             {errors.username && (
-              <p role="alert" className="">
+              <p role="alert" className="text-lg font-light">
                 {errors.username.message}
               </p>
             )}
@@ -57,7 +71,7 @@ export default function RegisterForm() {
               placeholder="mappingart@email.com"
             />
             {errors.email?.message && (
-              <p role="alert" className="">
+              <p role="alert" className="text-lg font-light">
                 {" "}
                 {errors.email.message || "Champ obligatoire"}{" "}
               </p>
@@ -80,7 +94,7 @@ export default function RegisterForm() {
               placeholder="mot de passe"
             />
             {errors.password && (
-              <p role="alert" className="">
+              <p role="alert" className="text-lg font-light">
                 {" "}
                 {errors.password.message}
               </p>
@@ -99,19 +113,52 @@ export default function RegisterForm() {
               placeholder="verif du mot de passe"
             />
             {errors.confirmpassword && (
-              <p role="alert" className="">
+              <p role="alert" className="text-lg font-light">
                 {errors.confirmpassword.message}
               </p>
             )}
           </div>
-          <div className="mt-4">
-            <button type="submit">
+          <div className="">
+            <p className="mx-7 text-base font-light lg:mx-[30rem] bg-slate-200 bg-opacity-70 rounded-xl ">
+              {" "}
+              Pour utiliser Mapping Art, vous devez accepter les
+              <Link
+                to="/instructions"
+                className="font-semibold ml-3 hover:underline"
+              >
+                conditions d'utilisation
+              </Link>
+            </p>
+            <div className="flex flex-row justify-center mt-4">
+              <input
+                type="checkbox"
+                onChange={handleCheck}
+                className="w-6 h-6 rounded-full"
+              />
+              <p className="ml-2 font-semibold"> J'ACCEPTE</p>
+            </div>
+          </div>
+          <div>
+            <button type="submit" onClick={!checked && notify}>
               <img
                 alt="button"
                 src={Button}
-                className="lg:w-[300px] w-[200px]"
+                className="lg:w-[300px] w-[200px] transform animate-zoom-in-out duration-1000 "
               />
             </button>
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              toastClassName="rounded-md text-lg"
+            />
           </div>
         </div>
       </form>
