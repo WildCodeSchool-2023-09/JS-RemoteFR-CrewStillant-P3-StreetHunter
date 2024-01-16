@@ -10,6 +10,10 @@ export default function NavBar() {
       title: "INSCRIPTION",
     },
     {
+      path: "/profile",
+      title: "PROFIL",
+    },
+    {
       path: "/map",
       title: "LA CARTE",
     },
