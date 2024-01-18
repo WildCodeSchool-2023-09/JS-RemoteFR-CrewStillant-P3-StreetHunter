@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+const path = require("path");
 
 const cors = require("cors");
 
@@ -13,14 +14,18 @@ app.use(
 app.use(express.json());
 
 // Don't change these lines:
+app.use("/public/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../", req.originalUrl));
+});
+
 app.use("*", (req, res) => {
-    if (req.originalUrl.includes("assets")) {
-        res.sendFile(
-            path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
-        );
-    } else {
-        res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
-    }
+  if (req.originalUrl.includes("assets")) {
+    res.sendFile(
+      path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
+    );
+  } else {
+    res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
+  }
 });
 
 const router = require("./router");
