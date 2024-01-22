@@ -1,6 +1,6 @@
 const tables = require("../tables");
 
-const browse = async (req, res) => {
+const browse = async (req, res, next) => {
   try {
     const artworks = await tables.artwork.readAll();
     /**
@@ -15,6 +15,7 @@ const browse = async (req, res) => {
     res.json(formatedData);
   } catch (e) {
     console.error(e);
+    next(e);
   }
 };
 const read = async (req, res, next) => {
