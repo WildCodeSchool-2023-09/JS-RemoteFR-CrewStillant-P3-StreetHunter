@@ -28,8 +28,7 @@ export default function ContactPage() {
               htmlFor="title"
               className="text-2xl text-primary font-semibold my-3 ml-4 lg:ml-10"
             >
-              {" "}
-              TITRE{" "}
+              TITRE
             </label>
             <input
               type="text"

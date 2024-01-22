@@ -1,29 +1,20 @@
 const tables = require("../tables");
 
-// const browse = async (req, res) => {
-//   try {
-//     const artworks = await tables.artwork.readAll();
-//     /**
-//      * @description map method on artwork table for adding path for path_pic line
-//      */
-//     const formatedData = await artworks.map((picture) => ({
-//       ...picture,
-//       path_pic: `${req.protocol}://${req.get("host")}/public/images/${
-//         picture.path_pic
-//       }`,
-//     }));
-//     res.json(formatedData);
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-const browse = async (req, res, next) => {
+const browse = async (req, res) => {
   try {
     const artworks = await tables.artwork.readAll();
-
-    res.json(artworks);
-  } catch (err) {
-    next(err);
+    /**
+     * @description map method on artwork table for adding path for path_pic line
+     */
+    const formatedData = await artworks.map((picture) => ({
+      ...picture,
+      path_pic: `${req.protocol}://${req.get("host")}/public/images/${
+        picture.path_pic
+      }`,
+    }));
+    res.json(formatedData);
+  } catch (e) {
+    console.error(e);
   }
 };
 const read = async (req, res, next) => {
