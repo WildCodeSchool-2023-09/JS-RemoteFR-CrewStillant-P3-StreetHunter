@@ -9,11 +9,15 @@ const {
   add,
   remove,
 } = require("../controllers/artWorkControllers");
+const storage = require("../middlewares/uploadImageArtwork");
+const formValidation = require("../middlewares/artworkFormValidator");
 
 router.get("/", browse);
+
+router.post("/", storage, formValidation, add);
+
 router.get("/:id", read);
 router.put("/:id", edit);
-router.post("/", add);
 router.delete("/:id", remove);
 
 module.exports = router;

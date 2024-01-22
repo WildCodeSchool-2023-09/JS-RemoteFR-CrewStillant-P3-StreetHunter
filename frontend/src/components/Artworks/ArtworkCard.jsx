@@ -59,7 +59,6 @@ function ArtworkCard({ artwork, setIsUpdated }) {
   const handleEditClick = () => {
     setFormVisible(true);
   };
-
   return (
     <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div className="text-xl font-bold mb-2">{artwork.title}</div>
