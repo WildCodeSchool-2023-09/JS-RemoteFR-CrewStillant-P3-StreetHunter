@@ -92,6 +92,14 @@ class UserManager extends AbstractManager {
     );
     return result;
   }
+
+  async addScore(id, score) {
+    const [result] = await this.database.query(
+      "UPDATE user SET score = ? WHERE id = ?",
+      [score, id]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = UserManager;

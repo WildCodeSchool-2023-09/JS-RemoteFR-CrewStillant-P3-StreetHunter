@@ -28,16 +28,15 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
+  const { title, validated, category_id: categoryID } = req.body;
   const { id } = req.params;
 
   try {
     const updatedArtwork = await tables.artwork.update(
       id,
       title,
-      adress,
       validated,
-      categorieID
+      categoryID
     );
 
     if (updatedArtwork === null) {
@@ -51,14 +50,14 @@ const edit = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
+  const { title, adress, validated, category_id: categoryID } = req.body;
 
   try {
     const insertId = await tables.artwork.create(
       title,
       adress,
       validated,
-      categorieID
+      categoryID
     );
 
     res.status(201).json({ insertId });
@@ -83,10 +82,29 @@ const remove = async (req, res, next) => {
   }
 };
 
+const validateArtwork = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await tables.artwork.validateArtwork(id);
+    if (result.affectedRows === 0) {
+      res
+        .status(404)
+        .send(`Artwork with id: ${id} not found or already validated.`);
+    } else {
+      res.status(200).send(`Artwork with id: ${id} validated successfully!`);
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error validating artwork");
+  }
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   remove,
+  validateArtwork,
 };

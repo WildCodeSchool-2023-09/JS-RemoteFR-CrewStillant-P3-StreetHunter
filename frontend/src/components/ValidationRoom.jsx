@@ -1,72 +1,99 @@
+import { toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function validation() {
   const [artWork, setArtwork] = useState([]);
+
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`)
       .then((res) => {
-        // Assurez-vous que la réponse de l'API est un tableau d'objets
-        setArtwork(res.data); // res.data.results est le tableau d'utilisateurs
+        setArtwork(res.data);
       })
       .catch((error) => {
-        console.error("There was an error fetching the scores!", error);
+        console.error("There was an error fetching the artwork", error);
       });
   }, []);
 
+  function scoreValidation(id) {
+    const pointsToAdd = 250;
+
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}/addscore`, {
+        score: pointsToAdd,
+      })
+      .then(() => {
+        toast.success("Image validée ! 250 points distribués au joueur");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function handleValidation(id) {
+    const isValidated = true;
+
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/${id}/validate`, {
+        validated: isValidated,
+      })
+      .then(() => {
+        scoreValidation(id);
+        const updatedArtwork = artWork.filter((art) => art.id !== id);
+        setArtwork(updatedArtwork);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   return (
-    <>
-      <div className="mt-6 pb-6 flex justify-center items-center">
-        <div className=" w-80 rounded-md bg-blue-500 flex items-center justify-center p-4">
-          <h1 className="text-white text-xl">Ranking Board</h1>
+    <div className="bg-[url('./assets/wallpaper.png')] h-full min-h-screen">
+      <div className="flex items-center justify-center gap-5">
+        <div className="flex flex-row flex-wrap gap-5 items-center justify-center mt-6">
+          {artWork.map((e) => (
+            <div
+              key={e.id}
+              className="flex-row max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            >
+              <img
+                className="rounded-t-lg"
+                src={e.path_pic}
+                alt={e.title}
+                style={{
+                  width: "300px",
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+              />
+
+              <div className="p-5">
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {e.title}
+                </p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  ID du joueur : {e.user_id}
+                </p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {e.longitude} {e.longitude}
+                </p>
+                <div className="flex justify-center gap-4 mt-4 ">
+                  <button
+                    type="button"
+                    aria-label="Validate"
+                    onClick={() => handleValidation(e.id)}
+                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="pb-96 mb-8 flex min-h-screen items-center justify-center">
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white shadow-md rounded-xl">
-            <thead>
-              <tr className="bg-blue-gray-100 text-gray-700">
-                <th className="py-3 px-4 text-left">Username</th>
-                <th className="py-3 px-4 text-left">City</th>
-                <th className="py-3 px-4 text-left">score</th>
-              </tr>
-            </thead>
-            <tbody className="text-blue-gray-900">
-              {artWork.map((e) => (
-                <tr key={e.id} className="border-b border-blue-gray-200">
-                  <td className="py-3 px-4">{e.username}</td>
-                  <td className="py-3 px-4">{e.city}</td>
-                  <td className="py-3 px-4">{e.score}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div className="w-full pt-5 px-4 mb-8 mx-auto ">
-        <div className="text-sm text-gray-700 py-1 text-center">
-          Made with{" "}
-          <a
-            className="text-gray-700 font-semibold"
-            href="https://www.material-tailwind.com/docs/html/table/?ref=tailwindcomponents"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Material Tailwind
-          </a>{" "}
-          by{" "}
-          <a
-            href="https://www.creative-tim.com?ref=tailwindcomponents"
-            className="text-gray-700 font-semibold"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Creative Tim
-          </a>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 

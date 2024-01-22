@@ -16,8 +16,6 @@ const router = createBrowserRouter([
       {
         path: "/ValidationRoomPage",
         element: <ValidationRoomPage />,
-        loader: () =>
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/api/mapping_art_db`),
       },
     ],
   },

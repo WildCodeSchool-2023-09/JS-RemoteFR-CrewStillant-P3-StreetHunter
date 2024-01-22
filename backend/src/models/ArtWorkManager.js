@@ -5,6 +5,15 @@ class ArtworkManager extends AbstractManager {
     super({ table: "artwork" });
   }
 
+  async validateArtwork(id) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET validated = TRUE WHERE id = ?`,
+      [id]
+    );
+
+    return result.affectedRows;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
@@ -21,17 +30,17 @@ class ArtworkManager extends AbstractManager {
 
   async create(title, adress, validated, categorieID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (title, adress, validated, categories_id) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (title, adress, validated, category_id) VALUES (?, ?, ?, ?)`,
       [title, adress, validated, categorieID]
     );
 
     return result.insertId;
   }
 
-  async update(id, title, adress, validated, categorieID) {
+  async update(id, title, validated, categoryID) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET title = ?, adress = ?, validated = ?, categories_id = ? WHERE id = ?`,
-      [title, adress, validated, categorieID, id]
+      `UPDATE ${this.table} SET title = ?, validated = ?, category_id = ?, WHERE id = ?`,
+      [title, validated, categoryID, id]
     );
 
     return result.affectedRows;
