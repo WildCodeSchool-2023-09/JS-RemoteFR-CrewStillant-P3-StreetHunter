@@ -8,7 +8,7 @@ export default function MapPage() {
       <span className=" flex flex-row justify-center  font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
         LA CARTE
       </span>
-      <div className="">
+      <div>
         <LeafletMap dbartworks={artworks} />
         <NavLink
           to="/submitartwork"

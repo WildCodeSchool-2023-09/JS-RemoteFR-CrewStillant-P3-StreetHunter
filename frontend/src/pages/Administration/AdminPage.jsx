@@ -31,6 +31,7 @@ function AdminPage() {
             </Link>
           ) : (
             <Link
+              key={l.name}
               onClick={handlePage}
               to={l.path}
               className="bg-white text-slate-800 lg:px-4 px-3  lg:py-2 my-2 lg-mb-0  rounded-md shadow-lg shadow-slate-500 hover:bg-[#cfebf7] active:shadow-inner lg:text-xl font-semibold"

@@ -4,6 +4,7 @@ const router = express.Router();
 
 const {
   browse,
+  browseValidated,
   read,
   edit,
   add,
@@ -12,6 +13,7 @@ const {
 const storage = require("../middlewares/uploadImageArtwork");
 const formValidation = require("../middlewares/artworkFormValidator");
 
+router.get("/user", browseValidated);
 router.get("/", browse);
 
 router.post("/", storage, formValidation, add);
