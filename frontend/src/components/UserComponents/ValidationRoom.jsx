@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function validation() {
+function validationRoom() {
   const [artWork, setArtwork] = useState([]);
 
   useEffect(() => {
@@ -97,4 +97,4 @@ function validation() {
   );
 }
 
-export default validation;
+export default validationRoom;

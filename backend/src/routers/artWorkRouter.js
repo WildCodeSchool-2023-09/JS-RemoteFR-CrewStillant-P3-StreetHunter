@@ -4,6 +4,7 @@ const router = express.Router();
 
 const {
   browse,
+  browseValidated,
   read,
   edit,
   add,
@@ -11,6 +12,7 @@ const {
   validateArtwork,
 } = require("../controllers/artWorkControllers");
 
+router.get("/user", browseValidated);
 router.get("/", browse);
 router.get("/:id", read);
 router.put("/:id", edit, validateArtwork);
