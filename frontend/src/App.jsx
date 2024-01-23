@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/Navigation/NavBar";
 import Footer from "./components/Navigation/Footer";
+
 import "./tailwind.css";
 
 function App() {
