@@ -1,12 +1,21 @@
 const tables = require("../tables");
 
-const browse = async (req, res) => {
+const browse = async (req, res, next) => {
   try {
     const artworks = await tables.artwork.readAll();
-
-    res.json(artworks);
+    /**
+     * @description map method on artwork table for adding path for path_pic line
+     */
+    const formatedData = await artworks.map((picture) => ({
+      ...picture,
+      path_pic: `${req.protocol}://${req.get("host")}/public/images/${
+        picture.path_pic
+      }`,
+    }));
+    res.json(formatedData);
   } catch (e) {
     console.error(e);
+    next(e);
   }
 };
 const browseValidated = async (req, res) => {
@@ -77,17 +86,17 @@ const add = async (req, res) => {
     title,
     longitude,
     latitude,
-    validated,
     category_id: catID,
     artist_id: artistID,
     user_id: userID,
   } = req.body;
+  const pathPic = req.file.filename;
   try {
     const insertId = await tables.artwork.create(
+      pathPic,
       title,
       longitude,
       latitude,
-      validated,
       catID,
       artistID,
       userID

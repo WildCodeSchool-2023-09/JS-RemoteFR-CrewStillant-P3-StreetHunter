@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/Navigation/NavBar";
 import Footer from "./components/Navigation/Footer";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./tailwind.css";
 
 function App() {

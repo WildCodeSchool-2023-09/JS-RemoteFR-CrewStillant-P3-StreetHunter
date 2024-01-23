@@ -59,19 +59,10 @@ class ArtworkManager extends AbstractManager {
     return rows;
   }
 
-  async create(
-    title,
-    longitude,
-    latitude,
-    validated,
-    catID,
-    artistID,
-    userID,
-    pathPic
-  ) {
+  async create(pathPic, title, longitude, latitude, catID, artistID, userID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (title, adress, longitude, latitude, validated, category_id, artist_id, user_id, path_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [title, longitude, latitude, validated, catID, artistID, userID, pathPic]
+      `INSERT INTO ${this.table} ( path_pic,title, longitude, latitude,  category_id, artist_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [pathPic, title, longitude, latitude, catID, artistID, userID]
     );
 
     return result.insertId;

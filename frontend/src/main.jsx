@@ -13,6 +13,7 @@ import AdminPage from "./pages/Administration/AdminPage";
 import ArtworksListPage from "./pages/Administration/ArtworksListPage";
 import GalleryPage from "./pages/Game/GalleryPage";
 import UsersListPage from "./pages/Administration/UsersListPage";
+import SendPicturePage from "./pages/SendPicture";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <RegisterPage />,
       },
+      { path: "/submitartwork", element: <SendPicturePage /> },
       {
         path: "/contact",
         element: <ContactPage />,
