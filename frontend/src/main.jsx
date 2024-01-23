@@ -13,6 +13,8 @@ import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
 import ArtworksListPage from "./pages/Administration/ArtworksListPage";
 import GalleryPage from "./pages/Game/GalleryPage";
+import UsersListPage from "./pages/Administration/UsersListPage";
+import SendPicturePage from "./pages/SendPicture";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,11 @@ const router = createBrowserRouter([
             element: <ArtworksListPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
+          },
+          {
+            path: "/administration/users",
+            element: <UsersListPage />,
+            loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`),
           },
         ],
       },
@@ -56,6 +63,7 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <RegisterPage />,
       },
+      { path: "/submitartwork", element: <SendPicturePage /> },
       {
         path: "/profile",
         element: <ProfilePage />,
