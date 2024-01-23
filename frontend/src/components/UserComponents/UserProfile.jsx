@@ -14,7 +14,7 @@ function UserProfile() {
   }, []);
 
   return (
-    <h2 className="flex flex-row justify-between md:justify-normal md:mr-4 text-xl font-semibold text-primary">
+    <h2 className="text-center md:justify-normal md:mr-4 text-xl font-semibold text-primary">
       HEUREUX DE TE VOIR {userInfo.username}, BRAVO TU AS {userInfo.score}{" "}
       POINTS!
     </h2>

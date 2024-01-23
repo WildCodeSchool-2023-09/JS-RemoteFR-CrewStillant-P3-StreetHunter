@@ -18,25 +18,23 @@ export default function ProfileForm() {
   passwordRef.current = watch("password", "");
 
   return (
-    <div className="lg:mt-5 mt-5">
+    <div className="lg:mt-5">
       img
       <form
         className="text-center lg:text-xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="grid grid-cols-2 gap-y-4">
+        <div className="grid grid-cols-2 gap-y-2">
           <div>
             <input
               type="text"
-              className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
-              {...register("username", {
-                required: "Champ obligatoire",
-                minLength: {
-                  value: 3,
-                  message: "doit contenir au moins 3 caractères",
-                },
-              })}
+              className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
               placeholder="pseudo"
+              name="username"
+              ref={register("username").ref} // Appliquez manuellement la ref
+              onChange={register("username").onChange} // Appliquez manuellement onChange
+              onBlur={register("username").onBlur} // Appliquez manuellement onBlur
+              // Ajoutez d'autres props nécessaires de manière similaire
             />
             {errors.username && (
               <p role="alert" className="">
@@ -44,10 +42,20 @@ export default function ProfileForm() {
               </p>
             )}
           </div>
+          <div className="mt-2">
+            <button type="submit">
+              <img
+                alt="button"
+                src={ModifButton}
+                className="lg:w-[200px] w-[200px]"
+              />
+            </button>
+          </div>
           <div>
             <input
               type="text"
               className="mx-5 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+              placeholder="Prénom"
               {...register("firstname", {
                 required: "Champ obligatoire",
                 minLength: {
@@ -55,13 +63,21 @@ export default function ProfileForm() {
                   message: "doit contenir au moins 3 caractères",
                 },
               })}
-              placeholder="Prénom"
             />
             {errors.firstname && (
               <p role="alert" className="">
                 {errors.firstname.message}
               </p>
             )}
+          </div>
+          <div className="mt-2">
+            <button type="submit">
+              <img
+                alt="button"
+                src={ModifButton}
+                className="lg:w-[200px] w-[200px]"
+              />
+            </button>
           </div>
           <div>
             <input
@@ -81,6 +97,15 @@ export default function ProfileForm() {
                 {errors.lastname.message}
               </p>
             )}
+          </div>
+          <div className="mt-2">
+            <button type="submit">
+              <img
+                alt="button"
+                src={ModifButton}
+                className="lg:w-[200px] w-[200px]"
+              />
+            </button>
           </div>
           <div>
             <input
@@ -106,7 +131,7 @@ export default function ProfileForm() {
             <input
               type="password"
               id="password"
-              className="mx-14 pl-2 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10"
+              className="mx-2 pl-1 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10"
               {...register("password", {
                 required: "champ obligatoire",
                 pattern: {
@@ -124,6 +149,15 @@ export default function ProfileForm() {
                 {errors.password.message}
               </p>
             )}
+          </div>
+          <div className="mt-2">
+            <button type="submit">
+              <img
+                alt="button"
+                src={ModifButton}
+                className="lg:w-[200px] w-[200px]"
+              />
+            </button>
           </div>
           <div>
             <input
