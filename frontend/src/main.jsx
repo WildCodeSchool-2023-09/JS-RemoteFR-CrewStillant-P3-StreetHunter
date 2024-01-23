@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <AdminPage />,
         children: [
           {
-            path: "/administration/ValidationRoom",
+            path: "/administration/ValidationRoomPage",
             element: <Validation />,
           },
           {
