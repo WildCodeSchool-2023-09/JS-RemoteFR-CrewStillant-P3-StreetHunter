@@ -18,7 +18,7 @@ export default function UsersListPage() {
   }, [isUpdated]);
 
   return (
-    <div className="h-[77vh] overflow-scroll">
+    <div className=" h-[77vh] overflow-scroll">
       <UsersList users={users} setIsUpdated={setIsUpdated} />
     </div>
   );

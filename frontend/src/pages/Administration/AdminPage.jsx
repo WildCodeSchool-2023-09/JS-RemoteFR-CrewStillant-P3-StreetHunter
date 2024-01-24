@@ -14,7 +14,7 @@ function AdminPage() {
     },
     {
       name: "WAITING VALIDATION",
-      path: "/administration/ValidationRoomPage",
+      path: "/administration/validationroom",
     },
   ];
   const handlePage = (e) => {

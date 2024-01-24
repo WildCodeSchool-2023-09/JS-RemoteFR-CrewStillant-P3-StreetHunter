@@ -7,7 +7,7 @@ function validationRoom() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`)
       .then((res) => {
         setArtwork(res.data);
       })
