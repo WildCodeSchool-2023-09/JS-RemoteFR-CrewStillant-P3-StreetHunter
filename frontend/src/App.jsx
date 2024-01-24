@@ -8,7 +8,7 @@ import "./tailwind.css";
 
 function App() {
   return (
-    <div className="bg-responsivecity lg:bg-city bg-contain ">
+    <div className="bg-responsivecity lg:bg-city bg-contain min-h-screen ">
       <ToastContainer />
       <NavBar />
       <main className="flex-grow">

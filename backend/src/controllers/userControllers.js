@@ -93,11 +93,11 @@ const remove = async (req, res) => {
 };
 
 const addScore = async (req, res, next) => {
-  const { id } = req.params; // ID de l'utilisateur
-  const { score } = req.body; // Points à ajouter
+  const { id } = req.params; // ID user
+  const { score } = req.body; // add points
 
   try {
-    // Lire les données actuelles de l'utilisateur
+    // read actual user
     const user = await tables.user.readById(id);
     if (user == null) {
       res.status(404).json({ message: "L'utilisateur n'existe pas" });

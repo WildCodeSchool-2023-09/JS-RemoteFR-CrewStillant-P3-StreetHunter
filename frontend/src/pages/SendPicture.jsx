@@ -40,8 +40,12 @@ export default function SendPicturePage() {
         }
       );
       console.info(uploaderFile);
+      toast.success("La création du artwork a été réalisée avec succés !");
     } catch (err) {
       console.error(err);
+      toast.error(
+        "Échec de l'enregistrement : un champ est manquant et/ou contient une erreur."
+      );
     }
   };
 
@@ -49,8 +53,6 @@ export default function SendPicturePage() {
   const HandleLoadFile = (e) => {
     setSendPicture(e.target.files[0]);
   };
-
-  const HandleToasty = () => toast(" Félicitation, ta Street art enregistré !");
 
   return (
     <div className="mt-20">
@@ -94,7 +96,6 @@ export default function SendPicturePage() {
         />
         <button
           type="submit"
-          onClick={HandleToasty}
           className="cursor-pointer group relative flex gap-1.5 px-4 py-3  bg-sky-800  text-[#f1f1f1] rounded-xl hover:bg-opacity-80 transition font-semibold shadow-md mt-5"
         >
           Upload votre Street Art
