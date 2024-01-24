@@ -13,10 +13,10 @@ const login = async (req, res, next) => {
     const verified = await argon2.verify(user.password, req.body.password);
 
     if (verified) {
-      delete user.hashed_password;
+      delete user.password;
 
       const token = await jwt.sign(
-        { sub: user.id, isAdmin: user.isAdmin },
+        { sub: user.id, isAdmin: user.is_admin },
         process.env.APP_SECRET,
         { expiresIn: "5h" }
       );
