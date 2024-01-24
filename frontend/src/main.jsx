@@ -8,6 +8,7 @@ import InstructionsPage from "./pages/InstructionsPage";
 import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
+import ProfilePage from "./pages/UserPages/ProfilePage";
 import ContactPage from "./pages/ContactPage";
 import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
       { path: "/submitartwork", element: <SendPicturePage /> },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
       {
         path: "/contact",
         element: <ContactPage />,

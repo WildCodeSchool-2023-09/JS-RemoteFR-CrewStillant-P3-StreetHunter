@@ -19,6 +19,13 @@ class UserManager extends AbstractManager {
     return rows[0];
   }
 
+  async readByEmailWithPassword(email) {
+    const [rows] = await this.database.query(
+      `SELECT * from ${this.table} WHERE EMAIL=?`,
+      [email]
+    );
+    return rows[0];
+  }
   // The C of CRUD - Create operation
 
   async create(username, email, password) {
