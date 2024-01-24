@@ -34,6 +34,10 @@ const router = createBrowserRouter([
           {
             path: "validationroom",
             element: <ValidationPage />,
+            loader: () =>
+              fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`
+              ),
           },
           {
             path: "artworks",
@@ -103,6 +107,11 @@ const router = createBrowserRouter([
         path: "*",
         element: <NotFoundPage />,
       },
+      {
+        path: "/signup",
+        element: <RegisterPage />,
+      },
+      { path: "/submitartwork", element: <SendPicturePage /> },
       {
         path: "/contact",
         element: <ContactPage />,

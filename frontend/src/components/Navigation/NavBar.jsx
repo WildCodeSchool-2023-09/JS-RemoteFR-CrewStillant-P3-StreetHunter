@@ -10,6 +10,10 @@ export default function NavBar() {
       title: "INSCRIPTION",
     },
     {
+      path: "/user/profile",
+      title: "PROFIL",
+    },
+    {
       path: "/user/login",
       title: "CONNEXION ",
     },
