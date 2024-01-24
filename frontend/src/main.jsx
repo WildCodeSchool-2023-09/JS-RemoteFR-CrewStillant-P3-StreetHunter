@@ -29,28 +29,57 @@ const router = createBrowserRouter([
         element: <AdminPage />,
         children: [
           {
-            path: "/administration/artworks",
+            path: "artworks",
             element: <ArtworksListPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
           },
           {
-            path: "/administration/users",
+            path: "users",
             element: <UsersListPage />,
             loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`),
           },
         ],
       },
       {
-        path: "/map",
-        element: <MapPage />,
-        loader: () =>
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+        path: "/user",
+        children: [
+          {
+            path: "signup",
+            element: <RegisterPage />,
+          },
+          {
+            path: "profile",
+            element: <ProfilePage />,
+          },
+        ],
       },
       {
-        path: "/instructions",
-        element: <InstructionsPage />,
+        path: "/game",
+        children: [
+          {
+            path: "/map",
+            element: <MapPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+          },
+          {
+            path: "artworks",
+            element: <GalleryPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+          },
+          {
+            path: "submitartwork",
+            element: <SendPicturePage />,
+          },
+          {
+            path: "instructions",
+            element: <InstructionsPage />,
+          },
+        ],
       },
+
       {
         path: "/mentions",
         element: <TermsPage />,
@@ -60,28 +89,8 @@ const router = createBrowserRouter([
         element: <NotFoundPage />,
       },
       {
-        path: "/signup",
-        element: <RegisterPage />,
-      },
-      { path: "/submitartwork", element: <SendPicturePage /> },
-      {
-        path: "/profile",
-        element: <ProfilePage />,
-      },
-      {
         path: "/contact",
         element: <ContactPage />,
-      },
-      {
-        path: "/game",
-        children: [
-          {
-            path: "artworks",
-            element: <GalleryPage />,
-            loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
-          },
-        ],
       },
     ],
   },

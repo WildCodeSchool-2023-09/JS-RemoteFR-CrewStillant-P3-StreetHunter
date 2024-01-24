@@ -4,30 +4,21 @@ import UserCard from "./UserCard";
 
 function UsersList({ users, setIsUpdated }) {
   const [filteredUsername, setFilteredUsername] = useState("");
-  const [filteredLastname, setFilteredLastname] = useState("");
   const [filteredUsers, setFilteredUsers] = useState(users);
 
   const handleUsernameFilter = (e) => {
     setFilteredUsername(e.target.value.toLowerCase());
   };
 
-  const handleLastnameFilter = (e) => {
-    setFilteredLastname(e.target.value.toLowerCase());
-  };
-
   useEffect(() => {
     const applyFilters = () => {
       setFilteredUsers(
-        users.filter(
-          (u) =>
-            u.username.toLowerCase().startsWith(filteredUsername) &&
-            u.lastname.toLowerCase().startsWith(filteredLastname)
-        )
+        users.filter((u) => u.username.toLowerCase().includes(filteredUsername))
       );
     };
 
     applyFilters();
-  }, [filteredUsername, filteredLastname, users]);
+  }, [filteredUsername, users]);
 
   return (
     <div className="text-center my-8">
@@ -36,12 +27,6 @@ function UsersList({ users, setIsUpdated }) {
           type="text"
           placeholder="Filtrer par joueur"
           onChange={handleUsernameFilter}
-          className="text-lg rounded-md border-[1px] px-2"
-        />
-        <input
-          type="text"
-          placeholder="Filtrer par nom"
-          onChange={handleLastnameFilter}
           className="text-lg rounded-md border-[1px] px-2"
         />
       </div>
