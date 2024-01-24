@@ -1,20 +1,25 @@
 import { toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
 
 function validationRoom() {
-  const [artWork, setArtwork] = useState([]);
+  const artworks = useLoaderData();
+
+  const [artWork, setArtwork] = useState(artworks);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`)
       .then((res) => {
         setArtwork(res.data);
+        setUpdate(false);
       })
       .catch((error) => {
         console.error("There was an error fetching the artwork", error);
       });
-  }, []);
+  }, [update]);
 
   function scoreValidation(id) {
     const pointsToAdd = 250;
@@ -31,7 +36,7 @@ function validationRoom() {
       });
   }
 
-  function handleValidation(id) {
+  const handleValidation = (id) => {
     const isValidated = true;
 
     axios
@@ -40,13 +45,18 @@ function validationRoom() {
       })
       .then(() => {
         scoreValidation(id);
-        const updatedArtwork = artWork.filter((art) => art.id !== id);
-        setArtwork(updatedArtwork);
+        setUpdate(true);
       })
       .catch((err) => {
         console.error(err);
       });
-  }
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/${id}`)
+      .then(() => setUpdate(true));
+  };
 
   return (
     <div className="bg-[url('./assets/wallpaper.png')] h-full min-h-screen">
@@ -78,7 +88,7 @@ function validationRoom() {
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {e.longitude} {e.longitude}
                 </p>
-                <div className="flex justify-center gap-4 mt-4 ">
+                <div className="flex flox-row justify-center gap-4 mt-4 ">
                   <button
                     type="button"
                     aria-label="Validate"
@@ -86,6 +96,14 @@ function validationRoom() {
                     className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Valider
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="delete"
+                    onClick={() => handleDelete(e.id)}
+                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Supprimer
                   </button>
                 </div>
               </div>

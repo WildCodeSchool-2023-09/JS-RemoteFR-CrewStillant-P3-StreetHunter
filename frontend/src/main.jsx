@@ -9,7 +9,6 @@ import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
 import ProfilePage from "./pages/UserPages/ProfilePage";
-
 import ContactPage from "./pages/ContactPage";
 import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
@@ -35,6 +34,10 @@ const router = createBrowserRouter([
           {
             path: "validationroom",
             element: <ValidationPage />,
+            loader: () =>
+              fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`
+              ),
           },
           {
             path: "artworks",
