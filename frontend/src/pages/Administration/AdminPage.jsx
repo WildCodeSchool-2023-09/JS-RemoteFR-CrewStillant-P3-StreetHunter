@@ -12,6 +12,10 @@ function AdminPage() {
       name: "LISTE DES UTILISATEURS",
       path: "/administration/users",
     },
+    {
+      name: "MESSAGES",
+      path: "/administration/messages",
+    },
   ];
   const handlePage = (e) => {
     setPage(e.target.text);

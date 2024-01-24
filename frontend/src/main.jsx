@@ -12,6 +12,7 @@ import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
 import ArtworksListPage from "./pages/Administration/ArtworksListPage";
 import GalleryPage from "./pages/Game/GalleryPage";
+import MessagingPage from "./pages/Administration/MessagingPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,12 @@ const router = createBrowserRouter([
             element: <ArtworksListPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
+          },
+          {
+            path: "/administration/messages",
+            element: <MessagingPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`),
           },
         ],
       },
