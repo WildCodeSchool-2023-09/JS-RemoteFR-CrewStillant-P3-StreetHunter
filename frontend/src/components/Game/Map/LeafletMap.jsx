@@ -16,7 +16,6 @@ export default function LeafletMap({ dbartworks }) {
   });
   const [currentLatitude, setCurrentLatitude] = useState();
   const [currentLongitude, setCurrentLongitude] = useState();
-
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -41,22 +40,26 @@ export default function LeafletMap({ dbartworks }) {
           url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
         />
         {artworks &&
-          artworks.map((a) => (
-            <Marker
-              position={[a.longitude, a.latitude]}
-              icon={PinIcon}
-              key={a.id}
-            >
-              <Popup className="request-popup">
-                <img
-                  src={a.path_pic}
-                  className="center rounded-md shadow-lg shadow-slate-600"
-                  alt="photto"
-                />{" "}
-                <p className="font-semibold text-2xl text-center">{a.title}</p>
-              </Popup>
-            </Marker>
-          ))}
+          artworks.map((a) =>
+            a.validated ? (
+              <Marker
+                position={[a.longitude, a.latitude]}
+                icon={PinIcon}
+                key={a.id}
+              >
+                <Popup className="request-popup">
+                  <img
+                    src={a.path_pic}
+                    className="center rounded-md shadow-lg shadow-slate-600"
+                    alt="photto"
+                  />{" "}
+                  <p className="font-semibold text-2xl text-center">
+                    {a.title}
+                  </p>
+                </Popup>
+              </Marker>
+            ) : null
+          )}
         {currentLatitude && currentLongitude ? (
           <RecenterPosition long={currentLongitude} lat={currentLatitude} />
         ) : null}

@@ -20,7 +20,6 @@ export default function ArtworksPage() {
         .catch((e) => console.error(e));
     }
   }, [isUpdated]);
-
   return (
     <div className="h-[77vh]  overflow-auto">
       <ArtworksList artworks={updatedArtworks} setIsUpdated={setIsUpdated} />
