@@ -1,4 +1,4 @@
-import { useLoaderData, NavLink } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import LeafletMap from "../components/Game/Map/LeafletMap";
 
 export default function MapPage() {
@@ -10,13 +10,13 @@ export default function MapPage() {
       </span>
       <div>
         <LeafletMap dbartworks={artworks} />
-        <NavLink
-          to="/submitartwork"
+        <Link
+          to="/game/submitartwork"
           className=" flex justify-center w-[20rem] mb-2 mx-auto cursor-pointer 
         px-8 py-2 border-solid border-[#1C6EA4] shadow-lg shadow-slate-800 bg-[#ffffff] text-sky-800 rounded-xl  transition font-semibold hover:h-xl  hover:bg-sky-600 hover:text-white"
         >
           AJOUTER UN STREET ART
-        </NavLink>
+        </Link>
       </div>
     </div>
   );

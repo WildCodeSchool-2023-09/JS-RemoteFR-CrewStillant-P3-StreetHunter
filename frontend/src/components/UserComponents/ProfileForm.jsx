@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useRef } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 import ModifButton from "../../assets/modifbtn.png";
 
@@ -11,30 +12,40 @@ export default function ProfileForm() {
     formState: { errors },
     watch,
   } = useForm();
-  const onSubmit = (data) => {
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/id`,
+        data
+      );
+      if (response.status === 201) {
+        toast.success(response.data.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
-  const passwordRef = useRef({});
-  passwordRef.current = watch("password", "");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <div className="lg:mt-5">
-      img
-      <form
-        className="text-center lg:text-xl lg:font-extrabold"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="grid grid-cols-2 gap-y-2">
+    <div className="lg:mt-5 flex justify-center items-center">
+      <form className="w-full max-w-2xl" onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-2 gap-6">
           <div>
             <input
               type="text"
               className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
               placeholder="pseudo"
               name="username"
-              ref={register("username").ref} // Appliquez manuellement la ref
-              onChange={register("username").onChange} // Appliquez manuellement onChange
-              onBlur={register("username").onBlur} // Appliquez manuellement onBlur
-              // Ajoutez d'autres props nécessaires de manière similaire
+              {...register("username", {
+                minLength: {
+                  value: 3,
+                  message: "doit contenir au moins 3 caractères",
+                },
+              })}
             />
             {errors.username && (
               <p role="alert" className="">
@@ -42,22 +53,13 @@ export default function ProfileForm() {
               </p>
             )}
           </div>
-          <div className="mt-2">
-            <button type="submit">
-              <img
-                alt="button"
-                src={ModifButton}
-                className="lg:w-[200px] w-[200px]"
-              />
-            </button>
-          </div>
           <div>
             <input
               type="text"
-              className="mx-5 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+              className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               placeholder="Prénom"
+              name="firstname"
               {...register("firstname", {
-                required: "Champ obligatoire",
                 minLength: {
                   value: 3,
                   message: "doit contenir au moins 3 caractères",
@@ -70,21 +72,11 @@ export default function ProfileForm() {
               </p>
             )}
           </div>
-          <div className="mt-2">
-            <button type="submit">
-              <img
-                alt="button"
-                src={ModifButton}
-                className="lg:w-[200px] w-[200px]"
-              />
-            </button>
-          </div>
           <div>
             <input
               type="text"
-              className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
+              className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
               {...register("lastname", {
-                required: "Champ obligatoire",
                 minLength: {
                   value: 3,
                   message: "doit contenir au moins 3 caractères",
@@ -98,21 +90,11 @@ export default function ProfileForm() {
               </p>
             )}
           </div>
-          <div className="mt-2">
-            <button type="submit">
-              <img
-                alt="button"
-                src={ModifButton}
-                className="lg:w-[200px] w-[200px]"
-              />
-            </button>
-          </div>
           <div>
             <input
               type="email"
-              className="mx-14 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+              className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("email", {
-                required: "champ obligatoire",
                 pattern: {
                   value: /\./,
                   message: "doit contenir un point",
@@ -129,91 +111,91 @@ export default function ProfileForm() {
           </div>
           <div>
             <input
-              type="password"
-              id="password"
-              className="mx-2 pl-1 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
               {...register("password", {
-                required: "champ obligatoire",
                 pattern: {
                   value:
-                    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
-                  message:
-                    "doit contenir au moins 8 caractères dont au moins une majuscule, une miniscule, un chiffre et un caractère spécial ",
+                    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i,
+                  message: "Doit contenir au minimum...",
                 },
               })}
-              placeholder="mot de passe actuel"
+              placeholder="Mot de passe"
             />
             {errors.password && (
-              <p role="alert" className="">
-                {" "}
-                {errors.password.message}
-              </p>
+              <span className="text-black">{errors.password.message}</span>
             )}
-          </div>
-          <div className="mt-2">
-            <button type="submit">
-              <img
-                alt="button"
-                src={ModifButton}
-                className="lg:w-[200px] w-[200px]"
-              />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "🐵" : "🙈"}
             </button>
           </div>
-          <div>
-            <input
-              type="password"
-              className="mx-14 pl-2 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10 "
-              {...register("confirmpassword", {
-                required: "champ obligatoire",
-                validate: (value) =>
-                  value === passwordRef.current ||
-                  "mots de passe non similaires",
-              })}
-              placeholder="nouveau mot de passe"
+        </div>
+        <div>
+          <input
+            type="password"
+            name="confirmpassword"
+            className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+            {...register("confirmpassword", {
+              pattern: {
+                value:
+                  /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i,
+                message: "Doit contenir au minimum...",
+              },
+              validate: (value) =>
+                value === watch("password") ||
+                "Les mots de passe ne correspondent pas",
+            })}
+            placeholder="Confirmer mot de passe"
+          />
+          {errors.confirmpassword && (
+            <span className="text-black">{errors.confirmpassword.message}</span>
+          )}{" "}
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          >
+            {showConfirmPassword ? "🐵" : "🙈"}
+          </button>
+        </div>
+        <div>
+          <input
+            type="text"
+            className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
+            {...register("postalCode", {
+              minLength: {
+                value: 3,
+                message: "doit contenir au moins 3 caractères",
+              },
+            })}
+            placeholder="Code Postal"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
+            {...register("city", {
+              minLength: {
+                value: 3,
+                message: "doit contenir au moins 3 caractères",
+              },
+            })}
+            placeholder="Ville"
+          />
+        </div>
+        <div className="mt-2 flex justify-center">
+          <button type="submit">
+            <img
+              alt="button"
+              src={ModifButton}
+              className=" lg:w-[150px] w-[150px]"
             />
-            {errors.confirmpassword && (
-              <p role="alert" className="">
-                {errors.confirmpassword.message}
-              </p>
-            )}
-          </div>
-          <div>
-            <input
-              type="text"
-              className="mx-14 pl-2 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10"
-              {...register("postalCode", {
-                required: "Champ obligatoire",
-                minLength: {
-                  value: 3,
-                  message: "doit contenir au moins 3 caractères",
-                },
-              })}
-              placeholder="Code Postal"
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className="mx-14 pl-2 rounded-xl py-3 shadow-lg shadow-slate-800 lg:p-4 lg:text-xl lg:font-semibold lg:px-10"
-              {...register("city", {
-                required: "Champ obligatoire",
-                minLength: {
-                  value: 3,
-                  message: "doit contenir au moins 3 caractères",
-                },
-              })}
-              placeholder="Ville"
-            />
-          </div>
-          <div className="mt-2">
-            <button type="submit">
-              <img
-                alt="button"
-                src={ModifButton}
-                className="lg:w-[200px] w-[200px]"
-              />
-            </button>
-          </div>
+          </button>
         </div>
       </form>
     </div>
