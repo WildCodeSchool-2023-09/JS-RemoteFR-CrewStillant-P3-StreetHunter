@@ -45,7 +45,7 @@ const seed = async () => {
           [
             faker.lorem.sentence({ min: 3, max: 5 }),
             faker.lorem.paragraph({ min: 1, max: 3 }),
-            faker.number.int({ min: 1, max: 3 }),
+            faker.number.int({ min: 1, max: 25 }),
           ]
         )
       );

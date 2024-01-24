@@ -1,23 +1,26 @@
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
+// import { useEffect, useState } from "react";
 
 export default function MessagingPage() {
   const messages = useLoaderData();
-  const [isVisible, setIsVisible] = useState(false);
+  // const [messageId, setMessageId] = useState();
+
+  // useEffect(() => {
+
+  // }, [messageId])
 
   return (
-    <div className="h-[80vh] w-[50] overflow-auto mt-10 flex flex-col justify-center">
+    <div className="h-[80vh] overflow-auto flex flex-col gap-5 mt-10 ">
       {messages.map((m) => (
-        <div className="w-[50rem] overflow-auto text-center">
-          <button
-            className="bg-backgroundTwo bg-opacity-60"
-            type="button"
-            onClick={() => setIsVisible(!isVisible)}
-          >
-            {m.title}
-          </button>
-          {isVisible && <p>{m.body}</p>}
-        </div>
+        <button
+          type="button"
+          // onClick={() => setMessageId(m.id)}
+          key={m.id}
+          className="flex flex-col text-start "
+        >
+          <div className="font-extrabold"> {m.username} </div>
+          <div className=""> {m.title} </div>
+        </button>
       ))}
     </div>
   );
