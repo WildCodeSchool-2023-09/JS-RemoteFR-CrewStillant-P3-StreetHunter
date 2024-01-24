@@ -33,6 +33,16 @@ const browseValidated = async (req, res) => {
   }
 };
 
+const browseNotValidated = async (req, res, next) => {
+  try {
+    const artworks = await tables.artwork.readAllNotValidated();
+    res.json(artworks);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+};
+
 const read = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
 
@@ -155,4 +165,5 @@ module.exports = {
   remove,
   browseValidated,
   validateArtwork,
+  browseNotValidated,
 };
