@@ -21,8 +21,13 @@ const browse = async (req, res, next) => {
 const browseValidated = async (req, res) => {
   try {
     const artworks = await tables.artwork.readAllValidated();
-
-    res.json(artworks);
+    const formatedData = await artworks.map((picture) => ({
+      ...picture,
+      path_pic: `${req.protocol}://${req.get("host")}/public/images/${
+        picture.path_pic
+      }`,
+    }));
+    res.json(formatedData);
   } catch (e) {
     console.error(e);
   }

@@ -51,7 +51,8 @@ export default function SendPicturePage() {
     setSendPicture(e.target.files[0]);
   };
 
-  const HandleToasty = () => toast(" Félicitation, ta Street art enregistré !");
+  const HandleToasty = () =>
+    toast(" Félicitation, ta Street art est enregistré !");
 
   return (
     <div className="mt-20">

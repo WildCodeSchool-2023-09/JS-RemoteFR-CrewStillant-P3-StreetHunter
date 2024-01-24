@@ -31,7 +31,7 @@ const router = createBrowserRouter([
             path: "/administration/artworks",
             element: <ArtworksListPage />,
             loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
           },
           {
             path: "/administration/users",
@@ -43,8 +43,7 @@ const router = createBrowserRouter([
       {
         path: "/map",
         element: <MapPage />,
-        loader: () =>
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+        loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/`),
       },
       {
         path: "/instructions",

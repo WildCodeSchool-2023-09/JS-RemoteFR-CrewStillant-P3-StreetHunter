@@ -13,8 +13,8 @@ const {
 const storage = require("../middlewares/uploadImageArtwork");
 const formValidation = require("../middlewares/artworkFormValidator");
 
-router.get("/user", browseValidated);
 router.get("/", browse);
+router.get("/user", browseValidated);
 
 router.post("/", storage, formValidation, add);
 
