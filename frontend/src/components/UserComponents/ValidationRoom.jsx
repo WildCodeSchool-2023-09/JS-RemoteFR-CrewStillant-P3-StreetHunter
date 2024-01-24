@@ -4,10 +4,9 @@ import axios from "axios";
 
 function validationRoom() {
   const [artWork, setArtwork] = useState([]);
-
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`)
       .then((res) => {
         setArtwork(res.data);
       })
@@ -18,7 +17,6 @@ function validationRoom() {
 
   function scoreValidation(id) {
     const pointsToAdd = 250;
-
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}/addscore`, {
         score: pointsToAdd,
@@ -49,7 +47,7 @@ function validationRoom() {
   }
 
   return (
-    <div className="bg-[url('./assets/wallpaper.png')] h-full min-h-screen">
+    <div className="h-full min-h-screen">
       <div className="flex items-center justify-center gap-5">
         <div className="flex flex-row flex-wrap gap-5 items-center justify-center mt-6">
           {artWork.map((e) => (
@@ -70,10 +68,13 @@ function validationRoom() {
 
               <div className="p-5">
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  {e.title}
+                  Titre: {e.title}
                 </p>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  ID du joueur : {e.user_id}
+                  Nom du joueur : {e.username}
+                </p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Identifiant du joueur : {e.user_id}
                 </p>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {e.longitude} {e.longitude}

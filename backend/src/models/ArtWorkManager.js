@@ -26,7 +26,28 @@ class ArtworkManager extends AbstractManager {
       JOIN artist ON ${this.table}.artist_id = artist.id
       JOIN category ON ${this.table}.category_id = category.id
       JOIN user ON ${this.table}.user_id = user.id
+      
     `);
+
+    return rows;
+  }
+
+  async readAllNotValidated() {
+    const query = `
+      SELECT 
+        artwork.*, 
+        artist.artist_name,
+        category.cat_name,
+        user.username
+      FROM 
+        ${this.table}
+      JOIN artist ON ${this.table}.artist_id = artist.id
+      JOIN category ON ${this.table}.category_id = category.id
+      JOIN user ON ${this.table}.user_id = user.id
+      WHERE ${this.table}.validated = 0
+    `;
+
+    const [rows] = await this.database.query(query);
 
     return rows;
   }
