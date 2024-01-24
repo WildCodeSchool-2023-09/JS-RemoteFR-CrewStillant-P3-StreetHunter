@@ -92,4 +92,35 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = { browse, read, edit, add, remove };
+const addScore = async (req, res, next) => {
+  const { id } = req.params; // ID user
+  const { score } = req.body; // add points
+
+  try {
+    // read actual user
+    const user = await tables.user.readById(id);
+    if (user == null) {
+      res.status(404).json({ message: "L'utilisateur n'existe pas" });
+      return;
+    }
+
+    // Calculer le nouveau score
+    const newScore = user.score + score;
+
+    // Mettre à jour uniquement le score de l'utilisateur
+    const result = await tables.user.addScore(id, newScore);
+
+    // Répondre avec succès si la mise à jour a réussi
+    if (result) {
+      res.status(200).json({ message: "Points ajoutés avec succès" });
+    } else {
+      res
+        .status(500)
+        .json({ message: "Erreur lors de la mise à jour des points" });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { browse, read, edit, add, remove, addScore };

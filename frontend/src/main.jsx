@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import MapPage from "./pages/MapPage";
 import InstructionsPage from "./pages/InstructionsPage";
+import Validation from "./pages/Administration/ValidationRoomPage";
 import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         path: "/administration",
         element: <AdminPage />,
         children: [
+          {
+            path: "/administration/ValidationRoomPage",
+            element: <Validation />,
+          },
           {
             path: "/administration/artworks",
             element: <ArtworksListPage />,

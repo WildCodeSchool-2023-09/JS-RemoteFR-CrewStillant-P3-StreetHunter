@@ -12,6 +12,10 @@ function AdminPage() {
       name: "LISTE DES UTILISATEURS",
       path: "/administration/users",
     },
+    {
+      name: "WAITING VALIDATION",
+      path: "/administration/ValidationRoomPage",
+    },
   ];
   const handlePage = (e) => {
     setPage(e.target.text);

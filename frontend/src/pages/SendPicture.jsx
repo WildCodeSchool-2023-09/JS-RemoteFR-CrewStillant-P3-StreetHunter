@@ -14,7 +14,6 @@ export default function SendPicturePage() {
     { value: "4", label: "realistic" },
   ];
   /**
-   *
    * @param {string | number } e target event when form is submitted
    *
    * @const formData Object for contat all bundle form data
@@ -74,7 +73,7 @@ export default function SendPicturePage() {
           className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
           type="text"
           name="title_street_art"
-          placeholder="  TITRE DU STREET ART"
+          placeholder="TITRE DU STREET ART"
           required
         />
         <select

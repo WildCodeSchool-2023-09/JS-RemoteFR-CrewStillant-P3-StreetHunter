@@ -129,6 +129,24 @@ const remove = async (req, res, next) => {
   }
 };
 
+const validateArtwork = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await tables.artwork.validateArtwork(id);
+    if (result.affectedRows === 0) {
+      res
+        .status(404)
+        .send(`Artwork with id: ${id} not found or already validated.`);
+    } else {
+      res.status(200).send(`Artwork with id: ${id} validated successfully!`);
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error validating artwork");
+  }
+};
+
 module.exports = {
   browse,
   read,
@@ -136,4 +154,5 @@ module.exports = {
   add,
   remove,
   browseValidated,
+  validateArtwork,
 };
