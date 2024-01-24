@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function ScoreBoard() {
+function RankingBoard() {
   const [scores, setScores] = useState([]);
   useEffect(() => {
     axios
@@ -44,30 +44,8 @@ function ScoreBoard() {
           </table>
         </div>
       </div>
-      <div className="w-full pt-5 px-4 mb-8 mx-auto ">
-        <div className="text-sm text-gray-700 py-1 text-center">
-          Made with{" "}
-          <a
-            className="text-gray-700 font-semibold"
-            href="https://www.material-tailwind.com/docs/html/table/?ref=tailwindcomponents"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Material Tailwind
-          </a>{" "}
-          by{" "}
-          <a
-            href="https://www.creative-tim.com?ref=tailwindcomponents"
-            className="text-gray-700 font-semibold"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Creative Tim
-          </a>
-        </div>
-      </div>
     </>
   );
 }
 
-export default ScoreBoard;
+export default RankingBoard;
