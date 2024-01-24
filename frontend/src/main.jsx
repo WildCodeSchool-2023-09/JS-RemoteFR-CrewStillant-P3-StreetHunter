@@ -17,6 +17,7 @@ import GalleryPage from "./pages/Game/GalleryPage";
 import UsersListPage from "./pages/Administration/UsersListPage";
 import SendPicturePage from "./pages/SendPicture";
 import ScoreBoard from "./pages/RankingPage";
+import LoginPage from "./pages/UserPages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
           {
             path: "signup",
             element: <RegisterPage />,
+          },
+          {
+            path: "login",
+            element: <LoginPage />,
           },
           {
             path: "profile",

@@ -10,6 +10,10 @@ export default function NavBar() {
       title: "INSCRIPTION",
     },
     {
+      path: "/user/login",
+      title: "CONNEXION ",
+    },
+    {
       path: "/user/profile",
       title: "PROFIL",
     },
@@ -18,15 +22,15 @@ export default function NavBar() {
       title: "LA CARTE",
     },
     {
-      path: "/game/ranking",
-      title: "RANKING",
+      path: "/game/scoreboard",
+      title: "SCORES",
     },
     {
       path: "/administration",
       title: "ADMINISTRATION",
     },
     {
-      path: "/game/artworks",
+      path: "/game/gallery",
       title: "GALERIE",
     },
   ];
