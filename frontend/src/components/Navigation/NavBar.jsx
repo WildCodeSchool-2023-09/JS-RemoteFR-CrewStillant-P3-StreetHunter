@@ -1,24 +1,21 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import BurgerMenu from "./BurgerMenu";
 import steve from "../../assets/Steve_redimentioned .png";
 
-export default function NavBar() {
+export default function NavBar({ auth }) {
   const navLinks = [
     {
       path: "/user/signup",
       title: "INSCRIPTION",
     },
     {
-      path: "/user/profile",
-      title: "PROFIL",
-    },
-    {
-      path: "/user/login",
+      path: `/user/login/`,
       title: "CONNEXION ",
     },
     {
-      path: "/user/profile",
+      path: `/user/profile/${auth.user.id}`,
       title: "PROFIL",
     },
     {
@@ -99,3 +96,6 @@ export default function NavBar() {
     </div>
   );
 }
+NavBar.propTypes = {
+  auth: PropTypes.shapeOf().isRequired,
+};

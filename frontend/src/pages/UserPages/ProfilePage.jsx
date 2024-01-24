@@ -1,4 +1,3 @@
-import ProfileForm from "../../components/UserComponents/ProfileForm";
 import UserProfile from "../../components/UserComponents/UserProfile";
 
 export default function ProfilePage() {
@@ -9,7 +8,6 @@ export default function ProfilePage() {
         PROFIL{" "}
       </h1>
       <UserProfile />
-      <ProfileForm />
     </div>
   );
 }
