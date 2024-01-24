@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import MapPage from "./pages/MapPage";
+import ValidationPage from "./pages/Administration/ValidationRoomPage";
 import InstructionsPage from "./pages/InstructionsPage";
 import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -14,6 +15,7 @@ import ArtworksListPage from "./pages/Administration/ArtworksListPage";
 import GalleryPage from "./pages/Game/GalleryPage";
 import UsersListPage from "./pages/Administration/UsersListPage";
 import SendPicturePage from "./pages/SendPicture";
+import ScoreBoard from "./pages/RankingPage";
 import MessagingPage from "./pages/Administration/MessagingPage";
 
 const router = createBrowserRouter([
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
         path: "/administration",
         element: <AdminPage />,
         children: [
+          {
+            path: "/administration/validationroom",
+            element: <ValidationPage />,
+          },
           {
             path: "/administration/artworks",
             element: <ArtworksListPage />,
@@ -53,6 +59,11 @@ const router = createBrowserRouter([
         loader: () =>
           fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
       },
+      {
+        path: "/ranking",
+        element: <ScoreBoard />,
+      },
+
       {
         path: "/instructions",
         element: <InstructionsPage />,

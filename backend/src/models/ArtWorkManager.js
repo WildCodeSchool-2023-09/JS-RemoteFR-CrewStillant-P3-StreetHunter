@@ -5,6 +5,15 @@ class ArtworkManager extends AbstractManager {
     super({ table: "artwork" });
   }
 
+  async validateArtwork(id) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET validated = TRUE WHERE id = ?`,
+      [id]
+    );
+
+    return result.affectedRows;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(`
       SELECT 
@@ -17,7 +26,28 @@ class ArtworkManager extends AbstractManager {
       JOIN artist ON ${this.table}.artist_id = artist.id
       JOIN category ON ${this.table}.category_id = category.id
       JOIN user ON ${this.table}.user_id = user.id
+      
     `);
+
+    return rows;
+  }
+
+  async readAllNotValidated() {
+    const query = `
+      SELECT 
+        artwork.*, 
+        artist.artist_name,
+        category.cat_name,
+        user.username
+      FROM 
+        ${this.table}
+      JOIN artist ON ${this.table}.artist_id = artist.id
+      JOIN category ON ${this.table}.category_id = category.id
+      JOIN user ON ${this.table}.user_id = user.id
+      WHERE ${this.table}.validated = 0
+    `;
+
+    const [rows] = await this.database.query(query);
 
     return rows;
   }
@@ -61,7 +91,7 @@ class ArtworkManager extends AbstractManager {
 
   async create(pathPic, title, longitude, latitude, catID, artistID, userID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} ( path_pic,title, longitude, latitude,  category_id, artist_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} ( path_pic, title, longitude, latitude,  category_id, artist_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [pathPic, title, longitude, latitude, catID, artistID, userID]
     );
 

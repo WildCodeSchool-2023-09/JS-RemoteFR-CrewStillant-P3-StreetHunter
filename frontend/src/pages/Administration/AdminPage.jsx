@@ -13,6 +13,10 @@ function AdminPage() {
       path: "/administration/users",
     },
     {
+      name: "WAITING VALIDATION",
+      path: "/administration/validationroom",
+    },
+    {
       name: "MESSAGES",
       path: "/administration/messages",
     },
