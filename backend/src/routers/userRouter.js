@@ -11,6 +11,7 @@ const {
   add,
   edit,
   remove,
+  addScore,
 } = require("../controllers/userControllers");
 
 UserRouter.get("/", browse);
@@ -18,5 +19,6 @@ UserRouter.get("/:id", read);
 UserRouter.post("/", validatedUser, hash, add);
 UserRouter.put("/:id", validateProfileUser, hash, edit);
 UserRouter.delete("/:id", remove);
+UserRouter.put("/:id/addscore", addScore);
 
 module.exports = UserRouter;

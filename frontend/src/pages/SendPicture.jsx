@@ -14,7 +14,6 @@ export default function SendPicturePage() {
     { value: "4", label: "realistic" },
   ];
   /**
-   *
    * @param {string | number } e target event when form is submitted
    *
    * @const formData Object for contat all bundle form data
@@ -41,8 +40,12 @@ export default function SendPicturePage() {
         }
       );
       console.info(uploaderFile);
+      toast.success("La création du artwork a été réalisée avec succés !");
     } catch (err) {
       console.error(err);
+      toast.error(
+        "Échec de l'enregistrement : un champ est manquant et/ou contient une erreur."
+      );
     }
   };
 
@@ -50,8 +53,6 @@ export default function SendPicturePage() {
   const HandleLoadFile = (e) => {
     setSendPicture(e.target.files[0]);
   };
-
-  const HandleToasty = () => toast(" Félicitation, ta Street art enregistré !");
 
   return (
     <div className="mt-20">
@@ -73,7 +74,7 @@ export default function SendPicturePage() {
           className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
           type="text"
           name="title_street_art"
-          placeholder="  TITRE DU STREET ART"
+          placeholder="TITRE DU STREET ART"
           required
         />
         <select
@@ -95,7 +96,6 @@ export default function SendPicturePage() {
         />
         <button
           type="submit"
-          onClick={HandleToasty}
           className="cursor-pointer group relative flex gap-1.5 px-4 py-3  bg-sky-800  text-[#f1f1f1] rounded-xl hover:bg-opacity-80 transition font-semibold shadow-md mt-5"
         >
           Upload votre Street Art

@@ -21,7 +21,7 @@ const seed = async () => {
 
     // Optional: Truncate tables (remove existing data)
     // await database.query(" user");
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
           "INSERT INTO user( username, lastName, firstName, email, password, score, city, postal_code ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -55,7 +55,7 @@ const seed = async () => {
       "INSERT INTO category ( cat_name ) VALUES ('Retro'),('Caligraphy'),('Abstract'),('Realistic')"
     );
 
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query("INSERT INTO artist ( artist_name ) VALUES (?)", [
           faker.internet.displayName(),
@@ -63,7 +63,7 @@ const seed = async () => {
       );
     }
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       queries.push(
         database.query(
           "insert into artwork( path_pic, title, longitude, latitude, category_id, artist_id, user_id) values (?, ?, ?, ?, ?, ?, ?)",
@@ -72,7 +72,7 @@ const seed = async () => {
             faker.lorem.word(),
             faker.location.longitude(),
             faker.location.latitude(),
-            faker.number.int({ min: 1, max: 4 }),
+            faker.number.int({ min: 1, max: 3 }),
             faker.number.int({ min: 1, max: 5 }),
             faker.number.int({ min: 1, max: 5 }),
           ]

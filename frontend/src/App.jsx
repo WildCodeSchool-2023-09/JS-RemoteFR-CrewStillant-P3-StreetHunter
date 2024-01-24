@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import NavBar from "./components/Navigation/NavBar";
 import Footer from "./components/Navigation/Footer";
-import "react-toastify/dist/ReactToastify.css";
 
 import "./tailwind.css";
 

@@ -18,8 +18,8 @@ export default function NavBar() {
       title: "LA CARTE",
     },
     {
-      path: "/scores",
-      title: "SCORES",
+      path: "/game/ranking",
+      title: "RANKING",
     },
     {
       path: "/administration",
