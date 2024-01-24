@@ -58,13 +58,13 @@ const router = createBrowserRouter([
         path: "/game",
         children: [
           {
-            path: "/map",
+            path: "map",
             element: <MapPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
           },
           {
-            path: "artworks",
+            path: "gallery",
             element: <GalleryPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
