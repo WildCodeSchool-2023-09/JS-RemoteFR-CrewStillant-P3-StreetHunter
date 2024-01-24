@@ -25,7 +25,7 @@ export default function LoginPage() {
       if (response.status === 200) {
         const auth = await response.json();
         setAuth(auth);
-        navigate("/map");
+        navigate("/game/map");
       } else {
         console.info(response);
       }
