@@ -10,7 +10,8 @@ module.exports = {
         backgroundThree: "#b5e2b0",
       },
       backgroundImage: {
-        city: "url('/assets/wallpaper.png')",
+        city: "url('./assets/wallpaper.png')",
+        responsivecity: "url(./assets/responsiveWallpaper.png)",
       },
     },
     fontFamily: {

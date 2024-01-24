@@ -35,25 +35,21 @@ const edit = async (req, res, next) => {
   const {
     username,
     lastname,
-    firsnname,
+    firstname,
     email,
     password,
-    score,
     city,
     postal_code: postalCode,
-    role_id: roleId,
   } = req.body;
   try {
     const result = await tables.user.update(
       username,
       lastname,
-      firsnname,
+      firstname,
       email,
       password,
-      score,
       city,
       postalCode,
-      roleId,
       id
     );
     if (result == null) {
@@ -68,31 +64,10 @@ const edit = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-  const {
-    username,
-    lastname,
-    firsnname,
-    email,
-    password,
-    score,
-    created_at: createdAt,
-    city,
-    postal_code: postalCode,
-    role_id: roleId,
-  } = req.body;
+  const { username, email } = req.body;
+  const password = req.body.hashedpwd;
   try {
-    const newUser = await tables.user.create(
-      username,
-      lastname,
-      firsnname,
-      email,
-      password,
-      score,
-      createdAt,
-      city,
-      postalCode,
-      roleId
-    );
+    const newUser = await tables.user.create(username, email, password);
     res
       .status(201)
       .json({ id: newUser.insertId, message: "L'utilisateur a bien été créé" });
@@ -117,4 +92,35 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = { browse, read, edit, add, remove };
+const addScore = async (req, res, next) => {
+  const { id } = req.params; // ID de l'utilisateur
+  const { score } = req.body; // Points à ajouter
+
+  try {
+    // Lire les données actuelles de l'utilisateur
+    const user = await tables.user.readById(id);
+    if (user == null) {
+      res.status(404).json({ message: "L'utilisateur n'existe pas" });
+      return;
+    }
+
+    // Calculer le nouveau score
+    const newScore = user.score + score;
+
+    // Mettre à jour uniquement le score de l'utilisateur
+    const result = await tables.user.addScore(id, newScore);
+
+    // Répondre avec succès si la mise à jour a réussi
+    if (result) {
+      res.status(200).json({ message: "Points ajoutés avec succès" });
+    } else {
+      res
+        .status(500)
+        .json({ message: "Erreur lors de la mise à jour des points" });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { browse, read, edit, add, remove, addScore };

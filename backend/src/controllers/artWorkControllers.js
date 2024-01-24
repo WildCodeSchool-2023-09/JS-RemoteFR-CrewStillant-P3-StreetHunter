@@ -1,8 +1,26 @@
 const tables = require("../tables");
 
-const browse = async (req, res) => {
+const browse = async (req, res, next) => {
   try {
     const artworks = await tables.artwork.readAll();
+    /**
+     * @description map method on artwork table for adding path for path_pic line
+     */
+    const formatedData = await artworks.map((picture) => ({
+      ...picture,
+      path_pic: `${req.protocol}://${req.get("host")}/public/images/${
+        picture.path_pic
+      }`,
+    }));
+    res.json(formatedData);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+};
+const browseValidated = async (req, res) => {
+  try {
+    const artworks = await tables.artwork.readAllValidated();
 
     res.json(artworks);
   } catch (e) {
@@ -28,16 +46,29 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
+  const {
+    path_pic: pathPic,
+    title,
+    longitude,
+    latitude,
+    validated,
+    category_id: catID,
+    artist_id: artistID,
+    user_id: userID,
+  } = req.body;
   const { id } = req.params;
 
   try {
     const updatedArtwork = await tables.artwork.update(
       id,
+      pathPic,
       title,
-      adress,
+      longitude,
+      latitude,
       validated,
-      categorieID
+      catID,
+      artistID,
+      userID
     );
 
     if (updatedArtwork === null) {
@@ -51,14 +82,24 @@ const edit = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const { title, adress, validated, categories_id: categorieID } = req.body;
-
+  const {
+    title,
+    longitude,
+    latitude,
+    category_id: catID,
+    artist_id: artistID,
+    user_id: userID,
+  } = req.body;
+  const pathPic = req.file.filename;
   try {
     const insertId = await tables.artwork.create(
+      pathPic,
       title,
-      adress,
-      validated,
-      categorieID
+      longitude,
+      latitude,
+      catID,
+      artistID,
+      userID
     );
 
     res.status(201).json({ insertId });
@@ -83,10 +124,30 @@ const remove = async (req, res, next) => {
   }
 };
 
+const validateArtwork = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await tables.artwork.validateArtwork(id);
+    if (result.affectedRows === 0) {
+      res
+        .status(404)
+        .send(`Artwork with id: ${id} not found or already validated.`);
+    } else {
+      res.status(200).send(`Artwork with id: ${id} validated successfully!`);
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error validating artwork");
+  }
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   remove,
+  browseValidated,
+  validateArtwork,
 };
