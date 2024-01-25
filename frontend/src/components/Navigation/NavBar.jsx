@@ -25,14 +25,14 @@ export default function NavBar({ auth, setAuth }) {
           title: "ESPACE DE VALIDATION",
         },
         {
-          path: `/user/profile/${decoded.sub}`,
+          path: `/user/profile/`,
           title: "PROFIL",
         },
       ];
     } else {
       navLinks = [
         {
-          path: `/user/profile/${decoded.sub}`,
+          path: `/user/profile/`,
           title: "PROFIL",
         },
         {
