@@ -32,6 +32,7 @@ export default function SendPicturePage() {
     formData.append("longitude", coords[1]);
     formData.append("latitude", coords[0]);
     formData.append("category_id", e.target[1].value);
+    formData.append("artist_id", e.target[1].value);
     formData.append("user_id", auth.user.id);
     try {
       const uploaderFile = await axios.post(

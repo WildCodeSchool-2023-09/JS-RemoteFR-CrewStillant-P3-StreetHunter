@@ -112,6 +112,7 @@ const add = async (req, res) => {
     longitude,
     latitude,
     category_id: catID,
+    artist_id: artID,
     user_id: userID,
   } = req.body;
   const pathPic = req.file.filename;
@@ -122,6 +123,7 @@ const add = async (req, res) => {
       longitude,
       latitude,
       catID,
+      artID,
       userID
     );
 
