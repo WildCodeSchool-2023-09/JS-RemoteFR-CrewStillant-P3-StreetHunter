@@ -32,7 +32,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="lg:mt-9 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
+    <div className="lg:mt-4 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}

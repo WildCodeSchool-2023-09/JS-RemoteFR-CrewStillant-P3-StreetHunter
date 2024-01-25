@@ -6,23 +6,31 @@ import steve from "../../assets/Steve_redimentioned .png";
 export default function NavBar() {
   const navLinks = [
     {
-      path: "/signup",
+      path: "/user/signup",
       title: "INSCRIPTION",
     },
     {
-      path: "/map",
+      path: "/user/login",
+      title: "CONNEXION ",
+    },
+    {
+      path: "/user/profile",
+      title: "PROFIL",
+    },
+    {
+      path: "/game/map",
       title: "LA CARTE",
     },
     {
-      path: "/ranking",
-      title: "RANKING",
+      path: "/game/scoreboard",
+      title: "SCORES",
     },
     {
       path: "/administration",
       title: "ADMINISTRATION",
     },
     {
-      path: "/game/artworks",
+      path: "/game/gallery",
       title: "GALERIE",
     },
   ];
