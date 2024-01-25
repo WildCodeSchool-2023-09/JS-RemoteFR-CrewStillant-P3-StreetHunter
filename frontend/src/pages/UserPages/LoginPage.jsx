@@ -6,7 +6,6 @@ export default function LoginPage() {
   const passwordRef = useRef();
 
   const { setAuth } = useOutletContext();
-
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,6 +32,7 @@ export default function LoginPage() {
       console.error(err);
     }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

@@ -3,6 +3,7 @@ const express = require("express");
 const UserRouter = express.Router();
 const validatedUser = require("../middlewares/userValidationMiddleware");
 const validateProfileUser = require("../middlewares/userProfileValidationMiddleware");
+
 const hash = require("../middlewares/hashPassword");
 
 const {

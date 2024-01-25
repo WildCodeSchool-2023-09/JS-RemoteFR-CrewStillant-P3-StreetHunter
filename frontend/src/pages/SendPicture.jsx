@@ -32,6 +32,7 @@ export default function SendPicturePage() {
     formData.append("longitude", coords[1]);
     formData.append("latitude", coords[0]);
     formData.append("category_id", e.target[1].value);
+    formData.append("user_id", auth.user.id);
     try {
       const uploaderFile = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/artwork`,
@@ -66,7 +67,7 @@ export default function SendPicturePage() {
         >
           {Boolean(sendPicture) && (
             <img
-              className="flex items-center h-80 w-80"
+              className="shadow-xl shadow-slate-800 rounded-lg flex items-center h-80 w-80"
               alt="upload"
               src={URL.createObjectURL(sendPicture)}
             />

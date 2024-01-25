@@ -14,6 +14,7 @@ const {
 } = require("../controllers/artWorkControllers");
 const storage = require("../middlewares/uploadImageArtwork");
 const formValidation = require("../middlewares/artworkFormValidator");
+// const isAdmin = require("../middlewares/isAdmin");
 
 router.get("/user", browseValidated);
 
