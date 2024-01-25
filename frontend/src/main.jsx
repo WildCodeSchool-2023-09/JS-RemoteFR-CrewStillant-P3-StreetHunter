@@ -18,6 +18,7 @@ import UsersListPage from "./pages/Administration/UsersListPage";
 import SendPicturePage from "./pages/SendPicture";
 import ScoreBoard from "./pages/RankingPage";
 import LoginPage from "./pages/UserPages/LoginPage";
+import ArtworkPage from "./pages/Game/ArtworkPage";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
             element: <LoginPage />,
           },
           {
-            path: "profile/:id",
+            path: "profile/",
             element: <ProfilePage />,
           },
         ],
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             element: <GalleryPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+          },
+          {
+            path: "artwork/:id",
+            element: <ArtworkPage />,
           },
           {
             path: "submitartwork",

@@ -41,8 +41,8 @@ class ArtworkManager extends AbstractManager {
         user.username
       FROM 
         ${this.table}
+        JOIN category ON ${this.table}.category_id = category.id
       JOIN artist ON ${this.table}.artist_id = artist.id
-      JOIN category ON ${this.table}.category_id = category.id
       JOIN user ON ${this.table}.user_id = user.id
       WHERE ${this.table}.validated = 0
     `;

@@ -17,12 +17,12 @@ const formValidation = require("../middlewares/artworkFormValidator");
 
 router.get("/user", browseValidated);
 
+router.get("/:id", read);
 router.get("/", browse);
 router.get("/notvalidated", browseNotValidated);
 
 router.post("/", storage, formValidation, add);
 
-router.get("/:id", read);
 router.put("/:id", edit, validateArtwork);
 router.post("/", add);
 router.delete("/:id", remove);
