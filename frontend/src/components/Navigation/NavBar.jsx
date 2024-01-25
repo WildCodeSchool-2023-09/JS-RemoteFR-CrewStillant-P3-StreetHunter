@@ -1,14 +1,16 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import PropTypes from "prop-types";
 import BurgerMenu from "./BurgerMenu";
 import steve from "../../assets/Steve_redimentioned .png";
 
 export default function NavBar({ auth, setAuth }) {
   const navigate = useNavigate();
-  let navLinks = [];
+  const decoded = auth && jwtDecode(auth.token);
+  let navLinks;
   if (auth !== undefined) {
-    if (auth.user.is_admin === 1) {
+    if (decoded.isAdmin === 1) {
       navLinks = [
         {
           path: "/administration/artworks",
@@ -22,11 +24,15 @@ export default function NavBar({ auth, setAuth }) {
           path: "/administration/validationroom",
           title: "ESPACE DE VALIDATION",
         },
+        {
+          path: `/user/profile/${decoded.sub}`,
+          title: "PROFIL",
+        },
       ];
     } else {
       navLinks = [
         {
-          path: `/user/profile/${auth.user.id}`,
+          path: `/user/profile/${decoded.sub}`,
           title: "PROFIL",
         },
         {
@@ -77,6 +83,12 @@ export default function NavBar({ auth, setAuth }) {
             className="ml-2 md:ml-5 hover:animate-spin w-10"
           />
         </NavLink>
+        {auth !== undefined && (
+          <span className="text-primary capitalize ml-4">
+            {" "}
+            salut {auth.user.username} !{" "}
+          </span>
+        )}
         <BurgerMenu
           navLinks={navLinks}
           menuOpen={menuOpen}
@@ -130,9 +142,11 @@ export default function NavBar({ auth, setAuth }) {
 }
 NavBar.propTypes = {
   auth: PropTypes.shape({
+    token: PropTypes.string.isRequired,
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
       is_admin: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   setAuth: PropTypes.func.isRequired,

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
@@ -67,17 +66,6 @@ const router = createBrowserRouter([
           {
             path: "profile/:id",
             element: <ProfilePage />,
-            loader: async ({ params }) => {
-              const user = await axios
-                .get(
-                  `${import.meta.env.VITE_BACKEND_URL}/api/user/${parseInt(
-                    params.id,
-                    10
-                  )}`
-                )
-                .then((res) => res.data);
-              return user;
-            },
           },
         ],
       },
