@@ -40,7 +40,13 @@ export default function UserProfile() {
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/${decoded.sub}`,
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.token}`, // Inclusion du jeton JWT
+          },
+        }
       );
       if (response.status === 200) {
         toast.success(response.data.message);

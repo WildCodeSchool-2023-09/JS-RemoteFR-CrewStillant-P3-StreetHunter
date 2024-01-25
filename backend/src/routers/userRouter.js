@@ -18,7 +18,7 @@ const {
 UserRouter.get("/", browse);
 UserRouter.get("/:id", read);
 UserRouter.post("/", validatedUser, hash, add);
-UserRouter.put("/:id", validateProfileUser, hash, edit);
+UserRouter.put("/:id", validateProfileUser, edit);
 UserRouter.delete("/:id", remove);
 UserRouter.put("/:id/addscore", addScore);
 
