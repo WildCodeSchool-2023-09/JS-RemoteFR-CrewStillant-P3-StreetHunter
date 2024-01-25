@@ -33,7 +33,8 @@ class ArtworkManager extends AbstractManager {
   }
 
   async readAllNotValidated() {
-    const query = `
+    const [rows] = await this.database.query(
+      `
       SELECT 
         artwork.*, 
         artist.artist_name,
@@ -44,10 +45,10 @@ class ArtworkManager extends AbstractManager {
         JOIN category ON ${this.table}.category_id = category.id
         JOIN artist ON ${this.table}.artist_id = artist.id
         JOIN user ON ${this.table}.user_id = user.id
-        WHERE ${this.table}.validated = 0
-        `;
-
-    const [rows] = await this.database.query(query);
+        WHERE ${this.table}.validated = ?
+        `,
+      [0]
+    );
 
     return rows;
   }
@@ -71,19 +72,19 @@ class ArtworkManager extends AbstractManager {
 
   async readById(id) {
     const [rows] = await this.database.query(
-      `SELECT 
-        artwork.*, 
+      `SELECT
+        artwork.*,
         artist.artist_name,
         category.cat_name,
         user.username
-      FROM 
+      FROM
         ${this.table}
       JOIN artist ON ${this.table}.artist_id = artist.id
       JOIN category ON ${this.table}.category_id = category.id
       JOIN user ON ${this.table}.user_id = user.id
-      WHERE 
+      WHERE
         ${this.table}.id = ?`,
-      [id]
+      [Number(id)]
     );
 
     return rows;
