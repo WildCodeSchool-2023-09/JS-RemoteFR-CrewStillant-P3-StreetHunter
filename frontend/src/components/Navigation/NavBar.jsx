@@ -28,6 +28,10 @@ export default function NavBar({ auth, setAuth }) {
           path: `/user/profile/${decoded.sub}`,
           title: "PROFIL",
         },
+        {
+          path: "/game/map",
+          title: "LA CARTE",
+        },
       ];
     } else {
       navLinks = [

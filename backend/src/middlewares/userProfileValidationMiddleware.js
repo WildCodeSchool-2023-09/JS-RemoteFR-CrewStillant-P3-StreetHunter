@@ -7,12 +7,14 @@ const userSchema = z.object({
   email: z.string().email({ message: "email non valide" }).regex(/\./),
   password: z
     .string()
-    .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/),
+    .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/)
+    .optional(),
   confirmpassword: z
     .string()
-    .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/),
-  postalcode: z.string().min(5),
+    .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/)
+    .optional(),
   city: z.string().min(2),
+  postalcode: z.string().min(5).optional(),
 });
 
 const userProfileValidation = (req, res, next) => {
