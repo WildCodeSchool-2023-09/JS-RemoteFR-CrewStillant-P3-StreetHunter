@@ -18,6 +18,4 @@ const verifyToken = async (req, res, next) => {
     res.sendStatus(401);
   }
 };
-module.exports = {
-  verifyToken,
-};
+module.exports = verifyToken;

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useRevalidator } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import ModifButton from "../../assets/modifbtn.png";
@@ -10,48 +10,57 @@ import ModifButton from "../../assets/modifbtn.png";
 export default function UserProfile() {
   const { auth } = useOutletContext();
   const decoded = auth && jwtDecode(auth.token);
-
-  const [userInfo, setUserInfo] = useState(auth.user);
+  const userInfo = auth.user;
   const [visible, setVisible] = useState(false);
-  const [update, setUpdate] = useState(false);
+  const revalidator = useRevalidator();
 
   const handleEditButton = () => {
     setVisible(true);
   };
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${decoded.sub}`)
-      .then((res) => {
-        setUserInfo(res.data);
-        setUpdate(false);
-      })
-      .catch((err) => console.error(err));
-  }, [update]);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      username: userInfo.username,
+      firstname: userInfo.firstname,
+      lastname: userInfo.lastname,
+      email: userInfo.email,
+      postalCode: userInfo.postal_code,
+      city: userInfo.city,
+    },
+  });
 
   const onSubmit = async (data) => {
+    const obj = data;
+    for (const element in obj) {
+      if (data[element] === "") {
+        delete obj[element];
+      }
+    }
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/${decoded.sub}`,
-        data
+        obj,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
       );
+
       if (response.status === 200) {
         toast.success(response.data.message);
+        revalidator.revalidate();
+        setVisible(false);
       }
     } catch (e) {
       console.error(e);
     }
   };
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <div className="flex flex-col align-middle">
@@ -59,8 +68,8 @@ export default function UserProfile() {
         HEUREUX DE TE VOIR {userInfo.username}, BRAVO TU AS {userInfo.score}{" "}
         POINTS!
       </h2>
-      <div className="flex flex-row justify-center">
-        {visible ? (
+      {visible ? (
+        <div className="flex flex-row justify-center">
           <form
             className="w-full max-w-2xl items-center mt-12"
             onSubmit={handleSubmit(onSubmit)}
@@ -71,7 +80,6 @@ export default function UserProfile() {
                   type="text"
                   className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
                   placeholder="pseudo"
-                  name="username"
                   {...register("username", {
                     minLength: {
                       value: 3,
@@ -135,60 +143,6 @@ export default function UserProfile() {
                   {errors.email.message || "Champ obligatoire"}{" "}
                 </p>
               )}
-              <div className="flex flex-row">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
-                  {...register("password", {
-                    pattern: {
-                      value:
-                        /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i,
-                      message: "Doit contenir au minimum...",
-                    },
-                  })}
-                  placeholder="Mot de passe"
-                />
-                {errors.password && (
-                  <span className="text-black">{errors.password.message}</span>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? "🐵" : "🙈"}
-                </button>
-              </div>
-              <div className="flex flex-row">
-                <input
-                  type="password"
-                  name="confirmpassword"
-                  className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
-                  {...register("confirmpassword", {
-                    pattern: {
-                      value:
-                        /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i,
-                      message: "Doit contenir au minimum...",
-                    },
-                    validate: (value) =>
-                      value === watch("password") ||
-                      "Les mots de passe ne correspondent pas",
-                  })}
-                  placeholder="Confirmer mot de passe"
-                />
-                {errors.confirmpassword && (
-                  <span className="text-black">
-                    {errors.confirmpassword.message}
-                  </span>
-                )}{" "}
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                >
-                  {showConfirmPassword ? "🐵" : "🙈"}
-                </button>
-              </div>
-
               <input
                 type="text"
                 className="mx-6 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
@@ -212,33 +166,28 @@ export default function UserProfile() {
                 placeholder="Ville"
               />
             </div>
+            <button type="submit"> soumettre</button>
           </form>
-        ) : (
-          <div>
-            <div> PSEUDO: {userInfo.username}</div>
-            <div> PRENOM: {userInfo.firstname}</div>
-            <div> NOM: {userInfo.lastname}</div>
-            <div> EMAIL: {userInfo.email}</div>
-            <div> VILLE: {userInfo.city}</div>
-            <div> PAYS: {userInfo.firstname}</div>
-          </div>
-        )}
-      </div>
-      {!visible ? (
-        <div className="flex flex-row justify-center mt-10">
-          <button type="button" onClick={handleEditButton}>
-            <img
-              alt="button"
-              src={ModifButton}
-              className=" lg:w-[200px] w-[200px]"
-            />
-          </button>
         </div>
       ) : (
-        <button onClick={() => setVisible(false)} type="submit">
-          {" "}
-          soumettre
-        </button>
+        <div>
+          <div> PSEUDO: {userInfo.username}</div>
+          <div> PRENOM: {userInfo.firstname}</div>
+          <div> NOM: {userInfo.lastname}</div>
+          <div> EMAIL: {userInfo.email}</div>
+          <div> VILLE: {userInfo.city}</div>
+          <div> PAYS: {userInfo.firstname}</div>
+
+          <div className="flex flex-row justify-center mt-10">
+            <button type="button" onClick={handleEditButton}>
+              <img
+                alt="button"
+                src={ModifButton}
+                className=" lg:w-[200px] w-[200px]"
+              />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
