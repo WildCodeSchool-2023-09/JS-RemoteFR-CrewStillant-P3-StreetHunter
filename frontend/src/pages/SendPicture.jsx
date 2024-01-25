@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import AdressApi from "../components/ApiAdressForm/GetAdressApi";
@@ -6,7 +7,7 @@ import AdressApi from "../components/ApiAdressForm/GetAdressApi";
 export default function SendPicturePage() {
   const [sendPicture, setSendPicture] = useState();
   const [coords, setCoords] = useState();
-
+  const { auth } = useOutletContext();
   const categoriesOfSelect = [
     { value: "1", label: "retro" },
     { value: "2", label: "caligraphy" },
@@ -31,6 +32,7 @@ export default function SendPicturePage() {
     formData.append("longitude", coords[1]);
     formData.append("latitude", coords[0]);
     formData.append("category_id", e.target[1].value);
+    formData.append("user_id", auth.user.id);
     try {
       const uploaderFile = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/artwork`,
@@ -56,52 +58,58 @@ export default function SendPicturePage() {
 
   return (
     <div className="mt-20">
-      <form
-        onSubmit={HandleUpload}
-        className="flex flex-col items-center h-screen"
-      >
-        {Boolean(sendPicture) && (
-          <img
-            className="flex items-center h-80 w-80"
-            alt="upload"
-            src={URL.createObjectURL(sendPicture)}
+      {!auth ? (
+        <h1 className="text-center"> VOUS N'ETES PAS IDENTIFIE</h1>
+      ) : (
+        <form
+          onSubmit={HandleUpload}
+          className="flex flex-col items-center h-screen"
+        >
+          {Boolean(sendPicture) && (
+            <img
+              className="shadow-xl shadow-slate-800 rounded-lg flex items-center h-80 w-80"
+              alt="upload"
+              src={URL.createObjectURL(sendPicture)}
+            />
+          )}
+          <h3 className=" text-center">
+            {sendPicture
+              ? "Street art sélectionné  !!"
+              : "Upload ton street art"}
+          </h3>
+          <input
+            className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+            type="text"
+            name="title_street_art"
+            placeholder="TITRE DU STREET ART"
+            required
           />
-        )}
-        <h3 className=" text-center">
-          {sendPicture ? "Street art sélectionné  !!" : "Upload ton street art"}
-        </h3>
-        <input
-          className="mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
-          type="text"
-          name="title_street_art"
-          placeholder="TITRE DU STREET ART"
-          required
-        />
-        <select
-          name="category_id"
-          className="mx-10 pl-3 rounded-xl py-3 lg:py-2 mt-5 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
-        >
-          {categoriesOfSelect.map((e) => (
-            <option key={e.value} value={e.value}>
-              {e.label}
-            </option>
-          ))}
-        </select>
-        <AdressApi setCoords={setCoords} />
-        <input
-          type="file"
-          accept="image/png, image/jpeg"
-          onChange={HandleLoadFile}
-          className="cursor-pointer  text-[#f1f1f1]hadow-md mt-5 bg-cyan-800 text-fuchsia-50"
-        />
-        <button
-          type="submit"
-          className="cursor-pointer group relative flex gap-1.5 px-4 py-3  bg-sky-800  text-[#f1f1f1] rounded-xl hover:bg-opacity-80 transition font-semibold shadow-md mt-5"
-        >
-          Upload votre Street Art
-        </button>
-        <ToastContainer />
-      </form>
+          <select
+            name="category_id"
+            className="mx-10 pl-3 rounded-xl py-3 lg:py-2 mt-5 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+          >
+            {categoriesOfSelect.map((e) => (
+              <option key={e.value} value={e.value}>
+                {e.label}
+              </option>
+            ))}
+          </select>
+          <AdressApi setCoords={setCoords} />
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={HandleLoadFile}
+            className="cursor-pointer  text-[#f1f1f1]hadow-md mt-5 bg-cyan-800 text-fuchsia-50"
+          />
+          <button
+            type="submit"
+            className="cursor-pointer group relative flex gap-1.5 px-4 py-3  bg-sky-800  text-[#f1f1f1] rounded-xl hover:bg-opacity-80 transition font-semibold shadow-md mt-5"
+          >
+            Upload votre Street Art
+          </button>
+          <ToastContainer />
+        </form>
+      )}
     </div>
   );
 }

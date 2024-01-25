@@ -76,7 +76,7 @@ class UserManager extends AbstractManager {
     return result;
   }
 
-  async addScore(id, score) {
+  async addScore(score, id) {
     const [result] = await this.database.query(
       "UPDATE user SET score = ? WHERE id = ?",
       [score, id]

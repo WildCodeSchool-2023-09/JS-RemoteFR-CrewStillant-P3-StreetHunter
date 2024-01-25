@@ -42,10 +42,10 @@ class ArtworkManager extends AbstractManager {
       FROM 
         ${this.table}
         JOIN category ON ${this.table}.category_id = category.id
-      JOIN artist ON ${this.table}.artist_id = artist.id
-      JOIN user ON ${this.table}.user_id = user.id
-      WHERE ${this.table}.validated = 0
-    `;
+        JOIN artist ON ${this.table}.artist_id = artist.id
+        JOIN user ON ${this.table}.user_id = user.id
+        WHERE ${this.table}.validated = 0
+        `;
 
     const [rows] = await this.database.query(query);
 
@@ -89,10 +89,10 @@ class ArtworkManager extends AbstractManager {
     return rows;
   }
 
-  async create(pathPic, title, longitude, latitude, catID, artistID, userID) {
+  async create(pathPic, title, longitude, latitude, catID, userID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} ( path_pic, title, longitude, latitude,  category_id, artist_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [pathPic, title, longitude, latitude, catID, artistID, userID]
+      `INSERT INTO ${this.table} ( path_pic, title, longitude, latitude,  category_id, user_id) VALUES (?, ?, ?, ?, ?, ?)`,
+      [pathPic, title, longitude, latitude, catID, userID]
     );
 
     return result.insertId;

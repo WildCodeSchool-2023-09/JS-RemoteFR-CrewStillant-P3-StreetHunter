@@ -48,7 +48,6 @@ const browseNotValidated = async (req, res, next) => {
     next(e);
   }
 };
-
 const read = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
 
@@ -113,7 +112,6 @@ const add = async (req, res) => {
     longitude,
     latitude,
     category_id: catID,
-    artist_id: artistID,
     user_id: userID,
   } = req.body;
   const pathPic = req.file.filename;
@@ -124,7 +122,6 @@ const add = async (req, res) => {
       longitude,
       latitude,
       catID,
-      artistID,
       userID
     );
 
