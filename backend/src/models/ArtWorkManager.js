@@ -5,7 +5,7 @@ class ArtworkManager extends AbstractManager {
     super({ table: "artwork" });
   }
 
-  async validateArtwork(id) {
+  async validatedArtwork(id) {
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET validated = TRUE WHERE id = ?`,
       [id]
@@ -90,10 +90,10 @@ class ArtworkManager extends AbstractManager {
     return rows;
   }
 
-  async create(pathPic, title, longitude, latitude, catID, userID) {
+  async create(pathPic, title, longitude, latitude, catID, artID, userID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} ( path_pic, title, longitude, latitude,  category_id, user_id) VALUES (?, ?, ?, ?, ?, ?)`,
-      [pathPic, title, longitude, latitude, catID, userID]
+      `INSERT INTO ${this.table} ( path_pic, title, longitude, latitude,  category_id, artist_id, user_id) VALUES (? ,? , ?, ?, ?, ?, ?)`,
+      [pathPic, title, longitude, latitude, catID, artID, userID]
     );
 
     return result.insertId;

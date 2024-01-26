@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 import AdressApi from "../components/ApiAdressForm/GetAdressApi";
 
 export default function SendPicturePage() {
@@ -26,6 +26,8 @@ export default function SendPicturePage() {
    * @property {number} longitude - The longitudinal coordinate obtained by the address field
    * @property {number} latitude - The latitudinal coordinate obtained by the address field
    * @property {string} category_id - The identifier of the category , extracted from the form selection field.
+   * @property {string} artist_id - The identifier of the artist , extracted from the form selection field.
+   * @property {string} user_id - The identifier of the user , extracted from the form selection field.
    */
   const HandleUpload = async (e) => {
     e.preventDefault();
@@ -35,6 +37,7 @@ export default function SendPicturePage() {
     formData.append("longitude", coords[1]);
     formData.append("latitude", coords[0]);
     formData.append("category_id", e.target[1].value);
+    formData.append("artist_id", e.target[1].value);
     formData.append("user_id", decoded.sub);
     try {
       const uploaderFile = await axios.post(
@@ -102,7 +105,7 @@ export default function SendPicturePage() {
             type="file"
             accept="image/png, image/jpeg"
             onChange={HandleLoadFile}
-            className="cursor-pointer  text-[#f1f1f1]hadow-md mt-5 bg-cyan-800 text-fuchsia-50"
+            className="cursor-pointer  text-[#f1f1f1]hadow-md mt-8 bg-cyan-800 text-fuchsia-50"
           />
           <button
             type="submit"

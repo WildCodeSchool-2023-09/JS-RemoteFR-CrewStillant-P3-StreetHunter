@@ -114,6 +114,7 @@ const add = async (req, res) => {
     longitude,
     latitude,
     category_id: catID,
+    artist_id: artID,
     user_id: userID,
   } = req.body;
   const pathPic = req.file.filename;
@@ -124,6 +125,7 @@ const add = async (req, res) => {
       longitude,
       latitude,
       catID,
+      artID,
       userID
     );
 
@@ -151,9 +153,8 @@ const remove = async (req, res, next) => {
 
 const validateArtwork = async (req, res) => {
   const { id } = req.params;
-
   try {
-    const result = await tables.artwork.validateArtwork(id);
+    const result = await tables.artwork.validatedArtwork(id);
     if (result.affectedRows === 0) {
       res
         .status(404)

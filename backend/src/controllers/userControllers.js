@@ -94,7 +94,6 @@ const remove = async (req, res) => {
 const addScore = async (req, res, next) => {
   const { id } = req.params; // ID user
   const { score } = req.body; // add points
-
   try {
     // read actual user
     const user = await tables.user.readById(id);

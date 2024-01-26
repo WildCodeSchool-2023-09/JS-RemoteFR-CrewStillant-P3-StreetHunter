@@ -1,6 +1,6 @@
 export default function TermsPage() {
   return (
-    <article className="mx-5 bg-[#f2f2f2af] px-4 overflow-auto max-h-[520px] rounded-xl">
+    <article className="mx-5 bg-[#f2f2f2af] px-4 overflow-auto max-h-[800px] rounded-xl">
       <h1 className="font-bold mb-4 mt-5">Mentions Légales</h1>
       <h2 className="font-bold mb-4">1. Informations Légales</h2>
       <ul>

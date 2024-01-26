@@ -4,7 +4,7 @@ import play from "../assets/play.png";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col justify-center items-center h-[90vh]">
+    <div className="flex flex-col justify-center items-center h-[85vh]">
       <div className="mt-9 mb-0 md:mt-20 md:mb-2">
         <img
           src={Mapart}

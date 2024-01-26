@@ -59,11 +59,17 @@ function ArtworkCard({ artwork, setIsUpdated }) {
   const handleEditClick = () => {
     setFormVisible(true);
   };
+
   return (
     <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div className="text-xl font-bold mb-2">{artwork.title}</div>
       <div className="mb-2 ml-7 ">
-        <img src={artwork.path_pic} alt={artwork.title} width={300} />
+        <img
+          className="rounded-xl min-h-[250px] max-h-[250px] "
+          src={artwork.path_pic}
+          alt={artwork.title}
+          width={300}
+        />
       </div>
       <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Artiste : </div>

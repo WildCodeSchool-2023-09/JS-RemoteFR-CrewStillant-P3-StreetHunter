@@ -7,19 +7,22 @@ function RankingBoard() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
       .then((res) => {
-        // Assurez-vous que la réponse de l'API est un tableau d'objets
-        setScores(res.data); // res.data.results est le tableau d'utilisateurs
+        setScores(res.data); //
       })
       .catch((error) => {
         console.error("There was an error fetching the scores!", error);
       });
   }, []);
 
+  const scoreDesc = scores.sort((a, b) => {
+    return b.score - a.score;
+  });
+
   return (
     <>
       <div className="mt-6 pb-6 flex justify-center items-center">
         <div className=" w-80 rounded-md bg-blue-500 flex items-center justify-center p-4">
-          <h1 className="text-white text-xl">Ranking Board</h1>
+          <h1 className="text-white text-xl">Scores</h1>
         </div>
       </div>
       <div className="pb-96 mb-8 flex min-h-screen items-center justify-center">
@@ -33,7 +36,7 @@ function RankingBoard() {
               </tr>
             </thead>
             <tbody className="text-blue-gray-900">
-              {scores.map((e) => (
+              {scoreDesc.map((e) => (
                 <tr key={e.id} className="border-b border-blue-gray-200">
                   <td className="py-3 px-4">{e.username}</td>
                   <td className="py-3 px-4">{e.city}</td>
