@@ -16,6 +16,10 @@ function AdminPage() {
       name: "WAITING VALIDATION",
       path: "/administration/validationroom",
     },
+    {
+      name: "MESSAGES",
+      path: "/administration/messages",
+    },
   ];
   const handlePage = (e) => {
     setPage(e.target.text);

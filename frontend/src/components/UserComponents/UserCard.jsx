@@ -49,7 +49,7 @@ function UserCard({ user, setIsUpdated }) {
       <button
         type="button"
         onClick={handleDelete}
-        className="mt-2 bg-red-500 text-white p-2 rounded mx-auto"
+        className="mt-2 bg-emerald-800 text-white p-2 rounded mx-auto"
       >
         Supprimer
       </button>

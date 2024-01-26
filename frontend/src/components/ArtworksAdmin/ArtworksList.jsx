@@ -74,18 +74,19 @@ function ArtworksList({ artworks }) {
     const categorySelected = e.target.value;
     setFilteredCategory(categorySelected);
     setFilteredArtworks(
-      artworks.filter(
-        (a) =>
-          (categorySelected === "null" || a.cat_name === categorySelected) &&
-          (filteredTitle === "" ||
-            a.title.toLowerCase().includes(filteredTitle)) &&
-          (filteredArtist === "" ||
-            a.artist_name.toLowerCase().includes(filteredArtist)) &&
-          (filteredCategory === "null" || a.cat_name === filteredCategory) &&
-          (filteredUser === "" ||
-            a.username.toLowerCase().includes(filteredUser)) &&
-          (filteredStatus === null || a.validated === filteredStatus)
-      )
+      categorySelected !== "null"
+        ? artworks.filter(
+            (a) =>
+              a.cat_name === categorySelected &&
+              (filteredTitle === "" ||
+                a.title.toLowerCase().includes(filteredTitle)) &&
+              (filteredArtist === "" ||
+                a.artist_name.toLowerCase().includes(filteredArtist)) &&
+              (filteredUser === "" ||
+                a.username.toLowerCase().includes(filteredUser)) &&
+              (filteredStatus === null || a.validated === filteredStatus)
+          )
+        : artworks
     );
   };
 

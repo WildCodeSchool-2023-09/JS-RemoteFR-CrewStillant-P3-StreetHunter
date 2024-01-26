@@ -102,13 +102,10 @@ const addScore = async (req, res, next) => {
       return;
     }
 
-    // Calculer le nouveau score
     const newScore = user.score + score;
 
-    // Mettre à jour uniquement le score de l'utilisateur
     const result = await tables.user.addScore(newScore, id);
 
-    // Répondre avec succès si la mise à jour a réussi
     if (result) {
       res.status(200).json({ message: "Points ajoutés avec succès" });
     } else {

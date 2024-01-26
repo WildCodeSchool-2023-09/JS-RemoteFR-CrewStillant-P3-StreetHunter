@@ -94,7 +94,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         <button
           type="button"
           onClick={handleEditClick}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-emerald-800 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded mt-4"
         >
           Modifier
         </button>
@@ -232,7 +232,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
             <button
               type="button"
               onClick={editArtwork}
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-emerald-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             >
               Enregistrer
             </button>
@@ -241,7 +241,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         <button
           type="button"
           onClick={handleDelete}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-sky-800 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4"
         >
           Supprimer
         </button>

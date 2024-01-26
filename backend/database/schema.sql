@@ -38,7 +38,7 @@ CREATE TABLE
         body TEXT NOT NULL,
         created_at DATETIME NOT NULL DEFAULT NOW(),
         is_read BOOLEAN NOT NULL DEFAULT 0,
-        user_id INT NOT NULL DEFAULT 1,
+        user_id INT NOT NULL,
         CONSTRAINT fk_message_user FOREIGN KEY (user_id) REFERENCES user(id)
     );
 

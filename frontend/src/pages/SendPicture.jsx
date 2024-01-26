@@ -10,6 +10,7 @@ export default function SendPicturePage() {
   const [coords, setCoords] = useState();
   const { auth } = useOutletContext();
   const decoded = auth && jwtDecode(auth.token);
+
   const categoriesOfSelect = [
     { value: "1", label: "retro" },
     { value: "2", label: "caligraphy" },
