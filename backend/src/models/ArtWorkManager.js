@@ -5,7 +5,7 @@ class ArtworkManager extends AbstractManager {
     super({ table: "artwork" });
   }
 
-  async validateArtwork(id) {
+  async validatedArtwork(id) {
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET validated = TRUE WHERE id = ?`,
       [id]

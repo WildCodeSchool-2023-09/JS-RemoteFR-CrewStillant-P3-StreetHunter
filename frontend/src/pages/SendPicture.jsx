@@ -10,7 +10,6 @@ export default function SendPicturePage() {
   const [coords, setCoords] = useState();
   const { auth } = useOutletContext();
   const decoded = auth && jwtDecode(auth.token);
-
   const categoriesOfSelect = [
     { value: "1", label: "retro" },
     { value: "2", label: "caligraphy" },
@@ -26,6 +25,8 @@ export default function SendPicturePage() {
    * @property {number} longitude - The longitudinal coordinate obtained by the address field
    * @property {number} latitude - The latitudinal coordinate obtained by the address field
    * @property {string} category_id - The identifier of the category , extracted from the form selection field.
+   * @property {string} artist_id - The identifier of the artist , extracted from the form selection field.
+   * @property {string} user_id - The identifier of the user , extracted from the form selection field.
    */
   const HandleUpload = async (e) => {
     e.preventDefault();
@@ -103,7 +104,7 @@ export default function SendPicturePage() {
             type="file"
             accept="image/png, image/jpeg"
             onChange={HandleLoadFile}
-            className="cursor-pointer  text-[#f1f1f1]hadow-md mt-5 bg-cyan-800 text-fuchsia-50"
+            className="cursor-pointer  text-[#f1f1f1]hadow-md mt-8 bg-cyan-800 text-fuchsia-50"
           />
           <button
             type="submit"

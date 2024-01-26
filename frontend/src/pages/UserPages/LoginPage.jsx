@@ -34,17 +34,35 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">EMAIL</label>
-          <input ref={emailRef} type="email" id="email" />
-        </div>
-        <div>
-          <label htmlFor="password"> MOT DE PASSE</label>
-          <input ref={passwordRef} type="password" id="password" />
-        </div>
-        <button type="submit">ENVOYER</button>
+    <div className="flex flex-row justify-center">
+      <form
+        className="flex justify-center flex-col items-center h-[85vh]"
+        onSubmit={handleSubmit}
+      >
+        <label className="text-2xl font-semibold" htmlFor="email">
+          EMAIL{" "}
+        </label>
+        <input
+          className=" mb-8 *:mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+          ref={emailRef}
+          type="email"
+          id="email"
+        />
+        <label className="text-2xl font-semibold" htmlFor="password">
+          MOT DE PASSE
+        </label>
+        <input
+          className=" mb-8 mx-10 pl-2 rounded-xl py-3 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 "
+          ref={passwordRef}
+          type="password"
+          id="password"
+        />
+        <button
+          className="mb-8 mx-10 pl-2 rounded-xl py-3 bg-sky-600 duration-200 hover:duration-200  text-white hover:bg-sky-50 hover:text-black lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10"
+          type="submit"
+        >
+          ENVOYER
+        </button>
       </form>
     </div>
   );

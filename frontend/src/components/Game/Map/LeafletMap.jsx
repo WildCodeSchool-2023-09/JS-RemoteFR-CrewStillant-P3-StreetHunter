@@ -49,10 +49,12 @@ export default function LeafletMap({ dbartworks }) {
               <Popup className="request-popup">
                 <img
                   src={a.path_pic}
-                  className="center rounded-md shadow-lg shadow-slate-600"
+                  className=" m-auto center rounded-md shadow-lg shadow-slate-600 min-h-44 max-h-44"
                   alt="photto"
                 />{" "}
-                <p className="font-semibold text-2xl text-center">{a.title}</p>
+                <p className="font-semibold text-2xl text-center rounded-md text-sky-900 bg-slate-100">
+                  {a.title}
+                </p>
               </Popup>
             </Marker>
           ))}

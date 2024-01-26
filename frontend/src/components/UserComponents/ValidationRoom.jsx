@@ -23,22 +23,23 @@ function validationRoom() {
       .put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${id}/addscore`, {
         score: pointsToAdd,
       })
-      .then(() => {
-        toast.success("Image validée ! 250 points distribués au joueur");
-      })
       .catch((err) => {
         console.error(err);
       });
   }
 
-  const handleValidation = (id) => {
+  const handleValidation = (id, artworkId) => {
     const isValidated = true;
 
     axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/${id}/validate`, {
-        validated: isValidated,
-      })
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/artwork/${artworkId}/validate`,
+        {
+          validated: isValidated,
+        }
+      )
       .then(() => {
+        toast.success("Image validée ! 250 points distribués au joueur");
         scoreValidation(id);
         setUpdate(true);
       })
@@ -46,7 +47,6 @@ function validationRoom() {
         console.error(err);
       });
   };
-
   const handleDelete = (id) => {
     axios
       .delete(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/${id}`)
@@ -54,7 +54,7 @@ function validationRoom() {
   };
 
   return (
-    <div className="h-full min-h-screen">
+    <div className="">
       <div className="flex items-center justify-center gap-5">
         <div className="flex flex-row flex-wrap gap-5 items-center justify-center mt-6">
           {artWork &&
@@ -69,14 +69,13 @@ function validationRoom() {
                   alt={e.title}
                   style={{
                     width: "300px",
-                    height: "200px",
+                    height: "250px",
                     objectFit: "cover",
                   }}
                 />
-
                 <div className="p-5">
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Titre: {e.title}
+                    titre :{e.title}
                   </p>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     Nom du joueur : {e.username}
@@ -91,7 +90,7 @@ function validationRoom() {
                     <button
                       type="button"
                       aria-label="Validate"
-                      onClick={() => handleValidation(e.id)}
+                      onClick={() => handleValidation(e.user_id, e.id)}
                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                       Valider

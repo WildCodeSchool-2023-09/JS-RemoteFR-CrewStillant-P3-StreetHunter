@@ -151,9 +151,8 @@ const remove = async (req, res, next) => {
 
 const validateArtwork = async (req, res) => {
   const { id } = req.params;
-
   try {
-    const result = await tables.artwork.validateArtwork(id);
+    const result = await tables.artwork.validatedArtwork(id);
     if (result.affectedRows === 0) {
       res
         .status(404)

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import ArtworkCard from "./ArtworkCard";
 
-function ArtworksList({ artworks, setIsUpdated }) {
+function ArtworksList({ artworks }) {
   const [filteredTitle, setFilteredTitle] = useState("");
   const [filteredArtist, setFilteredArtist] = useState("");
   const [filteredUser, setFilteredUser] = useState("");
@@ -13,7 +13,20 @@ function ArtworksList({ artworks, setIsUpdated }) {
   const [filteredArtworks, setFilteredArtworks] = useState(artworks);
   const [isVisible, setIsVisible] = useState(false);
   const [categ, setCateg] = useState();
+  const [updatedArtworks, setUpdatedArtworks] = useState(artworks);
+  const [isUpdated, setIsUpdated] = useState(false);
 
+  useEffect(() => {
+    if (isUpdated) {
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`)
+        .then((res) => {
+          setUpdatedArtworks(res.data);
+          setIsUpdated(false);
+        })
+        .catch((e) => console.error(e));
+    }
+  }, [isUpdated]);
   const handleDisplayFilters = () => {
     setIsVisible(!isVisible);
   };
@@ -24,6 +37,7 @@ function ArtworksList({ artworks, setIsUpdated }) {
         setCateg(res.data);
       });
   }, []);
+  console.info(filteredArtworks);
   const handleTitleFilter = (e) => {
     const titleInputValue = e.target.value.toLowerCase();
     setFilteredTitle(titleInputValue);
@@ -217,7 +231,7 @@ function ArtworksList({ artworks, setIsUpdated }) {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        {filteredArtworks.map((artwork) => (
+        {updatedArtworks.map((artwork) => (
           <ArtworkCard
             key={artwork.id}
             artwork={artwork}
@@ -231,7 +245,6 @@ function ArtworksList({ artworks, setIsUpdated }) {
 
 ArtworksList.propTypes = {
   artworks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  setIsUpdated: PropTypes.func.isRequired,
 };
 
 export default ArtworksList;
