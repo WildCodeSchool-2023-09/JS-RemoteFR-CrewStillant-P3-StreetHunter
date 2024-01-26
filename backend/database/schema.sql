@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS mapping_art_db;
-
-CREATE DATABASE IF NOT EXISTS mapping_art_db;
-
-USE mapping_art_db;
-
 CREATE TABLE
     category (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
