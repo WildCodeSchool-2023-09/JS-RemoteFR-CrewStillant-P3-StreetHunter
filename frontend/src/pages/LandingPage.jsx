@@ -13,7 +13,7 @@ export default function LandingPage() {
         />
       </div>
       <div className="mb-4 transition-transform transform-gpu hover:scale-90 animate-spin-slow">
-        <NavLink to="/map">
+        <NavLink to="/game/map">
           <img
             src={play}
             alt="button play to click on to and enter the website"

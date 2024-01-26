@@ -31,28 +31,27 @@ const read = async (req, res, next) => {
 
 // The E of BREAD - Edit (Update) operation
 const edit = async (req, res, next) => {
-  const { id } = req.params;
   const {
     username,
     lastname,
     firstname,
     email,
-    password,
     city,
     postal_code: postalCode,
   } = req.body;
+  const id = parseInt(req.params.id, 10);
+
   try {
     const result = await tables.user.update(
       username,
       lastname,
       firstname,
       email,
-      password,
       city,
       postalCode,
       id
     );
-    if (result == null) {
+    if (result === 0) {
       res.status(404).json({ message: "L'utilisateur n'existe pas" });
     } else {
       res.status(200).json({ message: "l'utilisateur a bien été modifié " });
@@ -104,13 +103,10 @@ const addScore = async (req, res, next) => {
       return;
     }
 
-    // Calculer le nouveau score
     const newScore = user.score + score;
 
-    // Mettre à jour uniquement le score de l'utilisateur
-    const result = await tables.user.addScore(id, newScore);
+    const result = await tables.user.addScore(newScore, id);
 
-    // Répondre avec succès si la mise à jour a réussi
     if (result) {
       res.status(200).json({ message: "Points ajoutés avec succès" });
     } else {

@@ -8,6 +8,7 @@ import InstructionsPage from "./pages/InstructionsPage";
 import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/UserPages/RegisterPage";
+import ProfilePage from "./pages/UserPages/ProfilePage";
 import ContactPage from "./pages/ContactPage";
 import App from "./App";
 import AdminPage from "./pages/Administration/AdminPage";
@@ -16,6 +17,9 @@ import GalleryPage from "./pages/Game/GalleryPage";
 import UsersListPage from "./pages/Administration/UsersListPage";
 import SendPicturePage from "./pages/SendPicture";
 import ScoreBoard from "./pages/RankingPage";
+import MessagingPage from "./pages/Administration/MessagingPage";
+import LoginPage from "./pages/UserPages/LoginPage";
+import ArtworkPage from "./pages/Game/ArtworkPage";
 
 const router = createBrowserRouter([
   {
@@ -30,36 +34,83 @@ const router = createBrowserRouter([
         element: <AdminPage />,
         children: [
           {
-            path: "/administration/validationroom",
+            path: "validationroom",
             element: <ValidationPage />,
+            loader: () =>
+              fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`
+              ),
           },
           {
-            path: "/administration/artworks",
+            path: "artworks",
             element: <ArtworksListPage />,
             loader: () =>
               fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
           },
           {
-            path: "/administration/users",
+            path: "users",
             element: <UsersListPage />,
             loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`),
+          },
+          {
+            path: "/administration/messages",
+            element: <MessagingPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`),
           },
         ],
       },
       {
-        path: "/map",
-        element: <MapPage />,
-        loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/`),
+        path: "/user",
+        children: [
+          {
+            path: "signup",
+            element: <RegisterPage />,
+          },
+          {
+            path: "login",
+            element: <LoginPage />,
+          },
+          {
+            path: "profile/",
+            element: <ProfilePage />,
+          },
+        ],
       },
       {
-        path: "/ranking",
-        element: <ScoreBoard />,
+        path: "/game",
+        children: [
+          {
+            path: "map",
+            element: <MapPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+          },
+          {
+            path: "gallery",
+            element: <GalleryPage />,
+            loader: () =>
+              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+          },
+          {
+            path: "artwork/:id",
+            element: <ArtworkPage />,
+          },
+          {
+            path: "submitartwork",
+            element: <SendPicturePage />,
+          },
+          {
+            path: "scoreboard",
+            element: <ScoreBoard />,
+          },
+          {
+            path: "instructions",
+            element: <InstructionsPage />,
+          },
+        ],
       },
 
-      {
-        path: "/instructions",
-        element: <InstructionsPage />,
-      },
       {
         path: "/mentions",
         element: <TermsPage />,
@@ -68,30 +119,14 @@ const router = createBrowserRouter([
         path: "*",
         element: <NotFoundPage />,
       },
-      {
-        path: "/signup",
-        element: <RegisterPage />,
-      },
-      { path: "/submitartwork", element: <SendPicturePage /> },
+
       {
         path: "/contact",
         element: <ContactPage />,
       },
-      {
-        path: "/game",
-        children: [
-          {
-            path: "artworks",
-            element: <GalleryPage />,
-            loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
-          },
-        ],
-      },
     ],
   },
 ]);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

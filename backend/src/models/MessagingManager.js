@@ -7,7 +7,10 @@ class MessagingManager extends AbstractManager {
 
   async readAll() {
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} ORDER BY created_at ASC`
+      `SELECT m.*, u.username 
+      FROM ${this.table} as m 
+      JOIN user AS u ON m.user_id = u.id
+      ORDER BY m.created_at DESC`
     );
     return rows;
   }

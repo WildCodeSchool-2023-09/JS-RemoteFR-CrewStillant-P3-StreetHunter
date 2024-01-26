@@ -36,7 +36,14 @@ const browseValidated = async (req, res) => {
 const browseNotValidated = async (req, res, next) => {
   try {
     const artworks = await tables.artwork.readAllNotValidated();
-    res.json(artworks);
+
+    const formatedData = await artworks.map((picture) => ({
+      ...picture,
+      path_pic: `${req.protocol}://${req.get("host")}/public/images/${
+        picture.path_pic
+      }`,
+    }));
+    res.json(formatedData);
   } catch (e) {
     console.error(e);
     next(e);
@@ -48,13 +55,18 @@ const read = async (req, res, next) => {
 
   try {
     const artwork = await tables.artwork.readById(id);
-
+    const formatedData = await artwork.map((picture) => ({
+      ...picture,
+      path_pic: `${req.protocol}://${req.get("host")}/public/images/${
+        picture.path_pic
+      }`,
+    }));
     if (artwork == null) {
       res.sendStatus(404);
     } else {
       res.status(200);
     }
-    res.json(artwork);
+    res.json(formatedData);
   } catch (err) {
     next(err);
   }
@@ -102,7 +114,6 @@ const add = async (req, res) => {
     longitude,
     latitude,
     category_id: catID,
-    artist_id: artistID,
     user_id: userID,
   } = req.body;
   const pathPic = req.file.filename;
@@ -113,7 +124,6 @@ const add = async (req, res) => {
       longitude,
       latitude,
       catID,
-      artistID,
       userID
     );
 
