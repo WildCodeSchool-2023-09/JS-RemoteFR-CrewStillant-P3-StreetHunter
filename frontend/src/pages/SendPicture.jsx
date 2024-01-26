@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 import AdressApi from "../components/ApiAdressForm/GetAdressApi";
 
 export default function SendPicturePage() {
   const [sendPicture, setSendPicture] = useState();
   const [coords, setCoords] = useState();
   const { auth } = useOutletContext();
+  const decoded = auth && jwtDecode(auth.token);
+
   const categoriesOfSelect = [
     { value: "1", label: "retro" },
     { value: "2", label: "caligraphy" },
@@ -32,7 +35,7 @@ export default function SendPicturePage() {
     formData.append("longitude", coords[1]);
     formData.append("latitude", coords[0]);
     formData.append("category_id", e.target[1].value);
-    formData.append("user_id", auth.user.id);
+    formData.append("user_id", decoded.sub);
     try {
       const uploaderFile = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/artwork`,
