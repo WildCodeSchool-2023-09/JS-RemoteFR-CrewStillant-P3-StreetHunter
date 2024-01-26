@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Footer() {
   const footerLinks = [
     {
-      path: "/instructions",
+      path: "/game/instructions",
       title: "CONDITIONS D'UTILISATION",
     },
     {

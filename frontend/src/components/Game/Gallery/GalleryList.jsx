@@ -151,7 +151,7 @@ export default function GalleryList({ dbartworks }) {
         {filteredArtworks.length &&
           filteredArtworks.map((art) => (
             <GalleryCard
-              key={art.id}
+              id={art.id}
               title={art.title}
               artist={art.artist_name}
               image={art.path_pic}

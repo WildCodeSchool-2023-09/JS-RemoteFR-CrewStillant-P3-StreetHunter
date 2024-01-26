@@ -5,6 +5,15 @@ class ArtworkManager extends AbstractManager {
     super({ table: "artwork" });
   }
 
+  async validatedArtwork(id) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET validated = TRUE WHERE id = ?`,
+      [id]
+    );
+
+    return result.affectedRows;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(`
       SELECT 
@@ -17,7 +26,29 @@ class ArtworkManager extends AbstractManager {
       JOIN artist ON ${this.table}.artist_id = artist.id
       JOIN category ON ${this.table}.category_id = category.id
       JOIN user ON ${this.table}.user_id = user.id
+      
     `);
+
+    return rows;
+  }
+
+  async readAllNotValidated() {
+    const [rows] = await this.database.query(
+      `
+      SELECT 
+        artwork.*, 
+        artist.artist_name,
+        category.cat_name,
+        user.username
+      FROM 
+        ${this.table}
+        JOIN category ON ${this.table}.category_id = category.id
+        JOIN artist ON ${this.table}.artist_id = artist.id
+        JOIN user ON ${this.table}.user_id = user.id
+        WHERE ${this.table}.validated = ?
+        `,
+      [0]
+    );
 
     return rows;
   }
@@ -41,37 +72,28 @@ class ArtworkManager extends AbstractManager {
 
   async readById(id) {
     const [rows] = await this.database.query(
-      `SELECT 
-        artwork.*, 
+      `SELECT
+        artwork.*,
         artist.artist_name,
         category.cat_name,
         user.username
-      FROM 
+      FROM
         ${this.table}
       JOIN artist ON ${this.table}.artist_id = artist.id
       JOIN category ON ${this.table}.category_id = category.id
       JOIN user ON ${this.table}.user_id = user.id
-      WHERE 
+      WHERE
         ${this.table}.id = ?`,
-      [id]
+      [Number(id)]
     );
 
     return rows;
   }
 
-  async create(
-    title,
-    longitude,
-    latitude,
-    validated,
-    catID,
-    artistID,
-    userID,
-    pathPic
-  ) {
+  async create(pathPic, title, longitude, latitude, catID, artID, userID) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (title, adress, longitude, latitude, validated, category_id, artist_id, user_id, path_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [title, longitude, latitude, validated, catID, artistID, userID, pathPic]
+      `INSERT INTO ${this.table} ( path_pic, title, longitude, latitude,  category_id, artist_id, user_id) VALUES (? ,? , ?, ?, ?, ?, ?)`,
+      [pathPic, title, longitude, latitude, catID, artID, userID]
     );
 
     return result.insertId;

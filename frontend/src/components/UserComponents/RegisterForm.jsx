@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,6 +12,7 @@ export default function RegisterForm() {
   const handleCheck = () => {
     setChecked(!checked);
   };
+  const navigate = useNavigate();
 
   const {
     register,
@@ -27,12 +28,14 @@ export default function RegisterForm() {
 
   const onSubmit = (data) => {
     if (checked) {
-      axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data);
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data)
+        .then(navigate("/user/login"));
     }
   };
 
   return (
-    <div className="lg:mt-9 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
+    <div className="lg:mt-4 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}

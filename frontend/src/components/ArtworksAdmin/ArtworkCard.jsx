@@ -64,7 +64,12 @@ function ArtworkCard({ artwork, setIsUpdated }) {
     <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div className="text-xl font-bold mb-2">{artwork.title}</div>
       <div className="mb-2 ml-7 ">
-        <img src={artwork.path_pic} alt={artwork.title} width={300} />
+        <img
+          className="rounded-xl min-h-[250px] max-h-[250px] "
+          src={artwork.path_pic}
+          alt={artwork.title}
+          width={300}
+        />
       </div>
       <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Artiste : </div>
@@ -89,7 +94,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         <button
           type="button"
           onClick={handleEditClick}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-emerald-800 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded mt-4"
         >
           Modifier
         </button>
@@ -227,7 +232,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
             <button
               type="button"
               onClick={editArtwork}
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-emerald-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             >
               Enregistrer
             </button>
@@ -236,7 +241,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         <button
           type="button"
           onClick={handleDelete}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-sky-800 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4"
         >
           Supprimer
         </button>

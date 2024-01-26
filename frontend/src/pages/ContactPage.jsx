@@ -16,8 +16,7 @@ export default function ContactPage() {
   return (
     <div>
       <h1 className=" flex flex-row justify-center font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
-        {" "}
-        CONTACT{" "}
+        CONTACT
       </h1>
       <div>
         <form
@@ -29,8 +28,7 @@ export default function ContactPage() {
               htmlFor="title"
               className="text-2xl text-primary font-semibold my-3 ml-4 lg:ml-10"
             >
-              {" "}
-              TITRE{" "}
+              TITRE
             </label>
             <input
               type="text"

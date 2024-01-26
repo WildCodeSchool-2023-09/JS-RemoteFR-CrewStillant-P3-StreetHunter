@@ -19,6 +19,13 @@ class UserManager extends AbstractManager {
     return rows[0];
   }
 
+  async readByEmailWithPassword(email) {
+    const [rows] = await this.database.query(
+      `SELECT * from ${this.table} WHERE email=?`,
+      [email]
+    );
+    return rows[0];
+  }
   // The C of CRUD - Create operation
 
   async create(username, email, password) {
@@ -31,30 +38,10 @@ class UserManager extends AbstractManager {
 
   // The U of CRUD - Update operation
 
-  async update(
-    userName,
-    lastName,
-    firstName,
-    email,
-    password,
-    score,
-    city,
-    postalCode,
-    id
-  ) {
+  async update(username, lastname, firstname, email, city, postalCode, id) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET username = ?, lastname = ?, firstname = ?, email = ?, password = ?, score =?, city = ?, postal_code = ?  WHERE id = ?`,
-      [
-        userName,
-        lastName,
-        firstName,
-        email,
-        password,
-        score,
-        city,
-        postalCode,
-        id,
-      ]
+      `UPDATE ${this.table} SET username = ?, lastname = ?, firstname = ?, email = ?,  city = ?, postal_code = ?  WHERE id = ?`,
+      [username, lastname, firstname, email, city, postalCode, id]
     );
     return result.affectedRows;
   }
@@ -67,6 +54,14 @@ class UserManager extends AbstractManager {
       [id]
     );
     return result;
+  }
+
+  async addScore(score, id) {
+    const [result] = await this.database.query(
+      "UPDATE user SET score = ? WHERE id = ?",
+      [score, id]
+    );
+    return result.affectedRows;
   }
 }
 
