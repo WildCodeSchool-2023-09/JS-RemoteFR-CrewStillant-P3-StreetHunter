@@ -16,10 +16,6 @@ const router = require("./router");
 
 app.use("/api", router);
 
-const router = require("./router");
-
-app.use("/api", router);
-
 // Don't change these lines:
 app.use("/public/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../", req.originalUrl));
