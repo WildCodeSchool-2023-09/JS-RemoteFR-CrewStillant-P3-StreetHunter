@@ -1,16 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useOutletContext, useRevalidator } from "react-router-dom";
+import {
+  useOutletContext,
+  useRevalidator,
+  useNavigate,
+} from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import ModifButton from "../../assets/modifbtn.png";
 
 export default function UserProfile() {
   const { auth } = useOutletContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth) {
+      navigate("/user/login");
+    }
+  }, []);
   const decoded = auth && jwtDecode(auth.token);
-  const userInfo = auth.user;
+  const userInfo = auth?.user;
   const [visible, setVisible] = useState(false);
   const revalidator = useRevalidator();
 
@@ -24,12 +35,12 @@ export default function UserProfile() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: userInfo.username,
-      firstname: userInfo.firstname,
-      lastname: userInfo.lastname,
-      email: userInfo.email,
-      postalCode: userInfo.postal_code,
-      city: userInfo.city,
+      username: userInfo?.username,
+      firstname: userInfo?.firstname,
+      lastname: userInfo?.lastname,
+      email: userInfo?.email,
+      postalCode: userInfo?.postal_code,
+      city: userInfo?.city,
     },
   });
 
@@ -65,7 +76,7 @@ export default function UserProfile() {
   return (
     <div className="flex flex-col align-middle">
       <h2 className="text-center md:justify-normal md:mr-4 text-xl font-semibold text-primary">
-        HEUREUX DE TE VOIR {userInfo.username}, BRAVO TU AS {userInfo.score}{" "}
+        HEUREUX DE TE VOIR {userInfo?.username}, BRAVO TU AS {userInfo?.score}{" "}
         POINTS!
       </h2>
       {visible ? (
@@ -171,12 +182,12 @@ export default function UserProfile() {
         </div>
       ) : (
         <div>
-          <div> PSEUDO: {userInfo.username}</div>
-          <div> PRENOM: {userInfo.firstname}</div>
-          <div> NOM: {userInfo.lastname}</div>
-          <div> EMAIL: {userInfo.email}</div>
-          <div> VILLE: {userInfo.city}</div>
-          <div> PAYS: {userInfo.firstname}</div>
+          <div> PSEUDO: {userInfo?.username}</div>
+          <div> PRENOM: {userInfo?.firstname}</div>
+          <div> NOM: {userInfo?.lastname}</div>
+          <div> EMAIL: {userInfo?.email}</div>
+          <div> VILLE: {userInfo?.city}</div>
+          <div> PAYS: {userInfo?.firstname}</div>
 
           <div className="flex flex-row justify-center mt-10">
             <button type="button" onClick={handleEditButton}>

@@ -40,7 +40,7 @@ export default function RegisterForm() {
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col lg:gap-6  gap-4">
+        <div className="flex flex-col gap-4">
           <div>
             <input
               type="text"
@@ -121,25 +121,23 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          <div className="">
-            <p className="mx-7 text-base font-light lg:mx-[30rem] bg-slate-200 bg-opacity-70 rounded-xl ">
-              {" "}
-              Pour utiliser Mapping Art, vous devez accepter les
-              <Link
-                to="/instructions"
-                className="font-semibold ml-3 hover:underline"
-              >
-                conditions d'utilisation
-              </Link>
-            </p>
-            <div className="flex flex-row justify-center mt-4">
-              <input
-                type="checkbox"
-                onChange={handleCheck}
-                className="w-6 h-6 rounded-full"
-              />
-              <p className="ml-2 font-semibold"> J'ACCEPTE</p>
-            </div>
+          <p className="mx-7 text-base font-light bg-slate-200 lg:mx-96 bg-opacity-70 rounded-xl ">
+            {" "}
+            Pour utiliser Mapping Art, vous devez accepter les
+            <Link
+              to="/instructions"
+              className="font-semibold ml-3 hover:underline"
+            >
+              conditions d'utilisation
+            </Link>
+          </p>
+          <div className="flex flex-row justify-center">
+            <input
+              type="checkbox"
+              onChange={handleCheck}
+              className="w-6 h-6 rounded-full"
+            />
+            <p className="ml-2 font-semibold"> J'ACCEPTE</p>
           </div>
           <div>
             <button type="submit" onClick={!checked && notify}>
