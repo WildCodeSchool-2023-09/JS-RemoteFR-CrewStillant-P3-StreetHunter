@@ -4,6 +4,7 @@ import LeafletMap from "../components/Game/Map/LeafletMap";
 export default function MapPage() {
   const artworks = useLoaderData();
   const { auth } = useOutletContext();
+
   return (
     <div className="lg:h-[88vh] ">
       <span className=" flex flex-row justify-center  font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
