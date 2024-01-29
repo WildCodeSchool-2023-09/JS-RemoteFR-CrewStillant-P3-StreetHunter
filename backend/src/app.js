@@ -18,18 +18,18 @@ app.use("/public/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../", req.originalUrl));
 });
 
+const router = require("./router");
+
+app.use("/api", router);
+
 app.use("*", (req, res) => {
   if (req.originalUrl.includes("assets")) {
     res.sendFile(
       path.resolve(__dirname, `../../frontend/dist/${req.originalUrl}`)
     );
   } else {
-    res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
+    res.sendFile(path.resolve(__dirname, `../../frontend/index.html`));
   }
 });
-
-const router = require("./router");
-
-app.use("/api", router);
 
 module.exports = app;

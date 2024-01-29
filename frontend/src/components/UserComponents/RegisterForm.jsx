@@ -126,7 +126,7 @@ export default function RegisterForm() {
               {" "}
               Pour utiliser Mapping Art, vous devez accepter les
               <Link
-                to="/instructions"
+                to="../../game/instructions"
                 className="font-semibold ml-3 hover:underline"
               >
                 conditions d'utilisation

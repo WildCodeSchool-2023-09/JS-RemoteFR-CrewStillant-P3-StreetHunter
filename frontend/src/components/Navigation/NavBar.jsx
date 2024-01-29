@@ -3,7 +3,7 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import PropTypes from "prop-types";
 import BurgerMenu from "./BurgerMenu";
-import steve from "../../assets/Steve_redimentioned .png";
+import steve from "../../assets/Steve_redimentioned.png";
 
 export default function NavBar({ auth, setAuth }) {
   const navigate = useNavigate();

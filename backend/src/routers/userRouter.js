@@ -3,7 +3,6 @@ const express = require("express");
 const UserRouter = express.Router();
 const validatedUser = require("../middlewares/userValidationMiddleware");
 const validateProfileUser = require("../middlewares/userProfileValidationMiddleware");
-const verifyToken = require("../middlewares/auth");
 
 const hash = require("../middlewares/hashPassword");
 
@@ -21,6 +20,6 @@ UserRouter.get("/:id", read);
 UserRouter.post("/", validatedUser, hash, add);
 UserRouter.delete("/:id", remove);
 UserRouter.put("/:id/addscore", addScore);
-UserRouter.put("/:id", verifyToken, validateProfileUser, edit);
+UserRouter.put("/:id", validateProfileUser, edit);
 
 module.exports = UserRouter;
