@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Press+Start+2P&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @keyframes zoom-in-out {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
+  0%,
+  100% {
+    transform: scale(1);
   }
-  
-  .animate-zoom-in-out {
-    animation: zoom-in-out 3s infinite;
+  50% {
+    transform: scale(1.1);
   }
-  
+}
+
+.animate-zoom-in-out {
+  animation: zoom-in-out 3s infinite;
+}

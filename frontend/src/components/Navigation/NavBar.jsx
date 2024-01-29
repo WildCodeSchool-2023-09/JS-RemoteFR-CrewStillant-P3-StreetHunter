@@ -104,7 +104,7 @@ export default function NavBar({ auth, setAuth }) {
               page === n.title ? (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500 px-7"
+                    className="text-[#F5CCA0] bg-cyan-800 rounded-lg  px-7  active::bg-cyan-800"
                     to={n.path}
                     onClick={handlePageStyle}
                     key={n.title}
@@ -115,7 +115,7 @@ export default function NavBar({ auth, setAuth }) {
               ) : (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500"
+                    className="hover:text-[#F5CCA0] hover:bg-cyan-800 rounded-lg  duration-200 hover:duration-200 px-4 hover:px-7  active:text-slate-500"
                     to={n.path}
                     onClick={handlePageStyle}
                   >
@@ -128,7 +128,7 @@ export default function NavBar({ auth, setAuth }) {
               <li>
                 <button
                   type="button"
-                  className="hover:text-slate-800 active:text-slate-500 md:px-4"
+                  className="hover:text-[#F5CCA0] hover:bg-cyan-800 rounded-lg  duration-200 hover:duration-200 px-4 hover:px-4 active:text-slate-500 md:px-4"
                   onClick={() => {
                     setAuth(undefined);
                     navigate("/");
