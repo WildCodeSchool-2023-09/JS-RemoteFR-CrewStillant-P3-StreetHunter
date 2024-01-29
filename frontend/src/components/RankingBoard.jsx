@@ -19,35 +19,28 @@ function RankingBoard() {
   });
 
   return (
-    <>
-      <div className="mt-6 pb-6 flex justify-center items-center">
-        <div className=" w-80 rounded-md bg-blue-500 flex items-center justify-center p-4">
-          <h1 className="text-white text-xl">Scores</h1>
-        </div>
-      </div>
-      <div className="pb-96 mb-8 flex min-h-screen items-center justify-center">
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white shadow-md rounded-xl">
-            <thead>
-              <tr className="bg-blue-gray-100 text-gray-700">
-                <th className="py-3 px-4 text-left">Username</th>
-                <th className="py-3 px-4 text-left">City</th>
-                <th className="py-3 px-4 text-left">score</th>
+    <div className="flex flex-row justify-center">
+      <div className="mt-10 overflow-auto h-[68vh] no-scrollbar">
+        <table className="bg-slate-100 bg-opacity-60 lg:w-[60rem] shadow-md rounded-xl">
+          <thead>
+            <tr className="bg-blue-gray-100 text-gray-700  text-3xl">
+              <th className="py-3 px-4 text-left ">Username</th>
+              <th className="py-3 px-4 text-left">City</th>
+              <th className="py-3 px-4 text-left">score</th>
+            </tr>
+          </thead>
+          <tbody className="text-blue-gray-900">
+            {scoreDesc.map((e) => (
+              <tr key={e.id} className="border-b border-blue-gray-200">
+                <td className="py-3 px-4">{e.username}</td>
+                <td className="py-3 px-4">{e.city}</td>
+                <td className="py-3 px-4">{e.score}</td>
               </tr>
-            </thead>
-            <tbody className="text-blue-gray-900">
-              {scoreDesc.map((e) => (
-                <tr key={e.id} className="border-b border-blue-gray-200">
-                  <td className="py-3 px-4">{e.username}</td>
-                  <td className="py-3 px-4">{e.city}</td>
-                  <td className="py-3 px-4">{e.score}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </>
+    </div>
   );
 }
 
