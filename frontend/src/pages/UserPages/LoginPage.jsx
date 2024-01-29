@@ -40,7 +40,7 @@ export default function LoginPage() {
         CONNEXION
       </h1>
       <form
-        className="flex flex-col lg:mt-10 items-center h-[85vh]"
+        className="flex flex-col lg:mt-10 mt-16 items-center h-[85vh]"
         onSubmit={handleSubmit}
       >
         <label className="text-2xl font-semibold" htmlFor="email">
