@@ -1,6 +1,6 @@
 export default function InstructionsPage() {
   return (
-    <article className="mx-5 bg-[#f2f2f2af] px-4 overflow-auto max-h-[700px] rounded-xl">
+    <article className="lg:mx-28 mx-2 mt-5 bg-[#f2f2f2af] px-4 overflow-auto h-[80vh] no-scrollbar rounded-xl">
       <h1 className="font-bold mb-4 mt-5 pt-4">Bienvenue sur MAPPING ART,</h1>
       <p className="mb-3">
         Nous nous efforçons de maintenir un environnement en ligne sécurisé et

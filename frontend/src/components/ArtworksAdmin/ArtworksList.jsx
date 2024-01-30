@@ -13,7 +13,6 @@ function ArtworksList({ artworks }) {
   const [filteredArtworks, setFilteredArtworks] = useState(artworks);
   const [isVisible, setIsVisible] = useState(false);
   const [categ, setCateg] = useState();
-  const [updatedArtworks, setUpdatedArtworks] = useState(artworks);
   const [isUpdated, setIsUpdated] = useState(false);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ function ArtworksList({ artworks }) {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`)
         .then((res) => {
-          setUpdatedArtworks(res.data);
+          setFilteredArtworks(res.data);
           setIsUpdated(false);
         })
         .catch((e) => console.error(e));
@@ -37,7 +36,6 @@ function ArtworksList({ artworks }) {
         setCateg(res.data);
       });
   }, []);
-  console.info(filteredArtworks);
   const handleTitleFilter = (e) => {
     const titleInputValue = e.target.value.toLowerCase();
     setFilteredTitle(titleInputValue);
@@ -232,7 +230,7 @@ function ArtworksList({ artworks }) {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        {updatedArtworks.map((artwork) => (
+        {filteredArtworks.map((artwork) => (
           <ArtworkCard
             key={artwork.id}
             artwork={artwork}

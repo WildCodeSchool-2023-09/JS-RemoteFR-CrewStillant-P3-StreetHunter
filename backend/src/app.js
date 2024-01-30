@@ -12,6 +12,9 @@ app.use(
 );
 
 app.use(express.json());
+const router = require("./router");
+
+app.use("/api", router);
 
 // Don't change these lines:
 app.use("/public/*", (req, res) => {
@@ -27,9 +30,5 @@ app.use("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, `../../frontend/dist/index.html`));
   }
 });
-
-const router = require("./router");
-
-app.use("/api", router);
 
 module.exports = app;

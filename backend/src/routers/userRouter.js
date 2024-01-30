@@ -4,7 +4,6 @@ const UserRouter = express.Router();
 const validatedUser = require("../middlewares/userValidationMiddleware");
 const validateProfileUser = require("../middlewares/userProfileValidationMiddleware");
 const verifyToken = require("../middlewares/auth");
-
 const hash = require("../middlewares/hashPassword");
 
 const {
