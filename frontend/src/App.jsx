@@ -10,7 +10,7 @@ function App() {
   const [auth, setAuth] = useState();
 
   return (
-    <div className="bg-responsivecity lg:bg-city bg-contain min-h-screen">
+    <div className="bg-responsivecity lg:bg-city bg-contain min-h-screen ">
       <NavBar auth={auth} setAuth={setAuth} />
       <main className="flex-grow">
         <Outlet context={{ auth, setAuth }} />
