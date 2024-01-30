@@ -20,6 +20,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ["Pixelify Sans"],
+      secondary: ["Keania One"],
     },
   },
   plugins: ["flowbite/plugin"],
