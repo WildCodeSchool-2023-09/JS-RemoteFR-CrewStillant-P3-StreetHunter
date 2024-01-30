@@ -28,9 +28,9 @@ export default function LeafletMap({ dbartworks }) {
   return (
     <div className=" flex justify-center">
       <MapContainer
-        center={[45.53675, -73.55028]}
+        center={[46.8566, 2.3522]}
         watch
-        zoom={13}
+        zoom={5}
         scrollWheelZoom
         whenReady={() => getLocation()}
         style={{
