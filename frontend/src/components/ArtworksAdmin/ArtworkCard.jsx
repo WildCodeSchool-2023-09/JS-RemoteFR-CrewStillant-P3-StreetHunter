@@ -7,7 +7,6 @@ Modal.setAppElement("#root");
 
 function ArtworkCard({ artwork, setIsUpdated }) {
   const [formVisible, setFormVisible] = useState(false);
-
   const [formData, setFormData] = useState({
     path_pic: artwork.path_pic,
     title: artwork.title,
@@ -47,7 +46,6 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         setUsers(response.data);
       });
   }, []);
-
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/artist`)

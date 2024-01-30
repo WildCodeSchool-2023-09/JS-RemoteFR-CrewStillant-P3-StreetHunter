@@ -12,6 +12,7 @@ app.use(
 );
 
 app.use(express.json());
+
 const router = require("./router");
 
 app.use("/api", router);

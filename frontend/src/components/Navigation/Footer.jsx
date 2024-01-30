@@ -22,7 +22,7 @@ export default function Footer() {
           {footerLinks.map((n) => (
             <li key={n.title}>
               <NavLink
-                className="text-md font-semibold text-primary hover:text-slate-800 active:text-slate-500"
+                className="text-md font-semibold text-primary transition-2s duration-200 hover:duration-200 hover:text-[#F5CCA0] hover:bg-cyan-800 rounded-lg px-4 hover:px-4  active:text-slate-500"
                 to={n.path}
               >
                 {n.title}

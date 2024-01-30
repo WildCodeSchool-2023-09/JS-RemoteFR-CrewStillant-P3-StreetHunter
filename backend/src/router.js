@@ -13,7 +13,6 @@ router.use("/artist", artistRouter);
 router.use("/category", categoryRouter);
 router.use("/login", loginRouter);
 router.use("/artwork", artWorkRouter);
-// router.use(verifyToken);
 router.use("/user", userRouter);
 router.use("/messaging", messagingRouter);
 

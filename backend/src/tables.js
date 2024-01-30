@@ -13,7 +13,6 @@ const managers = [
 ];
 
 const tables = {};
-
 managers.forEach((ManagerClass) => {
   const manager = new ManagerClass();
 

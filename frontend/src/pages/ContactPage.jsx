@@ -14,25 +14,25 @@ export default function ContactPage() {
     axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`, data);
   };
   return (
-    <div>
-      <h1 className=" flex flex-row justify-center font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
+    <div className="flex flex-col text-start justify-center items-center  h-[85vh]">
+      <h1 className=" font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary">
         CONTACT
       </h1>
-      <div>
+      <div className="flex">
         <form
-          className=" flex flex-col gap-8 mt-5"
+          className=" flex flex-col items-center gap-4 mt-4 w-[100vw]"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col">
             <label
               htmlFor="title"
-              className="text-2xl text-primary font-semibold my-3 ml-4 lg:ml-10"
+              className="text-2xl text-primary font-semibold"
             >
               TITRE
             </label>
             <input
               type="text"
-              className="py-2 mr-20 ml-2 rounded-xl shadow-md shadow-slate-800 border-2 border-slate-800 px-1 lg:mr-56 lg:ml-8"
+              className="py-2 rounded-xl shadow-md shadow-slate-800 w-[15rem]  border-slate-800 md:w-[20rem] px-1"
               {...register("title", {
                 required: "champ obligatoire",
                 minLength: {
@@ -40,7 +40,7 @@ export default function ContactPage() {
                   message: "doit contenir au moins 2 caractères",
                 },
               })}
-              placeholder="title"
+              placeholder="Titre de votre méssage..."
             />
             {errors.title && (
               <p role="alert" className="mt-2 ml-2 font-semibold lg:ml-8">
@@ -52,7 +52,7 @@ export default function ContactPage() {
           <div className="flex flex-col">
             <label
               htmlFor="body"
-              className="text-2xl text-primary font-semibold my-3 ml-4 lg:ml-10"
+              className="text-2xl text-primary font-semibold mb-1 "
             >
               {" "}
               MESSAGE
@@ -60,7 +60,7 @@ export default function ContactPage() {
             <textarea
               name="body"
               rows={10}
-              className="mr-14 ml-3 rounded-xl lg:h-92 shadow-md shadow-slate-800 border border-slate-800 p-4 lg:mr-32 lg:ml-8"
+              className="rounded-xl md:w-[30rem] w-[15em] shadow-md shadow-slate-800 border-slate-800 p-4 "
               {...register("body", {
                 required: "champ obligatoire",
                 minLength: {
@@ -68,7 +68,7 @@ export default function ContactPage() {
                   message: "doit contenir au moins 5 caractères",
                 },
               })}
-              placeholder="body"
+              placeholder="Votre méssage..."
             />
             {errors.body && (
               <p

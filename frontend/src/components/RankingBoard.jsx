@@ -7,13 +7,12 @@ function RankingBoard() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user`)
       .then((res) => {
-        setScores(res.data); //
+        setScores(res.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the scores!", error);
       });
   }, []);
-
   const scoreDesc = scores.sort((a, b) => {
     return b.score - a.score;
   });
