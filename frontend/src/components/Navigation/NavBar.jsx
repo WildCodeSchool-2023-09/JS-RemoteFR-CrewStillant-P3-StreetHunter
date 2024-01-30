@@ -104,7 +104,7 @@ export default function NavBar({ auth, setAuth }) {
               page === n.title ? (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500 px-7"
+                    className="hover:text-[#F5CCA0] active:text-slate-500 px-7"
                     to={n.path}
                     onClick={handlePageStyle}
                     key={n.title}
@@ -115,7 +115,7 @@ export default function NavBar({ auth, setAuth }) {
               ) : (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500"
+                    className="hover:text-[#F5CCA0] active:text-slate-500"
                     to={n.path}
                     onClick={handlePageStyle}
                   >

@@ -21,6 +21,8 @@ import MessagingPage from "./pages/Administration/MessagingPage";
 import LoginPage from "./pages/UserPages/LoginPage";
 import ArtworkPage from "./pages/Game/ArtworkPage";
 
+const apiUrl = import.meta.env.VITE_BACKEND_URL;
+
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -36,27 +38,22 @@ const router = createBrowserRouter([
           {
             path: "validationroom",
             element: <ValidationPage />,
-            loader: () =>
-              fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/api/artwork/notvalidated`
-              ),
+            loader: () => fetch(`${apiUrl}/api/artwork/notvalidated`),
           },
           {
             path: "artworks",
             element: <ArtworksListPage />,
-            loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork`),
+            loader: () => fetch(`${apiUrl}/api/artwork`),
           },
           {
             path: "users",
             element: <UsersListPage />,
-            loader: () => fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`),
+            loader: () => fetch(`${apiUrl}/api/user`),
           },
           {
             path: "/administration/messages",
             element: <MessagingPage />,
-            loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`),
+            loader: () => fetch(`${apiUrl}/api/messaging`),
           },
         ],
       },
@@ -83,14 +80,12 @@ const router = createBrowserRouter([
           {
             path: "map",
             element: <MapPage />,
-            loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+            loader: () => fetch(`${apiUrl}/api/artwork/user`),
           },
           {
             path: "gallery",
             element: <GalleryPage />,
-            loader: () =>
-              fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artwork/user`),
+            loader: () => fetch(`${apiUrl}/api/artwork/user`),
           },
           {
             path: "artwork/:id",
