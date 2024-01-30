@@ -27,7 +27,6 @@ export default function MessagingPage() {
     setSelectedMessage(message);
     setModalIsOpen(true);
   };
-
   const closeModal = () => {
     setModalIsOpen(false);
     setConfirmModalOpen(false);

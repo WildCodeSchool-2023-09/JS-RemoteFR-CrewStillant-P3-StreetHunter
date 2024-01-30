@@ -1,25 +1,30 @@
-import { useLoaderData, Link, useOutletContext } from "react-router-dom";
+import { useLoaderData, useOutletContext, Link } from "react-router-dom";
 import LeafletMap from "../components/Game/Map/LeafletMap";
 
 export default function MapPage() {
   const artworks = useLoaderData();
   const { auth } = useOutletContext();
+
   return (
-    <div className="overflow-y-scroll no-scrollbar lg:h-[88vh]">
-      <span className="flex flex-row justify-center font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
+    <div className=" ">
+      <span
+        className={`flex flex-row justify-center font-extrabold ${
+          !auth ? "mb-11" : "mb-0"
+        } text-4xl md:text-5xl lg:text-6xl text-primary mt-0`}
+      >
         LA CARTE
       </span>
-      <div>
-        <LeafletMap dbartworks={artworks} />
+      <div className="flex flex-col align-bottom">
         {auth ? (
           <Link
+            type="button"
+            className="flex flex-row justify-center m-auto items-center px-20 focus:bg-[#90b48c] hover:bg-[#a2cb9e]  rounded-md outline outline-[#957C58] outline-offset-2 text-primary text-2xl font-secondary font-light  bg-backgroundThree my-5 lg:mb-4"
             to="/game/submitartwork"
-            className="flex justify-center w-[20rem] mb-2 mx-auto cursor-pointer 
-        px-8 py-2 border-solid border-[#1C6EA4] shadow-lg shadow-slate-800 bg-[#ffffff] text-sky-800 rounded-xl  transition font-semibold hover:h-xl  hover:bg-sky-600 hover:text-white"
           >
-            AJOUTER UN STREET ART
+            AJOUTER
           </Link>
         ) : null}
+        <LeafletMap dbartworks={artworks} />
       </div>
     </div>
   );

@@ -1,16 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useOutletContext, useRevalidator } from "react-router-dom";
+import {
+  useOutletContext,
+  useRevalidator,
+  useNavigate,
+} from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import ModifButton from "../../assets/modifbtn.png";
+import submit from "../../assets/submit.png";
 
 export default function UserProfile() {
   const { auth } = useOutletContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth) {
+      navigate("/user/login");
+    }
+  }, []);
   const decoded = auth && jwtDecode(auth.token);
-  const userInfo = auth.user;
+  const userInfo = auth?.user;
   const [visible, setVisible] = useState(false);
   const revalidator = useRevalidator();
 
@@ -24,12 +36,12 @@ export default function UserProfile() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: userInfo.username,
-      firstname: userInfo.firstname,
-      lastname: userInfo.lastname,
-      email: userInfo.email,
-      postalCode: userInfo.postal_code,
-      city: userInfo.city,
+      username: userInfo?.username,
+      firstname: userInfo?.firstname,
+      lastname: userInfo?.lastname,
+      email: userInfo?.email,
+      postalCode: userInfo?.postal_code,
+      city: userInfo?.city,
     },
   });
 
@@ -63,18 +75,18 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="flex flex-col align-middle">
-      <h2 className="text-center md:justify-normal md:mr-4 text-xl font-semibold text-primary">
-        HEUREUX DE TE VOIR {userInfo.username}, BRAVO TU AS {userInfo.score}{" "}
+    <div className="flex flex-col  align-middle ">
+      <h2 className="text-center md:justify-normal  text-l font-semibold text-primary m-4">
+        HEUREUX DE TE VOIR {userInfo?.username}, BRAVO TU AS {userInfo?.score}{" "}
         POINTS!
       </h2>
       {visible ? (
-        <div className="flex flex-row justify-center">
+        <div className="mx-auto max-w-2xl  ">
           <form
-            className="w-full max-w-2xl items-center mt-12"
+            className="w-full max-w-2xl items-center mt-12 sm:my-12"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="grid grid-cols-2 gap-6 -mx-14">
+            <div className="flex flex-col my-10 align-middle gap-6 md:grid md:grid-cols-2 md:gap-6 md:-mx-14">
               <div>
                 <input
                   type="text"
@@ -166,19 +178,47 @@ export default function UserProfile() {
                 placeholder="Ville"
               />
             </div>
-            <button type="submit"> soumettre</button>
+            <div className="flex justify-center mt-4">
+              <button type="submit">
+                <img
+                  alt="button"
+                  src={submit}
+                  className=" lg:w-[200px] w-[200px]"
+                />
+              </button>
+            </div>
           </form>
         </div>
       ) : (
-        <div>
-          <div> PSEUDO: {userInfo.username}</div>
-          <div> PRENOM: {userInfo.firstname}</div>
-          <div> NOM: {userInfo.lastname}</div>
-          <div> EMAIL: {userInfo.email}</div>
-          <div> VILLE: {userInfo.city}</div>
-          <div> PAYS: {userInfo.firstname}</div>
+        <div className=" mx-auto max-w-2xl  my-12">
+          <div className="bg-white bg-opacity-60 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 ">
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">PSEUDO:</span>
+              {userInfo?.username}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">PRENOM:</span>
+              {userInfo?.firstname}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">NOM:</span>
+              {userInfo?.lastname}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">EMAIL:</span>
+              {userInfo?.email}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">VILLE:</span>
+              {userInfo?.city}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">PAYS:</span>
+              {userInfo?.country}
+            </div>
+          </div>
 
-          <div className="flex flex-row justify-center mt-10">
+          <div className="flex flex-row justify-center my-10">
             <button type="button" onClick={handleEditButton}>
               <img
                 alt="button"
