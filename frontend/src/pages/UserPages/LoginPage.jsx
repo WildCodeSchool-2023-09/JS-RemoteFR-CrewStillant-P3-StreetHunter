@@ -54,7 +54,7 @@ export default function LoginPage() {
             id="email"
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center">
           <label className="text-xl font-semibold" htmlFor="password">
             MOT DE PASSE
           </label>
@@ -65,14 +65,15 @@ export default function LoginPage() {
             id="password"
           />
         </div>
-
-        <button type="submit" className="mt-5">
-          <img
-            alt="sendbutton"
-            className="lg:w-[300px] w-[200px] "
-            src={submitButton}
-          />
-        </button>
+        <div className="flex flex-row justify-center transform animate-zoom-in-out duration-1000 ">
+          <button type="submit" className="mt-5">
+            <img
+              alt="sendbutton"
+              className="lg:w-[300px] w-[200px] "
+              src={submitButton}
+            />
+          </button>
+        </div>
       </form>
     </div>
   );

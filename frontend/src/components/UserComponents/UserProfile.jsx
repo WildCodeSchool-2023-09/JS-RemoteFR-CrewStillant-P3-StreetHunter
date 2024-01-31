@@ -2,12 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import {
-  useOutletContext,
-  useRevalidator,
-  useNavigate,
-} from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModifButton from "../../assets/modifbtn.png";
 import submit from "../../assets/submit.png";
@@ -16,19 +11,35 @@ export default function UserProfile() {
   const { auth } = useOutletContext();
   const navigate = useNavigate();
 
+  const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     if (!auth) {
       navigate("/user/login");
     }
   }, []);
-  const decoded = auth && jwtDecode(auth.token);
-  const userInfo = auth?.user;
+
   const [visible, setVisible] = useState(false);
-  const revalidator = useRevalidator();
+  const [update, setUpdate] = useState(false);
+  const [isMounted, setIsMounted] = useState(true);
 
   const handleEditButton = () => {
     setVisible(true);
   };
+  useEffect(() => {
+    if (update || isMounted) {
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/account`, {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        })
+        .then((res) => {
+          setUserInfo(res.data);
+          setUpdate(false);
+          setIsMounted(false);
+        });
+    }
+  }, [update, isMounted]);
 
   const {
     register,
@@ -48,17 +59,16 @@ export default function UserProfile() {
   const onSubmit = async (data) => {
     const obj = data;
     for (const element in obj) {
-      if (data[element] === "") {
+      if (obj[element] === null || obj[element] === "") {
         delete obj[element];
       }
     }
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/${decoded.sub}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/`,
         obj,
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${auth.token}`,
           },
         }
@@ -66,27 +76,21 @@ export default function UserProfile() {
 
       if (response.status === 200) {
         toast.success(response.data.message);
-        revalidator.revalidate();
+        setUpdate(true);
         setVisible(false);
       }
     } catch (e) {
       console.error(e);
+      toast.error(e.response.data.message);
     }
   };
 
   return (
-    <div className="flex flex-col  align-middle ">
-      <h2 className="text-center md:justify-normal  text-l font-semibold text-primary m-4">
-        HEUREUX DE TE VOIR {userInfo?.username}, BRAVO TU AS {userInfo?.score}{" "}
-        POINTS!
-      </h2>
+    <div className="flex flex-col">
       {visible ? (
-        <div className="mx-auto max-w-2xl  ">
-          <form
-            className="w-full max-w-2xl items-center mt-12 sm:my-12"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div className="flex flex-col my-10 align-middle gap-6 md:grid md:grid-cols-2 md:gap-6 md:-mx-14">
+        <div className="max-w-2xl mx-auto flex flex-row justify-center">
+          <form className="max-w-2xl mt-20" onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col align-middle gap-6 md:grid md:grid-cols-2 md:gap-6 md:-mx-14">
               <div>
                 <input
                   type="text"
@@ -148,6 +152,7 @@ export default function UserProfile() {
                   },
                 })}
                 placeholder="@email.com"
+                value={userInfo?.email}
               />
               {errors.email?.message && (
                 <p role="alert" className="">
@@ -183,15 +188,15 @@ export default function UserProfile() {
                 <img
                   alt="button"
                   src={submit}
-                  className=" lg:w-[200px] w-[200px]"
+                  className=" lg:w-[250px] w-[200px]"
                 />
               </button>
             </div>
           </form>
         </div>
       ) : (
-        <div className=" mx-auto max-w-2xl  my-12">
-          <div className="bg-white bg-opacity-60 pl-2 rounded-xl py-2 lg:py-4 shadow-lg shadow-slate-800 lg:text-xl lg:font-semibold lg:px-10 ">
+        <div className=" flex flex-row justify-evenly align-middle mt-10">
+          <div className="bg-white lg:p-10 bg-opacity-50 rounded-lg shadow-lg shadow-slate-700 lg:text-xl lg:font-semibold ">
             <div className="p-4 text-left">
               <span className="font-semibold mr-2">PSEUDO:</span>
               {userInfo?.username}
@@ -213,19 +218,25 @@ export default function UserProfile() {
               {userInfo?.city}
             </div>
             <div className="p-4 text-left">
-              <span className="font-semibold mr-2">PAYS:</span>
-              {userInfo?.country}
+              <span className="font-semibold mr-2">CODE POSTAL:</span>
+              {userInfo?.postal_code}
             </div>
           </div>
-
-          <div className="flex flex-row justify-center my-10">
-            <button type="button" onClick={handleEditButton}>
-              <img
-                alt="button"
-                src={ModifButton}
-                className=" lg:w-[200px] w-[200px]"
-              />
-            </button>
+          <div className="flex flex-col justify-evenly">
+            <div>
+              <h2 className="text-center text-l lg:text-3xl font-semibold text-primary">
+                Bravo {userInfo?.username}, tu as {userInfo?.score} points!
+              </h2>
+            </div>
+            <div className="flex flex-row justify-end">
+              <button type="button" onClick={handleEditButton}>
+                <img
+                  alt="button"
+                  src={ModifButton}
+                  className=" lg:w-[250px] w-[200px]"
+                />
+              </button>
+            </div>
           </div>
         </div>
       )}
