@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import submitButton from "../../assets/submitButton.png";
+import sendBtn from "../../assets/button/sendBtn.png";
 
 export default function LoginPage() {
   const emailRef = useRef();
@@ -64,15 +64,14 @@ export default function LoginPage() {
             placeholder="mot de passe"
           />
         </div>
-        <div className="flex flex-row justify-center transform animate-zoom-in-out duration-1000 ">
-          <button type="submit" className="mt-5">
-            <img
-              alt="sendbutton"
-              className="lg:w-[300px] w-[200px] "
-              src={submitButton}
-            />
-          </button>
-        </div>
+
+        <button type="submit" className="mt-5">
+          <img
+            alt="sendbutton"
+            className="lg:w-[300px] w-[200px] "
+            src={sendBtn}
+          />
+        </button>
       </form>
     </div>
   );

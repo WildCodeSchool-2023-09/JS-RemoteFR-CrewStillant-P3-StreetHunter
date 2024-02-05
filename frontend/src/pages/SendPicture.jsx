@@ -65,7 +65,7 @@ export default function SendPicturePage() {
   };
 
   return (
-    <div className="mt-20 flex-col md:flex-row justify-center  flex">
+    <div className="lg:mt-20 mt-4 flex-col md:flex-row justify-center flex">
       <div className=" md:mt-10 md:w-[400px] md:max-h-[400px] max-h-[250px] md:m-0 m-auto w-[250px] md:h-[400px] h-[400px] rounded-lg relative border border-sky-800">
         {Boolean(sendPicture) && (
           <img
@@ -80,7 +80,7 @@ export default function SendPicturePage() {
       ) : (
         <form
           onSubmit={HandleUpload}
-          className="flex flex-col items-center h-screen"
+          className="flex flex-col items-center lg:h-screen"
         >
           <h3 className=" text-center">
             {sendPicture

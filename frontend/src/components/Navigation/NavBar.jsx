@@ -25,6 +25,10 @@ export default function NavBar({ auth, setAuth }) {
           title: "ESPACE DE VALIDATION",
         },
         {
+          path: "/administration/messages",
+          title: "MESSAGES",
+        },
+        {
           path: `/user/profile/`,
           title: "PROFIL",
         },
