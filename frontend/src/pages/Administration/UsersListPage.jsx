@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import UsersList from "../../components/UserComponents/UsersList";
 
 export default function UsersListPage() {

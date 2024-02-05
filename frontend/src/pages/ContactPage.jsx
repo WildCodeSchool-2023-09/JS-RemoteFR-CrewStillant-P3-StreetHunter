@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import submitButton from "../assets/submitButton.png";
+import sendBtn from "../assets/button/sendBtn.png";
 
 export default function ContactPage() {
   const {
@@ -86,7 +86,7 @@ export default function ContactPage() {
               className="shadow-xl hover:opacity-90 active:shadow-[0_-35px_-60px_-15px_rgba(0,0,0,0.3)]"
             >
               <img
-                src={submitButton}
+                src={sendBtn}
                 alt="button"
                 className="w-[200px] lg:w-[250px]"
               />

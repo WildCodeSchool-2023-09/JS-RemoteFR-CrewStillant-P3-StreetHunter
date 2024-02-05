@@ -2,10 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Modal from "react-modal";
-import Button from "../../assets/msgButton.png";
-import supprButton from "../../assets/supprButton.png";
-import annulButton from "../../assets/annulButton.png";
-import confirmButton from "../../assets/confirmbutton.png";
+import Button from "../../assets/button/msgButton.png";
+import supprButton from "../../assets/button/supprButton.png";
+import annulButton from "../../assets/button/annulButton.png";
+import confirmButton from "../../assets/button/confirmbutton.png";
 
 export default function MessagingPage() {
   const { id } = useParams();
@@ -55,7 +55,7 @@ export default function MessagingPage() {
   };
 
   return (
-    <div className="w-4/5 overflow-y-scroll no-scrollbar flex flex-col gap-5 mt-20 mb-15 bg-white bg-opacity-40 p-7 rounded">
+    <div className="mx-auto w-4/5 overflow-y-scroll no-scrollbar flex flex-col gap-5 mt-20 mb-15 bg-white bg-opacity-40 p-7 rounded">
       {messages &&
         messages.map((m) => (
           <div
@@ -86,7 +86,7 @@ export default function MessagingPage() {
         onRequestClose={closeModal}
         contentLabel="Message Details"
         overlayClassName="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center"
-        className="bg-white p-4 rounded-lg mx-auto w-11/12 sm:w-3/4 md:max-w-lg h-5/6 overflow-y-scroll no-scrollbar"
+        className="bg-white p-4 rounded-lg mx-auto w-11/12 sm:w-3/4 md:max-w-lg h-fit overflow-y-scroll no-scrollbar"
       >
         <button
           type="button"

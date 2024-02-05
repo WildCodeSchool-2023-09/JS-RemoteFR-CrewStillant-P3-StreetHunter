@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Button from "../../assets/signUpButton.png";
+import { toast } from "react-toastify";
+import Button from "../../assets/button/signUpButton.png";
 
 export default function RegisterForm() {
   const [checked, setChecked] = useState(false);
@@ -147,19 +146,6 @@ export default function RegisterForm() {
                 className="lg:w-[300px] w-[200px] transform animate-zoom-in-out duration-1000 "
               />
             </button>
-            <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-              toastClassName="rounded-md text-lg"
-            />
           </div>
         </div>
       </form>
