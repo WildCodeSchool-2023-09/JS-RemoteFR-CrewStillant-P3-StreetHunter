@@ -25,6 +25,7 @@
   
   .animate-zoom-in-out {
     animation: zoom-in-out 3s infinite;
+
   }
   @layer utilities {
 
@@ -37,3 +38,4 @@
         scrollbar-width: none;  /* Firefox */
   }
 }
+
