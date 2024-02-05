@@ -13,7 +13,7 @@ function UserCard({ user, setIsUpdated }) {
   };
 
   return (
-    <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
+    <div className="overflow-y-scroll no-scrollbar bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div>
         <span className="font-semibold mr-2">Joueur:</span>
         <span>{user.username}</span>
