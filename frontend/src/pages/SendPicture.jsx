@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import AdressApi from "../components/ApiAdressForm/GetAdressApi";
 
 export default function SendPicturePage() {
@@ -154,7 +154,6 @@ export default function SendPicturePage() {
           >
             Upload votre Street Art
           </button>
-          <ToastContainer />
         </form>
       )}
     </div>
