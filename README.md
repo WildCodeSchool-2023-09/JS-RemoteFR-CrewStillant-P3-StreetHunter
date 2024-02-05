@@ -1,11 +1,11 @@
 # Description  MAPPING ART 
 
 
-Project 3 Wild Code School <br>
-for our client Benoît Vandanjon. <br>
+Project 3 Wild Code School. <br>
+For our client Benoît Vandanjon. <br>
 MAPPING ART A web application to hunt street artworks combining discovery and competition
 take pictures of your discoveries on our application to earn as many points as possible and  take the lead in hunter ranking.
-Our gameplay is simple and reachable
+Our gameplay is simple and reachable.
 
 ### A big thanks to our best teacher Ayoub.
 
@@ -21,7 +21,7 @@ Our gameplay is simple and reachable
 
 ## Project status
 
-v1.0 deployed
+v1.0 deployed.
 
 ## Creator
 
