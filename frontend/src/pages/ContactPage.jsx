@@ -15,17 +15,25 @@ export default function ContactPage() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`, data, {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      })
-      .then(() => {
-        toast.success("message envoyé!");
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/messaging`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
+      );
+      if (res.status === 201) {
+        toast.success("message envoyé");
         navigate("/game/map");
-      });
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("message non envoyé");
+    }
   };
   return (
     <div className="flex flex-col text-start justify-center items-center  h-[80vh]">
