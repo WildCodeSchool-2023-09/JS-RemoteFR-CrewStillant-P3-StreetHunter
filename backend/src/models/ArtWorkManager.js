@@ -66,7 +66,6 @@ class ArtworkManager extends AbstractManager {
       JOIN user ON ${this.table}.user_id = user.id
       WHERE ${this.table}.validated=1
     `);
-
     return rows;
   }
 

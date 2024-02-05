@@ -51,7 +51,7 @@ export default function AddressApi({ setCoords }) {
         name="address"
         required
         value={blockAreaTextAddress}
-        placeholder="ADRESSE"
+        placeholder="ADRESSE DU STREET ART..."
         readOnly={validatedAddress}
       />
 
@@ -62,7 +62,7 @@ export default function AddressApi({ setCoords }) {
       <input
         onClick={resetAreaTextAddress}
         type="reset"
-        className=" mt-2 cursor-pointer transition-all bg-sky-800 text-white px-6  rounded-lg
+        className=" mt-2  mb-2 cursor-pointer transition-all bg-sky-800 text-white px-6  rounded-lg
 border-sky-600 w-[150px] h-[2.rem]
 border-b-[4px] hover:bg-opacity-60  hover:-translate-y-[1px] hover:border-b-[6px]
 active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"

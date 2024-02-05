@@ -14,11 +14,10 @@ const {
 } = require("../controllers/artWorkControllers");
 const storage = require("../middlewares/uploadImageArtwork");
 const formValidation = require("../middlewares/artworkFormValidator");
-// const isAdmin = require("../middlewares/isAdmin");
-
-router.get("/user", browseValidated);
+const slicedPathPicWhenEditArtWork = require("../middlewares/slicePathPicWhenEditArtWork");
 
 router.get("/", browse);
+router.get("/user", browseValidated);
 router.get("/notvalidated", browseNotValidated);
 router.get("/:id", read);
 
@@ -27,6 +26,6 @@ router.post("/", storage, formValidation, add);
 router.post("/", add);
 router.put("/:id/validate", validateArtwork);
 router.delete("/:id", remove);
-router.put("/:id", edit, validateArtwork);
+router.put("/:id", slicedPathPicWhenEditArtWork, edit, validateArtwork);
 
 module.exports = router;

@@ -26,14 +26,19 @@ export default function LeafletMap({ dbartworks }) {
   };
 
   return (
-    <div className=" flex justify-center shadow-[-10px_15px_12px_1px_rgba(12,2,5,0.5)]  rounded-xl bg-[#f2f2f2b8] md:mx-16 lg:py-7 lg:mx- py-3 mx-2">
+    <div className=" flex justify-center">
       <MapContainer
-        center={[45.53675, -73.55028]}
+        center={[46.8566, 2.3522]}
         watch
-        zoom={13}
+        zoom={5}
         scrollWheelZoom
         whenReady={() => getLocation()}
-        style={{ width: "95%", height: "65vh" }}
+        style={{
+          width: "95%",
+          height: "65vh",
+          boxShadow: "1px 2px 15px 5px rgba(0,0,0,0.46)",
+          borderRadius: "12px",
+        }}
       >
         <TileLayer
           attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'

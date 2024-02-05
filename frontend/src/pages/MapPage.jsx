@@ -1,25 +1,37 @@
-import { useLoaderData, Link, useOutletContext } from "react-router-dom";
+import { useLoaderData, useOutletContext, Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import LeafletMap from "../components/Game/Map/LeafletMap";
+import add from "../assets/button/addbtn.png";
 
 export default function MapPage() {
   const artworks = useLoaderData();
   const { auth } = useOutletContext();
+  const decoded = auth && jwtDecode(auth.token);
+
   return (
-    <div className="lg:h-[88vh] ">
-      <span className=" flex flex-row justify-center  font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary mt-0">
+    <div className="">
+      <span
+        className={`flex flex-row justify-center font-extrabold ${
+          !auth || decoded?.isAdmin ? "mb-11" : "mb-0"
+        } text-4xl md:text-5xl lg:text-6xl text-primary mt-0`}
+      >
         LA CARTE
       </span>
-      <div>
-        <LeafletMap dbartworks={artworks} />
-        {auth ? (
+      <div className="flex flex-col align-bottom">
+        {auth && decoded?.isAdmin !== 1 ? (
           <Link
+            type="button"
+            className="flex flex-row justify-center m-auto items-center my-2 lg:mb-4"
             to="/game/submitartwork"
-            className=" flex justify-center w-[20rem] mb-2 mx-auto cursor-pointer 
-        px-8 py-2 border-solid border-[#1C6EA4] shadow-lg shadow-slate-800 bg-[#ffffff] text-sky-800 rounded-xl  transition font-semibold hover:h-xl  hover:bg-sky-600 hover:text-white"
           >
-            AJOUTER UN STREET ART
+            <img
+              src={add}
+              alt="valider"
+              className="justify-center lg:w-[200px] w-[200px]"
+            />
           </Link>
         ) : null}
+        <LeafletMap dbartworks={artworks} />
       </div>
     </div>
   );

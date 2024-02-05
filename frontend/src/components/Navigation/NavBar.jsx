@@ -3,7 +3,7 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import PropTypes from "prop-types";
 import BurgerMenu from "./BurgerMenu";
-import steve from "../../assets/Steve_redimentioned .png";
+import steve from "../../assets/Steve_redimentioned.png";
 
 export default function NavBar({ auth, setAuth }) {
   const navigate = useNavigate();
@@ -23,6 +23,10 @@ export default function NavBar({ auth, setAuth }) {
         {
           path: "/administration/validationroom",
           title: "ESPACE DE VALIDATION",
+        },
+        {
+          path: "/administration/messages",
+          title: "MESSAGES",
         },
         {
           path: `/user/profile/`,
@@ -99,12 +103,12 @@ export default function NavBar({ auth, setAuth }) {
           setMenuOpen={setMenuOpen}
         />
         <div className="flex flex-row justify-between ml-auto">
-          <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-4 hidden md:ml-6 text-primary">
+          <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-2 hidden md:ml-6 text-primary">
             {navLinks.map((n) =>
               page === n.title ? (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500 px-7"
+                    className="text-[#F5CCA0] bg-cyan-800 rounded-lg  px-7  active::bg-cyan-800"
                     to={n.path}
                     onClick={handlePageStyle}
                     key={n.title}
@@ -115,7 +119,7 @@ export default function NavBar({ auth, setAuth }) {
               ) : (
                 <li key={n.title}>
                   <NavLink
-                    className="hover:text-slate-800 active:text-slate-500"
+                    className="hover:text-[#F5CCA0] hover:bg-cyan-800 rounded-lg  duration-200 hover:duration-200 px-4 hover:px-7  active:text-slate-500"
                     to={n.path}
                     onClick={handlePageStyle}
                   >
@@ -128,7 +132,7 @@ export default function NavBar({ auth, setAuth }) {
               <li>
                 <button
                   type="button"
-                  className="hover:text-slate-800 active:text-slate-500 md:px-4"
+                  className="hover:text-[#F5CCA0] hover:bg-cyan-800 rounded-lg  duration-200 hover:duration-200 px-4 hover:px-4 active:text-slate-500 md:px-4"
                   onClick={() => {
                     setAuth(undefined);
                     navigate("/");

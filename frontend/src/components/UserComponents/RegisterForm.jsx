@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Button from "../../assets/signUpButton.png";
+import { toast } from "react-toastify";
+import Button from "../../assets/button/signUpButton.png";
 
 export default function RegisterForm() {
   const [checked, setChecked] = useState(false);
@@ -35,12 +34,12 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="lg:mt-4 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
+    <div className="overflow-y-scroll no-scrollbar lg:mt-4 mt-10 w-auto">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col lg:gap-6  gap-4">
+        <div className="flex flex-col gap-4">
           <div>
             <input
               type="text"
@@ -121,25 +120,23 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          <div className="">
-            <p className="mx-7 text-base font-light lg:mx-[30rem] bg-slate-200 bg-opacity-70 rounded-xl ">
-              {" "}
-              Pour utiliser Mapping Art, vous devez accepter les
-              <Link
-                to="/instructions"
-                className="font-semibold ml-3 hover:underline"
-              >
-                conditions d'utilisation
-              </Link>
-            </p>
-            <div className="flex flex-row justify-center mt-4">
-              <input
-                type="checkbox"
-                onChange={handleCheck}
-                className="w-6 h-6 rounded-full"
-              />
-              <p className="ml-2 font-semibold"> J'ACCEPTE</p>
-            </div>
+          <p className="mx-auto px-2 text-base font-light bg-slate-200 bg-opacity-70 rounded-lg ">
+            {" "}
+            Pour utiliser Mapping Art, vous devez accepter les
+            <Link
+              to="/game/instructions"
+              className="font-semibold ml-3 hover:underline"
+            >
+              conditions d'utilisation
+            </Link>
+          </p>
+          <div className="flex flex-row justify-center">
+            <input
+              type="checkbox"
+              onChange={handleCheck}
+              className="w-6 h-6 rounded-full"
+            />
+            <p className="ml-2 font-semibold"> J'ACCEPTE</p>
           </div>
           <div>
             <button type="submit" onClick={!checked && notify}>
@@ -149,19 +146,6 @@ export default function RegisterForm() {
                 className="lg:w-[300px] w-[200px] transform animate-zoom-in-out duration-1000 "
               />
             </button>
-            <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-              toastClassName="rounded-md text-lg"
-            />
           </div>
         </div>
       </form>

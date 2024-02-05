@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Modal from "react-modal";
+import suppr from "../../assets/button/supprButton.png";
+import modif from "../../assets/button/modifbtn.png";
+import register from "../../assets/button/enrbtn.png";
+import annul from "../../assets/button/annulButton.png";
 
 Modal.setAppElement("#root");
 
 function ArtworkCard({ artwork, setIsUpdated }) {
   const [formVisible, setFormVisible] = useState(false);
-
   const [formData, setFormData] = useState({
     path_pic: artwork.path_pic,
     title: artwork.title,
@@ -47,7 +50,6 @@ function ArtworkCard({ artwork, setIsUpdated }) {
         setUsers(response.data);
       });
   }, []);
-
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/artist`)
@@ -91,12 +93,8 @@ function ArtworkCard({ artwork, setIsUpdated }) {
       <div className="mb-2">{artwork.validated ? "Validé" : "Non validé"}</div>
 
       <div className="flex flex-row justify-center gap-4">
-        <button
-          type="button"
-          onClick={handleEditClick}
-          className="bg-emerald-800 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded mt-4"
-        >
-          Modifier
+        <button type="button" onClick={handleEditClick}>
+          <img alt="button" src={modif} className=" lg:w-[150px] w-[150px]" />
         </button>
         <Modal
           isOpen={formVisible}
@@ -105,13 +103,6 @@ function ArtworkCard({ artwork, setIsUpdated }) {
           className="bg-gray-300 rounded-lg p-6 max-w-md mx-auto"
         >
           <form>
-            <button
-              type="button"
-              onClick={() => setFormVisible(false)}
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Annuler
-            </button>
             <label className="block mb-2">
               Titre:
               <input
@@ -229,21 +220,24 @@ function ArtworkCard({ artwork, setIsUpdated }) {
                 ))}
               </select>
             </label>
-            <button
-              type="button"
-              onClick={editArtwork}
-              className="bg-emerald-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Enregistrer
+            <button type="button" onClick={editArtwork}>
+              <img
+                src={register}
+                alt="valider"
+                className="justify-center lg:w-[150px] w-[150px]"
+              />
+            </button>
+            <button type="button" onClick={() => setFormVisible(false)}>
+              <img
+                src={annul}
+                alt="annuler"
+                className=" lg:w-[140px] w-[140px]"
+              />
             </button>
           </form>
         </Modal>
-        <button
-          type="button"
-          onClick={handleDelete}
-          className="bg-sky-800 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded mt-4"
-        >
-          Supprimer
+        <button type="button" onClick={handleDelete}>
+          <img src={suppr} alt="valider" className=" lg:w-[140px] w-[140px]" />
         </button>
       </div>
     </div>

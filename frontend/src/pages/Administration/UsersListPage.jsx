@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import UsersList from "../../components/UserComponents/UsersList";
 
 export default function UsersListPage() {
@@ -17,7 +16,7 @@ export default function UsersListPage() {
       .catch((e) => console.error(e));
   }, [isUpdated]);
   return (
-    <div className=" h-[77vh] overflow-scroll">
+    <div className=" h-[77vh] overflow-y-scroll no-scrollbar">
       <UsersList users={users} setIsUpdated={setIsUpdated} />
     </div>
   );

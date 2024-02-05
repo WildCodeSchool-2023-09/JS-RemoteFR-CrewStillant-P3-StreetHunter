@@ -1,80 +1,115 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useOutletContext, useRevalidator } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ModifButton from "../../assets/modifbtn.png";
+import ModifButton from "../../assets/button/modifbtn.png";
+import submit from "../../assets/button/submit.png";
 
 export default function UserProfile() {
   const { auth } = useOutletContext();
-  const decoded = auth && jwtDecode(auth.token);
-  const userInfo = auth.user;
+  const navigate = useNavigate();
+
+  const [userInfo, setUserInfo] = useState();
+  useEffect(() => {
+    if (!auth) {
+      navigate("/user/login");
+    }
+  }, []);
+
   const [visible, setVisible] = useState(false);
-  const revalidator = useRevalidator();
-
-  const handleEditButton = () => {
-    setVisible(true);
-  };
-
+  const [update, setUpdate] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
-      username: userInfo.username,
-      firstname: userInfo.firstname,
-      lastname: userInfo.lastname,
-      email: userInfo.email,
-      postalCode: userInfo.postal_code,
-      city: userInfo.city,
+      username: userInfo?.username,
+      firstname: userInfo?.firstname,
+      lastname: userInfo?.lastname,
+      email: userInfo?.email,
+      postalCode: userInfo?.postal_code,
+      city: userInfo?.city,
     },
   });
+
+  const resetValues = () => {
+    reset({
+      username: userInfo?.username || "",
+      firstname: userInfo?.firstname || "",
+      lastname: userInfo?.lastname || "",
+      email: userInfo?.email || "",
+      postalCode: userInfo?.postal_code || "",
+      city: userInfo?.city || "",
+    });
+  };
+  useEffect(() => {
+    if (userInfo) {
+      resetValues();
+    }
+  }, [userInfo]);
+  const handleEditButton = () => {
+    setVisible(true);
+  };
+  const fetchData = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/account`, {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      })
+      .then((res) => {
+        setUserInfo(res.data);
+      })
+      .finally(setUpdate(false));
+  };
+
+  useEffect(() => {
+    if (update) fetchData();
+  }, [update]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const onSubmit = async (data) => {
     const obj = data;
     for (const element in obj) {
-      if (data[element] === "") {
+      if (obj[element] === null || obj[element] === "") {
         delete obj[element];
       }
     }
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/${decoded.sub}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/`,
         obj,
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${auth.token}`,
           },
         }
       );
 
       if (response.status === 200) {
-        toast.success(response.data.message);
-        revalidator.revalidate();
+        setUpdate(true);
         setVisible(false);
+        toast.success(response.data.message);
       }
     } catch (e) {
       console.error(e);
+      toast.error(e.response.data.message);
     }
   };
 
   return (
-    <div className="flex flex-col align-middle">
-      <h2 className="text-center md:justify-normal md:mr-4 text-xl font-semibold text-primary">
-        HEUREUX DE TE VOIR {userInfo.username}, BRAVO TU AS {userInfo.score}{" "}
-        POINTS!
-      </h2>
+    <div className="flex flex-col">
       {visible ? (
-        <div className="flex flex-row justify-center">
-          <form
-            className="w-full max-w-2xl items-center mt-12"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div className="grid grid-cols-2 gap-6 -mx-14">
+        <div className="max-w-2xl mx-auto flex flex-row justify-center">
+          <form className="max-w-2xl mt-20" onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col align-middle gap-6 md:grid md:grid-cols-2 md:gap-6 md:-mx-14">
               <div>
                 <input
                   type="text"
@@ -136,6 +171,7 @@ export default function UserProfile() {
                   },
                 })}
                 placeholder="@email.com"
+                value={userInfo?.email}
               />
               {errors.email?.message && (
                 <p role="alert" className="">
@@ -166,26 +202,60 @@ export default function UserProfile() {
                 placeholder="Ville"
               />
             </div>
-            <button type="submit"> soumettre</button>
+            <div className="flex justify-center mt-4">
+              <button type="submit">
+                <img
+                  alt="button"
+                  src={submit}
+                  className=" lg:w-[250px] w-[200px]"
+                />
+              </button>
+            </div>
           </form>
         </div>
       ) : (
-        <div>
-          <div> PSEUDO: {userInfo.username}</div>
-          <div> PRENOM: {userInfo.firstname}</div>
-          <div> NOM: {userInfo.lastname}</div>
-          <div> EMAIL: {userInfo.email}</div>
-          <div> VILLE: {userInfo.city}</div>
-          <div> PAYS: {userInfo.firstname}</div>
-
-          <div className="flex flex-row justify-center mt-10">
-            <button type="button" onClick={handleEditButton}>
-              <img
-                alt="button"
-                src={ModifButton}
-                className=" lg:w-[200px] w-[200px]"
-              />
-            </button>
+        <div className=" flex flex-row justify-evenly align-middle mt-10">
+          <div className="bg-white lg:p-10 bg-opacity-50 rounded-lg shadow-lg shadow-slate-700 lg:text-xl lg:font-semibold ">
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">PSEUDO:</span>
+              {userInfo?.username}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">PRENOM:</span>
+              {userInfo?.firstname}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">NOM:</span>
+              {userInfo?.lastname}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">EMAIL:</span>
+              {userInfo?.email}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">VILLE:</span>
+              {userInfo?.city}
+            </div>
+            <div className="p-4 text-left">
+              <span className="font-semibold mr-2">CODE POSTAL:</span>
+              {userInfo?.postal_code}
+            </div>
+          </div>
+          <div className="flex flex-col justify-evenly">
+            <div>
+              <h2 className="text-center text-l lg:text-3xl font-semibold text-primary">
+                Bravo {userInfo?.username}, tu as {userInfo?.score} points!
+              </h2>
+            </div>
+            <div className="flex flex-row justify-end">
+              <button type="button" onClick={handleEditButton}>
+                <img
+                  alt="button"
+                  src={ModifButton}
+                  className=" lg:w-[250px] w-[200px]"
+                />
+              </button>
+            </div>
           </div>
         </div>
       )}
