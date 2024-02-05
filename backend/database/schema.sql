@@ -1,43 +1,21 @@
 -- Active: 1701507911414@@127.0.0.1@3306@mapping_art_db
-
-
 CREATE TABLE
     category (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         cat_name VARCHAR(255)
     );
 
-CREATE TABLE
-    artist (
-        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        artist_name VARCHAR(255) NOT NULL
-    );
+CREATE TABLE artist (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, artist_name VARCHAR(255) NOT NULL
+);
 
-CREATE TABLE
-    user (
-        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        username VARCHAR(80) NOT NULL,
-        lastname VARCHAR(80) NULL,
-        firstname VARCHAR(80) NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        score INT NOT NULL DEFAULT 0,
-        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-        city VARCHAR(80) NULL,
-        postal_code VARCHAR(255) NULL,
-        is_admin BOOLEAN NOT NULL DEFAULT FALSE
-    );
+CREATE TABLE user (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, username VARCHAR(80) NOT NULL, lastname VARCHAR(80) NULL, firstname VARCHAR(80) NULL, email VARCHAR(255) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL, score INT NOT NULL DEFAULT 0, created_at TIMESTAMP NOT NULL DEFAULT NOW(), city VARCHAR(80) NULL, postal_code VARCHAR(255) NULL, is_admin BOOLEAN NOT NULL DEFAULT FALSE
+);
 
-CREATE TABLE
-    messaging (
-        id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        title VARCHAR (255) NOT NULL,
-        body TEXT NOT NULL,
-        created_at DATETIME NOT NULL DEFAULT NOW(),
-        is_read BOOLEAN NOT NULL DEFAULT 0,
-        user_id INT NOT NULL,
-        CONSTRAINT fk_message_user FOREIGN KEY (user_id) REFERENCES user(id)
-    );
+CREATE TABLE messaging (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, body TEXT NOT NULL, created_at DATETIME NOT NULL DEFAULT NOW(), is_read BOOLEAN NOT NULL DEFAULT 0, user_id INT NOT NULL, CONSTRAINT fk_message_user FOREIGN KEY (user_id) REFERENCES user (id)
+);
 
 CREATE TABLE
     artwork (
@@ -53,8 +31,8 @@ CREATE TABLE
         CONSTRAINT fk_artwork_category FOREIGN KEY (category_id) REFERENCES category(id),
         CONSTRAINT fk_artwork_artist FOREIGN KEY (artist_id) REFERENCES artist(id),
         CONSTRAINT fk_artwork_user FOREIGN KEY (user_id) REFERENCES user(id)
-    );
 
+    );
 
 INSERT INTO artist (artist_name)
 VALUES
@@ -81,3 +59,4 @@ INSERT INTO artwork (path_pic, title, longitude, latitude, validated, category_i
 VALUES 
 ('mural_by_SWED_1706213027893.jpg', 'Old Angel', 43.59748200, 1.44534100, 1, 4, 1, 1),
 ('Paris_La_Butte-aux-Cailles_1706223077579.png', 'choupi rats', 50.69531300, 3.15569300, 0, 4, 2, 1);
+

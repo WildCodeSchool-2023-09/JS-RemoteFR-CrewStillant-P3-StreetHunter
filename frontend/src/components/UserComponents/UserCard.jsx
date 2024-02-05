@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import suppr from "../../assets/button/supprButton.png";
 
 function UserCard({ user, setIsUpdated }) {
   const handleDelete = () => {
@@ -13,7 +14,7 @@ function UserCard({ user, setIsUpdated }) {
   };
 
   return (
-    <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
+    <div className="overflow-y-scroll no-scrollbar bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div>
         <span className="font-semibold mr-2">Joueur:</span>
         <span>{user.username}</span>
@@ -49,9 +50,9 @@ function UserCard({ user, setIsUpdated }) {
       <button
         type="button"
         onClick={handleDelete}
-        className="mt-2 bg-emerald-800 text-white p-2 rounded mx-auto"
+        className="mt-2 p-2 rounded mx-auto"
       >
-        Supprimer
+        <img src={suppr} alt="valider" className=" lg:w-[150px] w-[150px]" />
       </button>
     </div>
   );

@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Button from "../../assets/signUpButton.png";
+import { toast } from "react-toastify";
+import Button from "../../assets/button/signUpButton.png";
 
 export default function RegisterForm() {
   const [checked, setChecked] = useState(false);
@@ -35,7 +34,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="lg:mt-4 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
+    <div className="overflow-y-scroll no-scrollbar lg:mt-4 mt-10 w-auto">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
@@ -121,7 +120,7 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          <p className="mx-7 text-base font-light bg-slate-200 lg:mx-96 bg-opacity-70 rounded-xl ">
+          <p className="mx-auto px-2 text-base font-light bg-slate-200 bg-opacity-70 rounded-lg ">
             {" "}
             Pour utiliser Mapping Art, vous devez accepter les
             <Link
@@ -147,19 +146,6 @@ export default function RegisterForm() {
                 className="lg:w-[300px] w-[200px] transform animate-zoom-in-out duration-1000 "
               />
             </button>
-            <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-              toastClassName="rounded-md text-lg"
-            />
           </div>
         </div>
       </form>
