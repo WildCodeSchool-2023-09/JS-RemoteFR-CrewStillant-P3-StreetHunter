@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import submitButton from "../../assets/submitButton.png";
+import sendBtn from "../../assets/button/sendBtn.png";
 
 export default function LoginPage() {
   const emailRef = useRef();
@@ -69,7 +69,7 @@ export default function LoginPage() {
           <img
             alt="sendbutton"
             className="lg:w-[300px] w-[200px] "
-            src={submitButton}
+            src={sendBtn}
           />
         </button>
       </form>

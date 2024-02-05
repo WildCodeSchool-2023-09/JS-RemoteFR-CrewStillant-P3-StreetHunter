@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import ModifButton from "../../assets/modifbtn.png";
-import submit from "../../assets/submit.png";
+import ModifButton from "../../assets/button/modifbtn.png";
+import submit from "../../assets/button/submit.png";
 
 export default function UserProfile() {
   const { auth } = useOutletContext();
@@ -48,13 +48,13 @@ export default function UserProfile() {
   const onSubmit = async (data) => {
     const obj = data;
     for (const element in obj) {
-      if (data[element] === "") {
+      if (obj[element] === "") {
         delete obj[element];
       }
     }
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/${decoded.sub}`,
+        `${import.meta.env.VITE_BACKEND_URL}/user/${decoded.sub}`,
         obj,
         {
           headers: {
@@ -223,7 +223,7 @@ export default function UserProfile() {
               <img
                 alt="button"
                 src={ModifButton}
-                className=" lg:w-[200px] w-[200px]"
+                className=" lg:w-[120px] w-[120px]"
               />
             </button>
           </div>

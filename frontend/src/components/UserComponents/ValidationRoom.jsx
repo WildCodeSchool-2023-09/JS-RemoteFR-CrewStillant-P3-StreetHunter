@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import valid from "../../assets/button/validbtn.png";
+import suppr from "../../assets/button/supprButton.png";
 
 function validationRoom() {
   const [artWork, setArtwork] = useState();
@@ -61,7 +63,7 @@ function validationRoom() {
             artWork.map((e) => (
               <div
                 key={e.id}
-                className="flex-row max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                className="flex-row max-w-sm bg-white bg-opacity-60 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
               >
                 <img
                   className="rounded-t-lg"
@@ -91,17 +93,23 @@ function validationRoom() {
                       type="button"
                       aria-label="Validate"
                       onClick={() => handleValidation(e.user_id, e.id)}
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                      Valider
+                      <img
+                        src={valid}
+                        alt="valider"
+                        className=" lg:w-[120px] w-[120px]"
+                      />
                     </button>
                     <button
                       type="button"
                       aria-label="delete"
                       onClick={() => handleDelete(e.id)}
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                      Supprimer
+                      <img
+                        src={suppr}
+                        alt="supprimer"
+                        className=" lg:w-[120px] w-[120px]"
+                      />
                     </button>
                   </div>
                 </div>

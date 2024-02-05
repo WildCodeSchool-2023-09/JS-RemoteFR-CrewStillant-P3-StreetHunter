@@ -1,5 +1,6 @@
 import { useLoaderData, useOutletContext, Link } from "react-router-dom";
 import LeafletMap from "../components/Game/Map/LeafletMap";
+import add from "../assets/button/addbtn.png";
 
 export default function MapPage() {
   const artworks = useLoaderData();
@@ -18,10 +19,14 @@ export default function MapPage() {
         {auth ? (
           <Link
             type="button"
-            className="flex flex-row justify-center m-auto items-center px-20 focus:bg-[#90b48c] hover:bg-[#a2cb9e]  rounded-md outline outline-[#957C58] outline-offset-2 text-primary text-2xl font-secondary font-light  bg-backgroundThree my-5 lg:mb-4"
+            className="flex flex-row justify-center m-auto items-center my-2 lg:mb-4"
             to="/game/submitartwork"
           >
-            AJOUTER
+            <img
+              src={add}
+              alt="valider"
+              className="justify-center lg:w-[200px] w-[200px]"
+            />
           </Link>
         ) : null}
         <LeafletMap dbartworks={artworks} />

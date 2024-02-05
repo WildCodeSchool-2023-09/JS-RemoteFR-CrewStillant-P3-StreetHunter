@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Button from "../../assets/signUpButton.png";
+import Button from "../../assets/button/signUpButton.png";
 
 export default function RegisterForm() {
   const [checked, setChecked] = useState(false);
