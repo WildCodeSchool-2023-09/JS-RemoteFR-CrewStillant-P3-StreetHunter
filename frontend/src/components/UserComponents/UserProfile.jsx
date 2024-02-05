@@ -20,31 +20,11 @@ export default function UserProfile() {
 
   const [visible, setVisible] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [isMounted, setIsMounted] = useState(true);
-
-  const handleEditButton = () => {
-    setVisible(true);
-  };
-  useEffect(() => {
-    if (update || isMounted) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/account`, {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-          },
-        })
-        .then((res) => {
-          setUserInfo(res.data);
-          setUpdate(false);
-          setIsMounted(false);
-        });
-    }
-  }, [update, isMounted]);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       username: userInfo?.username,
@@ -55,6 +35,45 @@ export default function UserProfile() {
       city: userInfo?.city,
     },
   });
+
+  const resetValues = () => {
+    reset({
+      username: userInfo?.username || "",
+      firstname: userInfo?.firstname || "",
+      lastname: userInfo?.lastname || "",
+      email: userInfo?.email || "",
+      postalCode: userInfo?.postal_code || "",
+      city: userInfo?.city || "",
+    });
+  };
+  useEffect(() => {
+    if (userInfo) {
+      resetValues();
+    }
+  }, [userInfo]);
+  const handleEditButton = () => {
+    setVisible(true);
+  };
+  const fetchData = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/account`, {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      })
+      .then((res) => {
+        setUserInfo(res.data);
+      })
+      .finally(setUpdate(false));
+  };
+
+  useEffect(() => {
+    if (update) fetchData();
+  }, [update]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const onSubmit = async (data) => {
     const obj = data;
@@ -75,9 +94,9 @@ export default function UserProfile() {
       );
 
       if (response.status === 200) {
-        toast.success(response.data.message);
         setUpdate(true);
         setVisible(false);
+        toast.success(response.data.message);
       }
     } catch (e) {
       console.error(e);

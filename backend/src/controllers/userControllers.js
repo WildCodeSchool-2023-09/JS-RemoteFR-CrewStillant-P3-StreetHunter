@@ -33,14 +33,7 @@ const read = async (req, res, next) => {
 // The E of BREAD - Edit (Update) operation
 const edit = async (req, res, next) => {
   try {
-    const {
-      username,
-      lastname,
-      firstname,
-      email,
-      city,
-      postal_code: postalCode,
-    } = req.body;
+    const { username, lastname, firstname, email, city, postalCode } = req.body;
     const { sub } = req.auth;
     const result = await tables.user.update(
       username,
