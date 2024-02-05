@@ -1,13 +1,11 @@
-# Description  MAPPING ART 
+# Description MAPPING ART
 
+## Project 3 Wild Code School. <br>
 
-Project 3 Wild Code School. <br>
 For our client Benoît Vandanjon. <br>
-MAPPING ART A web application to hunt street artworks combining discovery and competition
-take pictures of your discoveries on our application to earn as many points as possible and  take the lead in hunter ranking.
-Our gameplay is simple and reachable.
+MAPPING ART is a a treasure hunting web application where you can search for streetart artworks combining discovery and competition. Take pictures of your discoveries on our application to earn as many points as possible and take the lead in the hunter ranking. Our gameplay is simple and reachable.
 
-### A big thanks to our best teacher Ayoub.
+#### A big thanks to our best teacher Ayoub.
 
 🆙 Technologies used.
 
@@ -27,10 +25,9 @@ v1.0 deployed.
 
 [Alix CARLHANT](https://github.com/Halicksse) - [Faiza FEHRI](https://github.com/Kino-ki) - [Pierrick ONCHALO](https://github.com/Jhanemba64) - [Julien BAUDIC](https://github.com/Jubdc) - [Sébastien LAMBRANCA](https://github.com/Lambseb)
 
-## Screen 
+## Screen
 
-<img src="https://image.noelshack.com/fichiers/2024/06/1/1707133131-capture-d-ecran-2024-02-05-123706.png" width="200" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706546940-capture-d-ecran-2024-01-29-174846.png" width="250" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706547177-capture-d-ecran-2024-01-29-175239.png" width="220" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706546617-capture-d-ecran-2024-01-29-174322.png" width="250" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706547042-capture-d-ecran-2024-01-29-175020.png" width="250" height="250" alt="mapping_art">
-
+<img src="https://image.noelshack.com/fichiers/2024/06/1/1707133131-capture-d-ecran-2024-02-05-123706.png" width="200" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706546940-capture-d-ecran-2024-01-29-174846.png" width="250" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/06/1/1707144452-capture-d-ecran-2024-02-05-154718.png" width="220" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706546617-capture-d-ecran-2024-01-29-174322.png" width="250" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706547042-capture-d-ecran-2024-01-29-175020.png" width="250" height="250" alt="mapping_art">
 
 ## Concept
 
