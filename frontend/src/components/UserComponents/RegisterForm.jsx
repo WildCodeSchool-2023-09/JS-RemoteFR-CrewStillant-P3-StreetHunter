@@ -34,7 +34,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="lg:mt-4 mt-10 w-auto h-[71vh] overflow-scroll overflow-x-hidden">
+    <div className="overflow-y-scroll no-scrollbar lg:mt-4 mt-10 w-auto">
       <form
         className="text-center lg:text-2xl lg:font-extrabold"
         onSubmit={handleSubmit(onSubmit)}
@@ -120,7 +120,7 @@ export default function RegisterForm() {
               </p>
             )}
           </div>
-          <p className="mx-7 text-base font-light bg-slate-200 lg:mx-96 bg-opacity-70 rounded-xl ">
+          <p className="mx-auto px-2 text-base font-light bg-slate-200 bg-opacity-70 rounded-lg ">
             {" "}
             Pour utiliser Mapping Art, vous devez accepter les
             <Link

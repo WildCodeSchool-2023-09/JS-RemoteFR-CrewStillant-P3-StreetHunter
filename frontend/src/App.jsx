@@ -11,7 +11,7 @@ function App() {
   const [auth, setAuth] = useState();
 
   return (
-    <div className="bg-responsivecity lg:bg-city bg-contain min-h-screen">
+    <div className="flex flex-col bg-responsivecity lg:bg-city bg-contain min-h-screen">
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -26,7 +26,7 @@ function App() {
         toastClassName="rounded-md text-lg"
       />
       <NavBar auth={auth} setAuth={setAuth} />
-      <main className="flex-grow ">
+      <main className="flex-grow items-center">
         <Outlet context={{ auth, setAuth }} />
       </main>
       <Footer />

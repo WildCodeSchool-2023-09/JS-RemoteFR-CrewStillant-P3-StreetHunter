@@ -14,8 +14,8 @@ export default function ContactPage() {
     axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`, data);
   };
   return (
-    <div className="flex flex-col text-start justify-center items-center  h-[85vh]">
-      <h1 className=" font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 text-primary">
+    <div className="flex flex-col text-start justify-center items-center  h-[80vh]">
+      <h1 className="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-2 text-primary">
         CONTACT
       </h1>
       <div className="flex">
@@ -26,13 +26,13 @@ export default function ContactPage() {
           <div className="flex flex-col">
             <label
               htmlFor="title"
-              className="text-2xl text-primary font-semibold"
+              className="text-2xl text-primary font-semibold text-center"
             >
               TITRE
             </label>
             <input
               type="text"
-              className="py-2 rounded-xl shadow-md shadow-slate-800 w-[15rem]  border-slate-800 md:w-[20rem] px-1"
+              className="py-2 rounded-xl shadow-md shadow-slate-800 w-[15rem]  border-slate-800 md:w-[20rem] pl-3"
               {...register("title", {
                 required: "champ obligatoire",
                 minLength: {
@@ -40,7 +40,7 @@ export default function ContactPage() {
                   message: "doit contenir au moins 2 caractères",
                 },
               })}
-              placeholder="Titre de votre méssage..."
+              placeholder="Titre..."
             />
             {errors.title && (
               <p role="alert" className="mt-2 ml-2 font-semibold lg:ml-8">
@@ -52,7 +52,7 @@ export default function ContactPage() {
           <div className="flex flex-col">
             <label
               htmlFor="body"
-              className="text-2xl text-primary font-semibold mb-1 "
+              className="text-2xl text-primary font-semibold mb-1 text-center "
             >
               {" "}
               MESSAGE
@@ -68,7 +68,7 @@ export default function ContactPage() {
                   message: "doit contenir au moins 5 caractères",
                 },
               })}
-              placeholder="Votre méssage..."
+              placeholder="Message..."
             />
             {errors.body && (
               <p
