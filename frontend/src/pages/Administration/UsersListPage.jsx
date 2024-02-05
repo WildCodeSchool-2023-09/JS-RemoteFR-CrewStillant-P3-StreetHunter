@@ -17,7 +17,7 @@ export default function UsersListPage() {
       .catch((e) => console.error(e));
   }, [isUpdated]);
   return (
-    <div className=" h-[77vh] overflow-auto">
+    <div className=" h-[77vh] overflow-y-scroll no-scrollbar">
       <UsersList users={users} setIsUpdated={setIsUpdated} />
     </div>
   );
