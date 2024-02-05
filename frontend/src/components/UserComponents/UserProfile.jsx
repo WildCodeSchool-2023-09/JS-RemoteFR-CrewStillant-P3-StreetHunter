@@ -241,15 +241,21 @@ export default function UserProfile() {
               {userInfo?.postal_code}
             </div>
           </div>
-
-          <div className="flex flex-row justify-center my-10">
-            <button type="button" onClick={handleEditButton}>
-              <img
-                alt="button"
-                src={ModifButton}
-                className=" lg:w-[120px] w-[120px]"
-              />
-            </button>
+          <div className="flex flex-col justify-evenly">
+            <div>
+              <h2 className="text-center text-l lg:text-3xl font-semibold text-primary">
+                Bravo {userInfo?.username}, tu as {userInfo?.score} points!
+              </h2>
+            </div>
+            <div className="flex flex-row justify-end">
+              <button type="button" onClick={handleEditButton}>
+                <img
+                  alt="button"
+                  src={ModifButton}
+                  className=" lg:w-[250px] w-[200px]"
+                />
+              </button>
+            </div>
           </div>
         </div>
       )}
