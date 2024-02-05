@@ -17,8 +17,9 @@ const browse = async (req, res, next) => {
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const user = await tables.user.readById(id);
+    const { sub } = req.auth;
+
+    const user = await tables.user.readById(sub);
     if (user == null) {
       res.sendStatus(404);
     } else {
@@ -31,17 +32,9 @@ const read = async (req, res, next) => {
 
 // The E of BREAD - Edit (Update) operation
 const edit = async (req, res, next) => {
-  const {
-    username,
-    lastname,
-    firstname,
-    email,
-    city,
-    postal_code: postalCode,
-  } = req.body;
-  const id = parseInt(req.params.id, 10);
-
   try {
+    const { username, lastname, firstname, email, city, postalCode } = req.body;
+    const { sub } = req.auth;
     const result = await tables.user.update(
       username,
       lastname,
@@ -49,7 +42,7 @@ const edit = async (req, res, next) => {
       email,
       city,
       postalCode,
-      id
+      sub
     );
     if (result === 0) {
       res.status(404).json({ message: "L'utilisateur n'existe pas" });

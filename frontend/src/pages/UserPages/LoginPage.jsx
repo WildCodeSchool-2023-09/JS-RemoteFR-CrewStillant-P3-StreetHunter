@@ -52,7 +52,7 @@ export default function LoginPage() {
             placeholder="email"
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center">
           <label className="text-xl font-semibold" htmlFor="password">
             MOT DE PASSE
           </label>

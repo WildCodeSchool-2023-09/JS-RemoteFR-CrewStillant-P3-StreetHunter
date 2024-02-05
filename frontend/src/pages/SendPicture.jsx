@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,6 +10,7 @@ export default function SendPicturePage() {
   const [coords, setCoords] = useState();
   const { auth } = useOutletContext();
   const decoded = auth && jwtDecode(auth.token);
+  const navigate = useNavigate();
 
   const categoriesOfSelect = [
     { value: "1", label: "retro" },
@@ -49,6 +50,7 @@ export default function SendPicturePage() {
       );
       console.info(uploaderFile);
       toast.success("La création du artwork a été réalisée avec succés !");
+      navigate("/game/map");
     } catch (err) {
       console.error(err);
       toast.error(
