@@ -101,6 +101,8 @@ export default function NavBar({ auth, setAuth }) {
           navLinks={navLinks}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          auth={auth}
+          setAuth={setAuth}
         />
         <div className="flex flex-row justify-between ml-auto">
           <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-2 hidden md:ml-6 text-primary">

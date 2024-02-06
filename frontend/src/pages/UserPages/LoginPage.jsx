@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import sendBtn from "../../assets/button/sendBtn.png";
 
 export default function LoginPage() {
@@ -28,6 +29,7 @@ export default function LoginPage() {
         navigate("/game/map");
       } else {
         console.info(response);
+        toast.error("informations non valides");
       }
     } catch (err) {
       console.error(err);

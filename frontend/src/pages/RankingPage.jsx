@@ -1,8 +1,17 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useOutletContext, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import ScoreBoard from "../components/RankingBoard";
 
 export default function ScorePage() {
   const artDb = useLoaderData();
+  const { auth } = useOutletContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className=" h-[84vh]">

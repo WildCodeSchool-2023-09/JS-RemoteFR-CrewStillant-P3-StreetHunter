@@ -23,10 +23,10 @@ class MessagingManager extends AbstractManager {
     return rows[0];
   }
 
-  async create(title, body) {
+  async create(title, body, sub) {
     const [result] = await this.database.query(
-      ` INSERT INTO ${this.table} (title, body) VALUES (?,?)`,
-      [title, body]
+      ` INSERT INTO ${this.table} (title, body, user_id) VALUES (?,?,?)`,
+      [title, body, sub]
     );
     return result;
   }

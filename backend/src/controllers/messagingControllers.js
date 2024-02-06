@@ -32,8 +32,9 @@ const read = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   const { title, body } = req.body;
+  const { sub } = req.auth;
   try {
-    const result = await tables.messaging.create(title, body);
+    const result = await tables.messaging.create(title, body, sub);
     res.status(201).json({
       id: result.insertId,
       message: "Nouveau message bien créé",
