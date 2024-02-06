@@ -1,9 +1,3 @@
--- Active: 1701507911414@@127.0.0.1@3306@mapping_art_db
-DROP DATABASE IF EXISTS mapping_art_db;
-
-CREATE DATABASE mapping_art_db;
-
-USE mapping_art_db;
 
 CREATE TABLE category (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, cat_name VARCHAR(255)
