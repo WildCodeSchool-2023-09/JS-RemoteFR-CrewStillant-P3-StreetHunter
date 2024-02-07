@@ -70,11 +70,6 @@ export default function UserProfile() {
 
   const onSubmit = async (data) => {
     const obj = data;
-    for (const element in obj) {
-      if (obj[element] === null || obj[element] === "") {
-        delete obj[element];
-      }
-    }
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/`,
