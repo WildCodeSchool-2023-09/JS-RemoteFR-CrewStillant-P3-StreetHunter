@@ -15,7 +15,6 @@ export default function GalleryList({ dbartworks }) {
   const [categ, setCateg] = useState();
   const { auth } = useOutletContext();
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!auth) {
       navigate("/user/login");
@@ -156,7 +155,7 @@ export default function GalleryList({ dbartworks }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap  justify-center gap-4">
         {filteredArtworks.length &&
           filteredArtworks.map((art) => (
             <GalleryCard
@@ -164,7 +163,8 @@ export default function GalleryList({ dbartworks }) {
               title={art.title}
               artist={art.artist_name}
               image={art.path_pic}
-              adress={(art.longitude, art.latitude)}
+              longitude={art.longitude}
+              latitude={art.latitude}
               category={art.cat_name}
             />
           ))}

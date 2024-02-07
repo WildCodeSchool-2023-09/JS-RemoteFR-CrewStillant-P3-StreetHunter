@@ -1,25 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
+import { useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useOutletContext, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModifButton from "../../assets/button/modifbtn.png";
 import submit from "../../assets/button/submit.png";
 
 export default function UserProfile() {
-  const { auth } = useOutletContext();
-  const navigate = useNavigate();
-
   const [userInfo, setUserInfo] = useState();
-  useEffect(() => {
-    if (!auth) {
-      navigate("/user/login");
-    }
-  }, []);
+  const { auth, setAuth } = useOutletContext();
 
   const [visible, setVisible] = useState(false);
   const [update, setUpdate] = useState(false);
+  const updatedAuth = { ...auth };
+
   const {
     register,
     handleSubmit,
@@ -63,12 +58,16 @@ export default function UserProfile() {
       })
       .then((res) => {
         setUserInfo(res.data);
+        updatedAuth.user.username = res.data.username;
+        setAuth(updatedAuth);
       })
       .finally(setUpdate(false));
   };
 
   useEffect(() => {
-    if (update) fetchData();
+    if (update) {
+      fetchData();
+    }
   }, [update]);
 
   useEffect(() => {
@@ -77,11 +76,6 @@ export default function UserProfile() {
 
   const onSubmit = async (data) => {
     const obj = data;
-    for (const element in obj) {
-      if (obj[element] === null || obj[element] === "") {
-        delete obj[element];
-      }
-    }
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/`,
@@ -214,7 +208,7 @@ export default function UserProfile() {
           </form>
         </div>
       ) : (
-        <div className=" flex flex-row justify-evenly align-middle mt-10">
+        <div className=" flex flex-col lg:flex-row justify-evenly align-middle mx-3 lg:mx-0 mt-10">
           <div className="bg-white lg:p-10 bg-opacity-50 rounded-lg shadow-lg shadow-slate-700 lg:text-xl lg:font-semibold ">
             <div className="p-4 text-left">
               <span className="font-semibold mr-2">PSEUDO:</span>
@@ -242,12 +236,14 @@ export default function UserProfile() {
             </div>
           </div>
           <div className="flex flex-col justify-evenly">
-            <div>
-              <h2 className="text-center text-l lg:text-3xl font-semibold text-primary">
-                Bravo {userInfo?.username}, tu as {userInfo?.score} points!
-              </h2>
-            </div>
-            <div className="flex flex-row justify-end">
+            {userInfo?.is_admin === 0 && (
+              <div>
+                <h2 className="text-center text-l lg:text-3xl font-semibold text-primary">
+                  Bravo {userInfo?.username}, tu as {userInfo?.score} points!
+                </h2>
+              </div>
+            )}
+            <div className="flex flex-row lg:mt-0 mt-5 justify-center lg:justify-end">
               <button type="button" onClick={handleEditButton}>
                 <img
                   alt="button"

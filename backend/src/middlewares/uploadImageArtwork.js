@@ -6,9 +6,15 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const DateOfCreation = Date.now();
-    const arrayFile = file.originalname.replaceAll(" ", "_").split(".");
+    const arrayFile = Buffer.from(file.originalname, "latin1")
+      .toString("utf8")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replaceAll(/[/+":@&“”'’-]/g, "")
+      .replaceAll(" ", "_")
+      .split(".");
     const extendValue = arrayFile.pop();
-
     cb(null, `${arrayFile}_${DateOfCreation}.${extendValue}`);
   },
 });

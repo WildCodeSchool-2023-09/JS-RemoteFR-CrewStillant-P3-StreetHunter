@@ -1,3 +1,34 @@
+# Description MAPPING ART
+
+## Project 3 Wild Code School. <br>
+
+For our client Benoît Vandanjon. <br>
+MAPPING ART is a a treasure hunting web application where you can search for streetart artworks combining discovery and competition. Take pictures of your discoveries on our application to earn as many points as possible and take the lead in the hunter ranking. Our gameplay is simple and reachable.
+
+#### A big thanks to our best teacher Ayoub.
+
+🆙 Technologies used.
+
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+
+## Project status
+
+v1.0 deployed.
+
+## Creator
+
+[Alix CARLHANT](https://github.com/Halicksse) - [Faiza FEHRI](https://github.com/Kino-ki) - [Pierrick ONCHALO](https://github.com/Jhanemba64) - [Julien BAUDIC](https://github.com/Jubdc) - [Sébastien LAMBRANCA](https://github.com/Lambseb)
+
+## Screen
+
+<img src="https://image.noelshack.com/fichiers/2024/06/1/1707133131-capture-d-ecran-2024-02-05-123706.png" width="200" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706546940-capture-d-ecran-2024-01-29-174846.png" width="250" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/06/1/1707144452-capture-d-ecran-2024-02-05-154718.png" width="220" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706546617-capture-d-ecran-2024-01-29-174322.png" width="250" height="250" alt="mapping_art"> <img src="https://image.noelshack.com/fichiers/2024/05/1/1706547042-capture-d-ecran-2024-01-29-175020.png" width="250" height="250" alt="mapping_art">
+
 ## Concept
 
 This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.

@@ -40,37 +40,44 @@ export default function NavBar({ auth, setAuth }) {
     } else {
       navLinks = [
         {
-          path: `/user/profile/`,
-          title: "PROFIL",
+          path: "/gamerules",
+          title: "LE JEU",
         },
         {
           path: "/game/map",
           title: "LA CARTE",
         },
         {
+          path: "/game/gallery",
+          title: "GALERIE",
+        },
+        {
           path: "/game/scoreboard",
           title: "SCORES",
         },
-
         {
-          path: "/game/gallery",
-          title: "GALERIE",
+          path: `/user/profile/`,
+          title: "PROFIL",
         },
       ];
     }
   } else {
     navLinks = [
       {
-        path: "/user/signup",
-        title: "INSCRIPTION",
+        path: "/gamerules",
+        title: "LE JEU",
+      },
+      {
+        path: "/game/map",
+        title: "LA CARTE",
       },
       {
         path: `/user/login/`,
         title: "CONNEXION ",
       },
       {
-        path: "/game/map",
-        title: "LA CARTE",
+        path: "/user/signup",
+        title: "INSCRIPTION",
       },
     ];
   }
@@ -101,6 +108,8 @@ export default function NavBar({ auth, setAuth }) {
           navLinks={navLinks}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          auth={auth}
+          setAuth={setAuth}
         />
         <div className="flex flex-row justify-between ml-auto">
           <ul className="md:visible md:flex flex-col md:flex-row md:justify-end md:gap-2 hidden md:ml-6 text-primary">

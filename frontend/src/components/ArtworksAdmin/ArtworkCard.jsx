@@ -21,9 +21,10 @@ function ArtworkCard({ artwork, setIsUpdated }) {
     artist_id: artwork.artist_id,
     user_id: artwork.user_id,
   });
-
   const [users, setUsers] = useState([]);
   const [artists, setArtists] = useState([]);
+  const [coordForInfoAddress, setCoordForInfoAddress] = useState();
+  const addressGovApiReverse = `https://api-adresse.data.gouv.fr/reverse/?lon=${artwork.latitude}&lat=${artwork.longitude}`;
 
   const handleDelete = () => {
     axios
@@ -56,18 +57,29 @@ function ArtworkCard({ artwork, setIsUpdated }) {
       .then((response) => {
         setArtists(response.data);
       });
+    axios.get(`${addressGovApiReverse}`).then((res) => {
+      setCoordForInfoAddress(res.data.features[0].properties.label);
+    });
   }, []);
+
+  /**
+   * If the coordinate for the information address is available, it is used.
+   * @type {string}
+   */
+  const VerifyAddressing =
+    coordForInfoAddress === null
+      ? "Adresse non disponible"
+      : coordForInfoAddress;
 
   const handleEditClick = () => {
     setFormVisible(true);
   };
-
   return (
     <div className="bg-white bg-opacity-60 rounded-xl mb-4 p-3 shadow-md flex flex-col justify-center">
       <div className="text-xl font-bold mb-2">{artwork.title}</div>
-      <div className="mb-2 ml-7 ">
+      <div className="mb-2">
         <img
-          className="rounded-xl min-h-[250px] max-h-[250px] "
+          className="rounded-xl m-auto min-h-[250px] max-h-[250px] "
           src={artwork.path_pic}
           alt={artwork.title}
           width={300}
@@ -83,7 +95,7 @@ function ArtworkCard({ artwork, setIsUpdated }) {
       </div>
       <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Adresse: </div>
-        <div>{`Lat ${artwork.latitude}- Long ${artwork.longitude}`}</div>
+        <div>{`${VerifyAddressing}`}</div>
       </div>
       <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Catégorie: </div>
