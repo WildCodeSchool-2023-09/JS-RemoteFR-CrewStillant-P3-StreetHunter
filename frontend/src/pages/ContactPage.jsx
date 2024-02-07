@@ -1,17 +1,39 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
-import submitButton from "../assets/submitButton.png";
+import sendBtn from "../assets/button/sendBtn.png";
 
 export default function ContactPage() {
+  const { auth } = useOutletContext();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/messaging`, data);
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/messaging`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
+      );
+      if (res.status === 201) {
+        toast.success("message envoyé");
+        navigate("/game/map");
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("message non envoyé");
+    }
   };
   return (
     <div className="flex flex-col text-start justify-center items-center  h-[80vh]">
@@ -86,7 +108,7 @@ export default function ContactPage() {
               className="shadow-xl hover:opacity-90 active:shadow-[0_-35px_-60px_-15px_rgba(0,0,0,0.3)]"
             >
               <img
-                src={submitButton}
+                src={sendBtn}
                 alt="button"
                 className="w-[200px] lg:w-[250px]"
               />

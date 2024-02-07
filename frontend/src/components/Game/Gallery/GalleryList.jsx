@@ -1,3 +1,4 @@
+import { useOutletContext, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -12,6 +13,14 @@ export default function GalleryList({ dbartworks }) {
   const [filteredArtworks, setFilteredArtworks] = useState(artworks);
   const [isVisible, setIsVisible] = useState(false);
   const [categ, setCateg] = useState();
+  const { auth } = useOutletContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth) {
+      navigate("/user/login");
+    }
+  }, []);
 
   const handleDisplayFilters = () => {
     setIsVisible(!isVisible);

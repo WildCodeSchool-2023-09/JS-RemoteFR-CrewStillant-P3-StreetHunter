@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import AdressApi from "../components/ApiAdressForm/GetAdressApi";
 
 export default function SendPicturePage() {
@@ -10,6 +10,7 @@ export default function SendPicturePage() {
   const [coords, setCoords] = useState();
   const { auth } = useOutletContext();
   const decoded = auth && jwtDecode(auth.token);
+  const navigate = useNavigate();
 
   const categoriesOfSelect = [
     { value: "1", label: "retro" },
@@ -49,6 +50,7 @@ export default function SendPicturePage() {
       );
       console.info(uploaderFile);
       toast.success("La création du artwork a été réalisée avec succés !");
+      navigate("/game/map");
     } catch (err) {
       console.error(err);
       toast.error(
@@ -63,7 +65,7 @@ export default function SendPicturePage() {
   };
 
   return (
-    <div className="flex-col md:flex-row justify-center h-[78vh] flex my-16">
+    <div className="lg:mt-20 mt-4 flex-col md:flex-row justify-center flex">
       <div className=" md:mt-10 md:w-[400px] md:max-h-[400px] max-h-[250px] md:m-0 m-auto w-[250px] md:h-[400px] h-[400px] rounded-lg relative border border-sky-800">
         {Boolean(sendPicture) && (
           <img
@@ -78,7 +80,7 @@ export default function SendPicturePage() {
       ) : (
         <form
           onSubmit={HandleUpload}
-          className="flex flex-col items-center h-screen"
+          className="flex flex-col items-center lg:h-screen"
         >
           <h3 className=" text-center">
             {sendPicture
@@ -152,7 +154,6 @@ export default function SendPicturePage() {
           >
             Upload votre Street Art
           </button>
-          <ToastContainer />
         </form>
       )}
     </div>

@@ -16,10 +16,10 @@ const {
 } = require("../controllers/userControllers");
 
 UserRouter.get("/", browse);
-UserRouter.get("/:id", read);
+UserRouter.get("/account", verifyToken, read);
 UserRouter.post("/", validatedUser, hash, add);
 UserRouter.delete("/:id", remove);
 UserRouter.put("/:id/addscore", addScore);
-UserRouter.put("/:id", verifyToken, validateProfileUser, edit);
+UserRouter.put("/", verifyToken, validateProfileUser, edit);
 
 module.exports = UserRouter;
