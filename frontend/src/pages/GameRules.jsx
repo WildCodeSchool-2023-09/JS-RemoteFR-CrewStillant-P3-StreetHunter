@@ -8,9 +8,9 @@ export default function GameRules() {
       <article className="lg:mx-60 mx-8 bg-[#f2f2f2af]  p-4 lg:p-20 text-start text-2xl rounded-xl mt-16">
         <p className="indent-1 lg:leading-loose leading-snug">
           <b>Explorez votre ville.</b>
-          <br /> Prenez en photo vos découvertes de street art et proposez-les
-          nous! <br /> Plus vous en ajoutez sur la carte, meilleur sera votre
-          score. <br /> Inscrivez-vous et gagnez la tête du podium!
+          <br /> Prenez en photo les street arts trouvés et envoyez-les ! <br />{" "}
+          Plus vous en ajoutez sur la carte, meilleur sera votre score. <br />{" "}
+          Inscrivez-vous et gagnez la tête du classement!
         </p>
       </article>
     </div>
