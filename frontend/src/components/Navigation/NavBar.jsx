@@ -40,37 +40,44 @@ export default function NavBar({ auth, setAuth }) {
     } else {
       navLinks = [
         {
-          path: `/user/profile/`,
-          title: "PROFIL",
+          path: "/gamerules",
+          title: "LE JEU",
         },
         {
           path: "/game/map",
           title: "LA CARTE",
         },
         {
+          path: "/game/gallery",
+          title: "GALERIE",
+        },
+        {
           path: "/game/scoreboard",
           title: "SCORES",
         },
-
         {
-          path: "/game/gallery",
-          title: "GALERIE",
+          path: `/user/profile/`,
+          title: "PROFIL",
         },
       ];
     }
   } else {
     navLinks = [
       {
-        path: "/user/signup",
-        title: "INSCRIPTION",
+        path: "/gamerules",
+        title: "LE JEU",
+      },
+      {
+        path: "/game/map",
+        title: "LA CARTE",
       },
       {
         path: `/user/login/`,
         title: "CONNEXION ",
       },
       {
-        path: "/game/map",
-        title: "LA CARTE",
+        path: "/user/signup",
+        title: "INSCRIPTION",
       },
     ];
   }
