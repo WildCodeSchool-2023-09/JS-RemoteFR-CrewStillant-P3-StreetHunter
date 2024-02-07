@@ -14,7 +14,7 @@ export default function NotFoundPage() {
         </div>
         <div className="w-full flex flex-row justify-center md:w-1/2">
           <img
-            className="max-w-full mx-auto rounded-full shadow-2xl border-2 border-green-200"
+            className="rounded-full shadow-2xl border-2 border-green-200"
             alt="blague"
             src={joke}
           />
