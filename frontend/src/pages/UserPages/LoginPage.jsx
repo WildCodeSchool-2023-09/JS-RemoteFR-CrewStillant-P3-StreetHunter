@@ -41,7 +41,10 @@ export default function LoginPage() {
       <h1 className="text-center font-extrabold text-4xl md:text-5xl lg:text-6xl text-primary">
         CONNEXION
       </h1>
-      <form className="flex flex-col my-10 mx-auto " onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col my-10 items-center mx-auto "
+        onSubmit={handleSubmit}
+      >
         <div className="flex flex-col ">
           <label className="text-xl font-semibold" htmlFor="email">
             EMAIL{" "}
@@ -67,7 +70,10 @@ export default function LoginPage() {
           />
         </div>
 
-        <button type="submit" className="mt-5">
+        <button
+          type="submit"
+          className="mt-5  transform animate-zoom-in-out duration-1000 "
+        >
           <img
             alt="sendbutton"
             className="lg:w-[300px] w-[200px] "

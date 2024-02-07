@@ -10,7 +10,7 @@ export default function GameRules() {
           <b>Explorez votre ville.</b>
           <br /> Prenez en photo les street arts trouvés et envoyez-les ! <br />{" "}
           Plus vous en ajoutez sur la carte, meilleur sera votre score. <br />{" "}
-          Inscrivez-vous et gagnez la tête du classement!
+          Inscrivez-vous et prenez la tête du classement!
         </p>
       </article>
     </div>
