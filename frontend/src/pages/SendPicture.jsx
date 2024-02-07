@@ -64,7 +64,7 @@ export default function SendPicturePage() {
 
   return (
     <div className="flex-col md:flex-row justify-center h-[78vh] flex my-16">
-      <div className=" md:mt-10 md:w-[400px] md:max-h-[400px] max-h-[250px] m-auto w-[250px] md:h-[400px] h-[400px] rounded-lg relative border border-sky-800">
+      <div className=" md:mt-10 md:w-[400px] md:max-h-[400px] max-h-[250px] md:m-0 m-auto w-[250px] md:h-[400px] h-[400px] rounded-lg relative border border-sky-800">
         {Boolean(sendPicture) && (
           <img
             className="shadow-xl shadow-slate-800 rounded-lg  w-full h-full object-cover"
