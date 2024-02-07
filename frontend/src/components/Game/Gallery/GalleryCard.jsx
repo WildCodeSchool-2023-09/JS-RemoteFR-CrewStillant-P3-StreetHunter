@@ -25,10 +25,10 @@ export default function GalleryCard({
       : coordForInfoAddress;
 
   return (
-    <div className="bg-white bg-opacity-60 flex flex-col justify-center rounded-md outline-offset-4 mb-4 p-3 shadow-md max-w-[20rem] ">
-      <div className="text-xl font-bold mb-2 text-center">{title}</div>
+    <div className="bg-white bg-opacity-60 flex flex-col justify-between rounded-md outline-offset-4 mb-4 p-3 shadow-md max-w-[20rem] ">
+      <div className="text-xl font-bold mb-4 text-center">{title}</div>
       <div className="mb-2 ">
-        <img src={image} alt={title} width={300} />
+        <img className="max-h-[20rem]" src={image} alt={title} width={300} />
       </div>
       <div className="mb-2 flex flex-row justify-center">
         <div className="font-semibold mr-2">Artiste: </div>

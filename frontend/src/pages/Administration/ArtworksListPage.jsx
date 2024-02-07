@@ -6,7 +6,7 @@ export default function ArtworksPage() {
   const dbartworks = useLoaderData();
 
   return (
-    <div className="h-[77vh] overflow-auto">
+    <div className="h-[77vh] no-scrollbar  overflow-auto">
       <ArtworksList artworks={dbartworks} />
     </div>
   );

@@ -155,7 +155,7 @@ export default function GalleryList({ dbartworks }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap  justify-center gap-4">
         {filteredArtworks.length &&
           filteredArtworks.map((art) => (
             <GalleryCard
