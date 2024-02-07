@@ -4,11 +4,7 @@ const userSchema = z.object({
   username: z.string().min(2),
   firstname: z.string().min(2).optional().or(z.literal("")),
   lastname: z.string().min(2).optional().or(z.literal("")),
-  email: z
-    .string()
-    .email({ message: "email non valide" })
-    .regex(/\./)
-    .optional(),
+  email: z.string().email({ message: "email non valide" }).regex(/\./),
   password: z
     .string()
     .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/)

@@ -9,6 +9,7 @@ import "./tailwind.css";
 
 function App() {
   const [auth, setAuth] = useState();
+  // console.log(auth);
 
   return (
     <div className="flex flex-col bg-responsivecity lg:bg-city bg-contain min-h-screen">

@@ -9,10 +9,12 @@ import submit from "../../assets/button/submit.png";
 
 export default function UserProfile() {
   const [userInfo, setUserInfo] = useState();
-  const { auth } = useOutletContext();
+  const { auth, setAuth } = useOutletContext();
 
   const [visible, setVisible] = useState(false);
   const [update, setUpdate] = useState(false);
+  const updatedAuth = { ...auth };
+
   const {
     register,
     handleSubmit,
@@ -56,12 +58,16 @@ export default function UserProfile() {
       })
       .then((res) => {
         setUserInfo(res.data);
+        updatedAuth.user.username = res.data.username;
+        setAuth(updatedAuth);
       })
       .finally(setUpdate(false));
   };
 
   useEffect(() => {
-    if (update) fetchData();
+    if (update) {
+      fetchData();
+    }
   }, [update]);
 
   useEffect(() => {
