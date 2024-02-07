@@ -29,11 +29,35 @@ function RankingBoard() {
             </tr>
           </thead>
           <tbody className="text-blue-gray-900 divide-y">
-            {scoreDesc.map((e) => (
+            {scoreDesc.map((e, index) => (
               <tr key={e.id} className="border-b  border-blue-gray-200">
-                <td className="pl-2 py-3 ">{e.username}</td>
-                <td className="py-3">{e.city}</td>
-                <td className="py-3">{e.score}</td>
+                <td
+                  className={`pl-2 py-3 ${
+                    index === 0 || index === 1 || index === 2
+                      ? `font-semibold text-xl`
+                      : null
+                  }`}
+                >
+                  {e.username}
+                </td>
+                <td
+                  className={`py-3 ${
+                    index === 0 || index === 1 || index === 2
+                      ? `font-semibold text-xl`
+                      : null
+                  }`}
+                >
+                  {e.city}
+                </td>
+                <td
+                  className={`py-3 ${
+                    index === 0 || index === 1 || index === 2
+                      ? `font-semibold text-xl`
+                      : null
+                  }`}
+                >
+                  {e.score}
+                </td>
               </tr>
             ))}
           </tbody>

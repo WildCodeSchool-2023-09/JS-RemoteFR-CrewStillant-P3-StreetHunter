@@ -20,6 +20,7 @@ import ScoreBoard from "./pages/RankingPage";
 import MessagingPage from "./pages/Administration/MessagingPage";
 import LoginPage from "./pages/UserPages/LoginPage";
 import ArtworkPage from "./pages/Game/ArtworkPage";
+import GameRules from "./pages/GameRules";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/gamerules",
+        element: <GameRules />,
       },
     ],
   },
